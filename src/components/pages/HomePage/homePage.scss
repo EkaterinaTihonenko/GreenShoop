@@ -1,0 +1,40 @@
+.header-content {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.header-content-text {
+   text-transform: none;
+   font-weight: 400;
+   font-size: 1rem;
+   color: #373f38;
+}
+
+.span-text {
+   font-size: 1rem;
+}
+
+.title {
+   font-size: 5rem;
+   font-weight: 900;
+   text-transform: uppercase;
+}
+
+.span-green {
+   color: #46a358;
+   font-size: 5.2rem;
+}
+
+.text {
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   line-height: 0.9rem;
+}
+
+.header-content-img {
+   height: 500px;
+}
+
+.img-right {
+   height: 100%;
+}
