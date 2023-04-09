@@ -1,9 +1,9 @@
 import { Component } from '../../../core/Component';
 import '../../atoms/ItemLink';
 
-import './navigation.scss';
+import './navigationItem.scss';
 
-class Navigation extends Component {
+class NavigationItem extends Component {
   static get observedAttributes() {
     return ['items'];
   }
@@ -29,4 +29,4 @@ class Navigation extends Component {
   }
 }
 
-customElements.define('content-navigation', Navigation);
+customElements.define('navigation-item', NavigationItem);

@@ -1,7 +1,7 @@
 import { Component } from './core/Component';
 import { routes } from './constants/routes';
 
-import './components/moleculs/Navigation';
+import './components/moleculs/NavigationItem';
 import './components/pages/AdminPage';
 import './components/pages/BlogPage';
 import './components/pages/CartPage';

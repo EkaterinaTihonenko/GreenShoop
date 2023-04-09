@@ -1,5 +1,7 @@
 import { Component } from '../../../core/Component';
+
 import '../../templates/HeaderTemplate';
+import './HomePage.scss';
 
 class HomePage extends Component {
   render() {

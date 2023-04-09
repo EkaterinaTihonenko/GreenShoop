@@ -1,26 +1,15 @@
 import { Component } from '../../../core/Component';
 
-import '../../atoms/InputData';
 import '../../atoms/TypeButton';
 import '../../atoms/TextPhrase';
+import '../FormSearch';
 
 import './NavigationBtn.scss';
 
 class NavigationBtn extends Component {
   render() {
     return `
-         <div
-            class="search">
-               <input-data
-                  class="search__input" 
-                  type="search" 
-                  placeholder="Поиск...">
-               <type-button 
-                  type="button" 
-                  class="search__btn">
-                     Поиск
-               </type-button>
-         </div>
+         <form-search></form-search>
          <div 
             class="like">
          </div>

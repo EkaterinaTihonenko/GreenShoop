@@ -14,7 +14,7 @@ class LogoLink extends Component {
                <icon-file class="logo__icon" src="./assets/images/icons/logo.svg" alt="logo">
                </icon-file>
                <text-phrase class="logo__text">
-                  greenshop
+                 greenshop
                </text-phrase>
          </a>
       `;
