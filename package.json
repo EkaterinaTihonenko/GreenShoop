@@ -1,5 +1,5 @@
 {
-  "name": "Project-GreenShoop",
+  "name": "project Green Shop",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -11,7 +11,7 @@
     "eslint:fix": "eslint --fix --ext .js src"
   },
   "keywords": [],
-  "author": "Tihonenko E.A.",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.9",

@@ -1,0 +1,26 @@
+.search{
+   margin: auto;
+}
+
+.like{
+   cursor: pointer;
+   background-image: url("../../../assets/images/icons/heart.svg");
+   background-repeat: no-repeat;
+   background-size: 28px;
+   background-position: 20% 50%;
+   width: 28px;
+   height: 28px;
+   position: relative;
+   margin: auto;
+}
+
+.cart{
+   cursor: pointer;
+   background-image: url("../../../assets/images/icons/cart.svg");
+   background-repeat: no-repeat;
+   background-position: 20% 50%;
+   width: 40px;
+   height: 40px;
+   position: relative;
+   margin: auto;
+}

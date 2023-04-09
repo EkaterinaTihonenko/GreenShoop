@@ -1,0 +1,8 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/typography.scss';
+
+.logo{
+   @include flex(row, center, center);
+   
+}

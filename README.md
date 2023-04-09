@@ -1,1 +1,1 @@
-# mentoring-simple-webpack-starter
+# project Green Shop

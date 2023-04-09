@@ -1,0 +1,44 @@
+@import '../../../scss//colors.scss';
+@import '../../../scss/typography.scss';
+
+.search__btn{
+   background-color: $border-color;
+   border-radius: 4px;
+   border: none;
+   color: $white-color;
+   text-transform: $transformCapitalize;
+   width: 70px;
+   height: 25px;
+   cursor: pointer;
+}
+
+
+.right__btn{
+   width: 100px;
+   height: 35px;
+   background-color: #46a358;
+   border-radius: 6px;
+   border: none;
+   color: #ffffff;
+   text-transform: capitalize;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: center;
+       -ms-flex-pack: center;
+           justify-content: center;
+   -webkit-box-align: center;
+       -ms-flex-align: center;
+           align-items: center;
+           
+   &::before {
+         background-image: url("../../../assets/images/icons/bg-btn.svg");
+         background-repeat: no-repeat;
+         content: "";
+         position: relative;
+         right: 2px;
+         float: left;
+         width: 20px;
+         height: 20px;
+      }
+   }

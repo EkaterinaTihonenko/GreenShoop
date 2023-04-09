@@ -1,0 +1,47 @@
+@import './colors.scss';
+@import '../scss/typography.scss';
+
+@mixin normalizer {
+   margin: 0;
+   padding: 0;
+   -webkit-box-sizing: border-box;
+           box-sizing: border-box;
+   list-style-type: none;
+   text-decoration: none;
+}
+
+@mixin flex($direction, $justify, $align) {
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+       -ms-flex-direction: $direction;
+           flex-direction: $direction;
+   -webkit-box-pack: $justify;
+       -ms-flex-pack: $justify;
+           justify-content: $justify;
+   -webkit-box-align: $align;
+       -ms-flex-align: $align;
+           align-items: $align;
+}
+
+@mixin grid {
+   display: -ms-grid;
+   display: grid;
+   -webkit-box-align: center;
+       -ms-flex-align: center;
+           align-items: center;
+}
+
+@mixin text($color:$font-color) {
+   font-family: $mainFont;
+   font-size: 0.9rem;
+   color: $color;
+   line-height: 18px;
+}
+
+@mixin box-shadow($shadow-color) {
+   -webkit-box-shadow: 1px 8px 10px $shadow-color;
+   box-shadow: 1px 8px 10px $shadow-color;
+}

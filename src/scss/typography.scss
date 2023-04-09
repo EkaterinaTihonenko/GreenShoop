@@ -1,8 +1,18 @@
+@import './colors.scss';
+
 // Font
 $mainFont: "Roboto", Helvetica, Arial, sans-serif;
 
 // Size
-$mainFontColor: #101010;
-$mainFontSize: 18px;
+$mainFontColor: $font-color;
+$mainFontSize: 0.9rem;
 $mainFontWeight: 400;
-$mainLineHeight: 1.4;
+$mainLineHeight: 1;
+
+$fontWeightRegular: 400;
+$fontWeightMedium: 500;
+$fontWeightBold: 700;
+$fontWeightBlack: 900;
+
+$transformCapitalize: capitalize;
+

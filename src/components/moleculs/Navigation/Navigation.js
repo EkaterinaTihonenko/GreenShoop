@@ -1,18 +1,32 @@
 import { Component } from '../../../core/Component';
+import '../../atoms/ItemLink';
+
 import './navigation.scss';
 
 class Navigation extends Component {
+  static get observedAttributes() {
+    return ['items'];
+  }
+
   render() {
+    const items = JSON.parse(this.props.items);
+
     return `
          <nav class="nav">
-            <a href="./pages/index.html" class="nav-link">главная</a>
-            <a href="./pages/Product.html" class="nav-link">корзина</a>
-            <a href="./pages/PlantCare.html" class="nav-link">уход</a>
-            <a href="./pages/Blog.html" class="nav-link">блог</a>
-            <a href="./pages/Contacts.html" class="nav-link">контакты</a>
+            ${items
+              .map((item) => {
+                return `
+                     <item-link 
+                        class="nav__link" 
+                        href="${item.href}" 
+                        content="${item.label}">
+                     </item-link> 
+                  `;
+              })
+              .join(' ')}
          </nav>
-    `;
+      `;
   }
 }
 
-customElements.define('navigation-page', Navigation);
+customElements.define('content-navigation', Navigation);
