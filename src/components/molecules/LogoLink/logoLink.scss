@@ -1,0 +1,16 @@
+@import "../../../scss/mixins.scss";
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.logo {
+   text-decoration: none;
+   &__text {
+      text-transform: uppercase;
+      font-weight: $fontWeightBlack;
+      color: $span-color;
+      &::first-letter {
+         font-size: 1.3rem;
+         font-weight: $fontWeightBold;
+      }
+   }
+}

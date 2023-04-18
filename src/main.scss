@@ -1,25 +1,26 @@
-@import 'reset.css';
+@import "reset.css";
+@import "bootstrap";
 
-@import './scss/fonts.scss';
-@import './scss/colors.scss';
-@import './scss/typography.scss';
-@import './scss//mixins.scss';
+@import "./scss/fonts.scss";
+@import "./scss/colors.scss";
+@import "./scss/typography.scss";
+@import "./scss//mixins.scss";
 
 html {
-   @include text($color:#373f38);
+   @include text($color: #373f38);
    height: 100%;
- }
- 
- body {
+}
+
+body {
    background-color: $main-color;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    @include normalizer;
-   @include text($color:#373f38);
- }
- 
- .container{
-    min-height: 100%;
-    max-width: 1440px;
-    margin: auto;
- }
+   @include text($color: #373f38);
+}
+
+.content {
+   min-height: 100%;
+   max-width: 1440px;
+   margin: auto;
+}

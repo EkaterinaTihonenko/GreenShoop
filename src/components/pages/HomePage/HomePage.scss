@@ -1,0 +1,8 @@
+@import "../../../scss//colors.scss";
+
+.catalog-controls {
+   background-color: $main-color;
+   border-left: 1px solid$border-color;
+   box-shadow: 1px 8px 10px $shadow-color;
+   border-radius: 20px;
+}

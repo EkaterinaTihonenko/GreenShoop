@@ -1,0 +1,17 @@
+.btn-right {
+   width: 100px;
+   height: 35px;
+   border-radius: 6px;
+   border: none;
+   text-transform: capitalize;
+   &::before {
+      background-image: url("../../../assets/images/icons/bg-btn.svg");
+      background-repeat: no-repeat;
+      content: "";
+      position: relative;
+      right: 2px;
+      float: left;
+      width: 20px;
+      height: 20px;
+   }
+}

@@ -1,8 +1,12 @@
 export const APP_ROUTES = {
   home: '/',
-  cart: '/cart',
   blog: '/blog',
   contacts: '/contacts',
-  product: '/home/:id',
+  cart: '/cart',
+  deliveryPayment: '/deliveryPayment',
+  product: '/catalog/:id',
   admin: '/admin',
+  signUp: '/sign-up',
+  signIn: '/sign-in',
+  profile: 'profile',
 };

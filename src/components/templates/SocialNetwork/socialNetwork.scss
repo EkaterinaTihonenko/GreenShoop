@@ -1,0 +1,21 @@
+@import "../../../scss/mixins.scss";
+@import "../../../scss/colors.scss";
+
+.link-right {
+   @include box-shadow($shadow-color);
+   color: $font-color;
+   width: 33vw;
+   border-radius: 10px;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   -ms-border-radius: 10px;
+   -o-border-radius: 10px;
+   border-bottom: 2px solid $border-color;
+   background-color: $shadow-bg;
+   margin-bottom: 2rem;
+}
+
+.social-network__link {
+   box-shadow: 1px 1px 5px $font-color;
+   border: 1px solid $border-color;
+}

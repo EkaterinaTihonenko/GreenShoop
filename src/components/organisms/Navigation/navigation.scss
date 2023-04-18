@@ -1,0 +1,20 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/mixins.scss";
+
+.header__navigation {
+   position: sticky;
+   top: 0;
+   z-index: 5;
+   padding: 1%;
+   background-color: $main-color;
+   border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
+   border: 1px solid $border-color;
+   border-top: transparent;
+   border-bottom: 3px solid $border-color;
+   @include box-shadow($shadow-color);
+}
+
+.btns {
+   margin: 0 1.5rem;
+}

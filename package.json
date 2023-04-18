@@ -1,5 +1,5 @@
 {
-  "name": "project Green Shop",
+  "name": "IT-Academy-SHOP",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -11,7 +11,7 @@
     "eslint:fix": "eslint --fix --ext .js src"
   },
   "keywords": [],
-  "author": "",
+  "author": "T.E.A.",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.9",
@@ -23,11 +23,13 @@
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "firebase-tools": "^11.25.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
+    "swiper": "^9.2.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
@@ -35,7 +37,9 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "dotenv-webpack": "^8.0.1",
+    "firebase": "^9.18.0",
     "reset.css": "^2.0.2"
   }
 }
