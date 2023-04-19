@@ -65,7 +65,7 @@ class SignUpPage extends Component {
             <h1 class="text-center mt-5">Регистрация</h1>
             <div class="row justify-content-center mt-5">
               <div class="col-6">
-                 <div class="border p-5">
+                 <div class="border p-5 border-success border-2 rounded">
                     <div class="invalid-feedback d-block">${message}</div>
                     <register-form></register-form>
                  </div>

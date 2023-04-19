@@ -12,7 +12,7 @@ import './components/pages/HomePage';
 import './components/pages/ContactsPage';
 import './components/pages/ErrorPage';
 import './components/pages/ProductPage';
-import './components/pages/DeliveryAndPayment';
+import './components/pages/DeliveryAndPaymentPage';
 import './components/organisms/Footer';
 import './components/pages/AdminPage';
 import './components/pages/SignUpPage';

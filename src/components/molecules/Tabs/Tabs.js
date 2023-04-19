@@ -43,7 +43,7 @@ class Tabs extends Component {
               .map(({ id, label }) => {
                 return `
                      <li class="nav-item">
-                        <a class="nav-link ${id === activeItem.id ? 'active' : ''}" 
+                        <a class="nav-link text-success ${id === activeItem.id ? 'active' : ''}" 
                            data-id="${id}" 
                            href="#">${label}
                         </a>

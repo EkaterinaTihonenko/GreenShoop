@@ -1,6 +1,4 @@
 import { Component } from '../../../core/Component';
-import '../../organisms/Navigation';
-import '../../molecules/MenuItems';
 import '../../molecules/CategoryItems';
 
 class CatalogControls extends Component {

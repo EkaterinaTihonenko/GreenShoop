@@ -5,8 +5,6 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { APP_ROUTES } from '../../../constants/appRoutes';
-
-import '../../molecules/MenuItems';
 import '../../molecules/MenuItems';
 import '../../../core/Router/Link';
 import '../../molecules/LogoLink';
@@ -80,7 +78,7 @@ class Navigation extends Component {
          <nav class="navbar navbar-expand-lg header__navigation d-flex justify-content-around">
             <logo-link></logo-link>
             <menu-items 
-               items='${JSON.stringify(appPages.slice(0, 5))}'>
+               items='${JSON.stringify(appPages.slice(0, 6))}'>
             </menu-items>
             <div class="d-flex justify-content-center align-items-center">
                <search-form></search-form>

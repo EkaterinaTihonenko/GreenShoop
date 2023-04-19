@@ -6,11 +6,11 @@ import { menuItems } from './constants';
 import { forms } from './constants';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 import '../../molecules/Tabs';
+import { firebaseStorageService } from '../../../services/FirebaseStorageService';
+import '../../molecules/Preloader';
 import '../../organisms/BlogForm';
 import '../../organisms/CategoryForm';
 import '../../organisms/ProductForm';
-import { firebaseStorageService } from '../../../services/FirebaseStorageService';
-import '../../molecules/Preloader';
 
 class AdminPage extends Component {
   constructor() {

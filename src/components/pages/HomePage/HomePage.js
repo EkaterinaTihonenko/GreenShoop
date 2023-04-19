@@ -5,12 +5,11 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { CATEGORIES } from '../../../constants/categories';
 
 import '../../molecules/Pagination';
+import '../../organisms/Section';
 import '../../organisms/CardList';
-import '../../organisms/SectionBlog';
 import '../../molecules/ReviewsUserSwiper';
 import '../../templates/CatalogControls';
 import '../../templates/HeaderTemplate';
-import '../../organisms/SectionReviewsUser';
 import './homePage.scss';
 
 class HomePage extends Component {

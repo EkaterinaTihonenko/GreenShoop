@@ -8,8 +8,6 @@ import '../../templates/PaymentMethods';
 import './footer.scss';
 import { appPages } from '../../../constants/appPages';
 import { CATEGORIES } from '../../../constants/categories';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { APP_EVENTS } from '../../../constants/appEvents';
 
 class Footer extends Component {
   constructor() {
@@ -18,7 +16,7 @@ class Footer extends Component {
       contacts: [
         {
           href: 'https://yandex.by/maps/157/minsk/house/Zk4YcwRhSkQCQFtpfXVycXlhZw==/?ll=27.531316%2C53.930523&z=16',
-          text: 'г.Гомель, ул.Орловская 70.',
+          text: 'г.Гомель, ул.Орловская 70. оф. 409.',
           src: 'location.svg',
         },
         {
@@ -47,15 +45,15 @@ class Footer extends Component {
                   </green-shop-contacts>
                </div>
                <div class="d-flex justify-content-between align-items-start">
-                  <menu-items 
-                     items='${JSON.stringify(appPages)}'>
-                  </menu-items>
                   <category-items
                      items='${JSON.stringify(CATEGORIES.slice(0, 6))}'>
                   </category-items>
                   <category-items
                      items='${JSON.stringify(CATEGORIES.slice(7, 12))}'>
                   </category-items>
+                  <menu-items 
+                     items='${JSON.stringify(appPages.slice(0, 5))}'>
+                  </menu-items>
                   <div class="links-right">
                      <social-network></social-network>
                      <payment-methods></payment-methods>

@@ -9,7 +9,7 @@ export class Link extends Component {
   }
 
   static get observedAttributes() {
-    return ['to', 'children'];
+    return ['to'];
   }
 
   onClick = (evt) => {

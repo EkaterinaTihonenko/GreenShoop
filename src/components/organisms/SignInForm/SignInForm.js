@@ -52,13 +52,13 @@ class EntryForm extends Component {
     <div class="mb-3">
       <label class="form-label w-100">
         <p>Почта<p>
-        <input name="email" type="email" class="form-control">
+        <input name="email" type="email" class="form-control bg-transparent border-success">
       </label>
     </div>
     <div class="mb-3">
       <label class="form-label w-100">
         <p>Пароль<p>
-        <input name="password" type="password" class="form-control" required>
+        <input name="password" type="password" class="form-control bg-transparent border-success" required>
       </label>
     </div>
     <button type="submit" class="btn bg-transparent border-2 border border-success">Вход</button>
