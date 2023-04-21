@@ -26,7 +26,7 @@ class MenuItems extends Component {
                 return `
                      <li class="nav-item">
                         <route-link to="${item.href}">
-                           <link-item class="${this.isActive(item) ? 'active' : ''}"
+                           <link-item class="text-dark ${this.isActive(item) ? 'active' : ''}"
                               href="${item.href ? item.href : ''}"
                               content="${item.label}">
                            </link-item>

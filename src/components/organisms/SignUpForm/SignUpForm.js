@@ -28,7 +28,8 @@ class RegisterForm extends Component {
     const { email, password } = getFormData(evt.target);
 
     if (!email) {
-      this.setError('email', 'The field is required');
+      this.setError('Почта', 'Поле обязательно для заполнения');
+      return;
     }
 
     eventEmmiter.emit(APP_EVENTS.signUp, {
@@ -42,6 +43,7 @@ class RegisterForm extends Component {
   componentDidMount() {
     this.addEventListener('submit', this.onSubmit);
   }
+
   componentWillUnmount() {
     this.removeEventListener('submit', this.onSubmit);
   }
@@ -51,8 +53,8 @@ class RegisterForm extends Component {
     <form>
     <div class="mb-3">
       <label class="form-label w-100">
-        <p>Email<p>
-        <input name="email" type="email" class="form-control">
+        <p>Почта<p>
+        <input name="email" type="email" class="form-control bg-transparent border-success">
       </label>
       ${
         this.state.errors.email
@@ -76,10 +78,10 @@ class RegisterForm extends Component {
         <input name="confirm-password" type="password" class="form-control bg-transparent border-success" required>
       </label>
     </div>
-    <button type="submit" class="btn bg-transparent border-2 border border-success">Регистрация</button>
+    <button type="submit" class="btn bg-success text-light">Регистрация</button>
   </form>
     `;
   }
 }
 
-customElements.define('register-form', RegisterForm);
+customElements.define('sign-up-form', RegisterForm);

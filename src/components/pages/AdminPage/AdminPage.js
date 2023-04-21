@@ -2,15 +2,15 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { databaseService } from '../../../services/DatabaseService';
-import { menuItems } from './constants';
-import { forms } from './constants';
-import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
+
+import { forms, menuItems } from './constants';
 import '../../molecules/Tabs';
-import { firebaseStorageService } from '../../../services/FirebaseStorageService';
 import '../../molecules/Preloader';
 import '../../organisms/BlogForm';
 import '../../organisms/CategoryForm';
 import '../../organisms/ProductForm';
+import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
+import { firebaseStorageService } from '../../../services/FirebaseStorageService';
 
 class AdminPage extends Component {
   constructor() {
@@ -53,7 +53,7 @@ class AdminPage extends Component {
     firebaseStorageService
       .uploadFile(data.preview, 'products')
       .then((snapshot) => {
-        firebaseStorageService.dowloadURL(snapshot.ref).then((url) => {
+        firebaseStorageService.downloadURL(snapshot.ref).then((url) => {
           databaseService.createDocument('products', {
             ...data,
             preview: url,
@@ -82,20 +82,20 @@ class AdminPage extends Component {
 
   render() {
     return `
-         <it-preloader is-loading="${this.state.isLoading}">
-            <div class="container">
-               <div class="mt-5">
-                  <it-tabs
-                    menu-items='${JSON.stringify(menuItems)}' 
-                    active-item='${JSON.stringify(this.state.activeTab)}'>
-                  </it-tabs>
-                  <div class="md-3 border-start border p-3">
-                     ${forms[this.state.activeTab.id]}
-                  </div>
-               </div>
+      <it-preloader is-loading="${this.state.isLoading}">
+        <div class="container">
+          <div class="mt-5">
+            <it-tabs 
+              menu-items='${JSON.stringify(menuItems)}' 
+              active-item='${JSON.stringify(this.state.activeTab)}'>
+            </it-tabs>
+            <div class="mb-3 border-end border-bottom border-start p-3">
+              ${forms[this.state.activeTab.id]}
             </div>
-         </it-preloader>
-      `;
+          </div>
+        </div>
+      </it-preloader>
+    `;
   }
 }
 

@@ -8,5 +8,6 @@ export const APP_ROUTES = {
   admin: '/admin',
   signUp: '/sign-up',
   signIn: '/sign-in',
-  profile: 'profile',
+  signOut: '/sign-out',
+  profile: '/profile',
 };

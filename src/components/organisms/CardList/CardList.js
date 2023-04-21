@@ -11,23 +11,23 @@ class CardList extends Component {
 
     return `
          <div class="row">
-            ${products
-              .map((item) => {
-                return `
-                     <div class="col-sm-3 mb-3">
-                        <card-product
-                           image='${item.images[0]}'
-                           title='${item.title}'
-                           price='${item.price}'
-                           description='${item.description}'
-                           id='${item.id}'>
-                        </card-product>
-                     </div>
-                  `;
-              })
-              .join(' ')}
+             ${products
+               .map((item) => {
+                 return `
+                 <div class="col-sm-3 mb-3 card-col">
+                     <card-product
+                         image='${item.preview}'
+                         title='${item.title}'
+                         price='${item.price}'
+                         description='${item.description}'
+                         id='${item.id}'
+                     ></card-product>
+                 </div>
+                 `;
+               })
+               .join(' ')}
          </div>
-      `;
+         `;
   }
 }
 

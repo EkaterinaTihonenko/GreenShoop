@@ -1,8 +1,5 @@
 import { Component } from './core/Component';
 import { routes } from './constants/routes';
-import { authService } from './services/Auth';
-import { APP_EVENTS } from './constants/appEvents';
-import { eventEmmiter } from './core/EventEmmiter';
 import './core/Router/Router';
 
 import './components/organisms/Navigation';
@@ -17,14 +14,28 @@ import './components/organisms/Footer';
 import './components/pages/AdminPage';
 import './components/pages/SignUpPage';
 import './components/pages/SignInPage';
+import './components/pages/SignOutPage';
 import './components/molecules/Preloader';
+import { authService } from './services/Auth';
+import { APP_EVENTS } from './constants/appEvents';
+import { eventEmmiter } from './core/EventEmmiter';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       isLoading: false,
+      user: null,
     };
+  }
+
+  setUser(user) {
+    this.setState((state) => {
+      return {
+        ...state,
+        user,
+      };
+    });
   }
 
   setIsLoading = (isLoading) => {
@@ -40,7 +51,7 @@ class App extends Component {
     this.setIsLoading(true);
     try {
       const user = await authService.authorizeUser();
-      eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
+      this.setUser(user);
     } catch (error) {
       console.error(error);
     } finally {
@@ -48,15 +59,24 @@ class App extends Component {
     }
   }
 
+  onAuthorizeUser = ({ detail }) => {
+    this.setUser(detail.user);
+  };
+
   componentDidMount() {
     this.authorizeUser();
+    eventEmmiter.on(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
+  }
+
+  componentWillUnmount() {
+    eventEmmiter.off(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
   }
 
   render() {
     return `
     <it-preloader is-loading="${this.state.isLoading}">
       <div class="main-layout content">
-      <green-navigation></green-navigation>
+      <green-navigation user='${JSON.stringify(this.state.user)}'></green-navigation>
         <main>
         <app-router>
             <app-route 
@@ -66,7 +86,7 @@ class App extends Component {
             </app-route>
             <app-route 
             path="${routes.cart.href}" 
-            title="Карзина" 
+            title="Корзина" 
             component="${routes.cart.component}">
            </app-route>
            <app-route 
@@ -88,7 +108,7 @@ class App extends Component {
                path="${routes.product.href}" 
                title="Продукты" 
                component="${routes.product.component}">
-            </app-route
+            <app-route
                path="${routes.admin.href}" 
                title="Админ" 
                component="${routes.admin.component}">
@@ -102,6 +122,11 @@ class App extends Component {
                path="${routes.signIn.href}" 
                title="Вход" 
                component="${routes.signIn.component}">
+            </app-route>
+            <app-route 
+               path="${routes.signOut.href}" 
+               title="Выход" 
+               component="${routes.signOut.component}">
             </app-route>
             <app-route 
                path="${routes.error.href}" 

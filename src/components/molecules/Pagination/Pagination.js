@@ -57,7 +57,7 @@ class Pagination extends Component {
                      </li>
                   `;
               })
-              .join(' ')},
+              .join(' ')}
 
             <li class="page-item ms-2 ${isLast ? 'disabled' : ''}">
                <a class="page-link next-link" href="#">&gt;</a>

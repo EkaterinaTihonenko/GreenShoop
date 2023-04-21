@@ -34,7 +34,7 @@ class SignInPage extends Component {
     });
   }
 
-  entry = async ({ detail }) => {
+  signIn = async ({ detail }) => {
     const { data } = detail;
     this.setIsLoading(true);
     try {
@@ -49,15 +49,16 @@ class SignInPage extends Component {
   };
 
   componentDidMount() {
-    eventEmmiter.on(APP_EVENTS.signIn, this.entry);
+    eventEmmiter.on(APP_EVENTS.signIn, this.signIn);
   }
 
   componentWillUnmount() {
-    eventEmmiter.off(APP_EVENTS.signIn, this.entry);
+    eventEmmiter.off(APP_EVENTS.signIn, this.signIn);
   }
 
   render() {
     const message = this.state.errorMessage;
+
     return `
     <it-preloader is-loading="${this.state.isLoading}">
         <div class="container mt-5">
@@ -66,7 +67,7 @@ class SignInPage extends Component {
               <div class="col-6">
                  <div class="border p-5 border-success border-2 rounded">
                  <div class="invalid-feedback d-block">${message}</div>
-                    <entry-form></entry-form>
+                    <sign-in-form></sign-in-form>
                  </div>
               </div>
             </div>

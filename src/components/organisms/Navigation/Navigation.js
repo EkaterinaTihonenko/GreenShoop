@@ -5,12 +5,15 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { APP_ROUTES } from '../../../constants/appRoutes';
+import { ADMIN } from '../../../constants/userRoles';
+import '../../../core/Router/Link';
 import '../../molecules/MenuItems';
 import '../../../core/Router/Link';
 import '../../molecules/LogoLink';
 import '../../molecules/SearchForm';
 import '../../molecules/BtnGroup';
 import './navigation.scss';
+import { authService } from '../../../services/Auth';
 
 class Navigation extends Component {
   constructor() {
@@ -20,6 +23,32 @@ class Navigation extends Component {
       user: null,
     };
   }
+
+  static get observedAttributes() {
+    return ['user'];
+  }
+
+  setUser(user) {
+    this.setState((state) => {
+      return {
+        ...state,
+        user,
+      };
+    });
+  }
+
+  async authorizeUser() {
+    try {
+      const user = await authService.authorizeUser();
+      this.setUser(user);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  onAuthorizeUser = ({ detail }) => {
+    this.setUser(detail.user);
+  };
 
   setProductsCount = (count) => {
     this.setState((state) => {
@@ -51,34 +80,51 @@ class Navigation extends Component {
     this.setProductsCount(count);
   };
 
-  setUser(evt) {
-    this.setState((state) => {
-      return {
-        ...state,
-        user: evt.detail.user,
-      };
-    });
-  }
-
   componentDidMount() {
-    eventEmmiter.on(APP_EVENTS.authorizeUser, this.setUser);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
     const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
     const count = this.countProducts(items);
     this.setProductsCount(count);
+    this.authorizeUser();
+    eventEmmiter.on(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
   }
 
   componentWillUnmount() {
-    eventEmmiter.off(APP_EVENTS.authorizeUser, this.setUser);
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
+    eventEmmiter.off(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
   }
 
+  getItems() {
+    const user = JSON.parse(this.props.user);
+    console.log(user);
+    if (user) {
+      if (user.email === ADMIN) {
+        return appPages.filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut].every(
+            (item) => item !== menuItem.href,
+          );
+        });
+      } else {
+        return appPages.filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.admin, APP_ROUTES.signOut].every(
+            (item) => item !== menuItem.href,
+          );
+        });
+      }
+    } else {
+      return appPages.filter((menuItem) => {
+        return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut, APP_ROUTES.admin].every(
+          (item) => item !== menuItem.href,
+        );
+      });
+    }
+  }
   render() {
     return `
          <nav class="navbar navbar-expand-lg header__navigation d-flex justify-content-around">
             <logo-link></logo-link>
-            <menu-items 
-               items='${JSON.stringify(appPages.slice(0, 6))}'>
+            <menu-items
+               items='${JSON.stringify(this.getItems().slice(0, 6))}'>
             </menu-items>
             <div class="d-flex justify-content-center align-items-center">
                <search-form></search-form>
@@ -92,7 +138,7 @@ class Navigation extends Component {
                      </a>
                   </route-link>
                </div>
-               <btn-group></btn-group>
+               <btn-group user='${JSON.stringify(this.state.user)}'></btn-group>
             </div>
          </nav>
       `;

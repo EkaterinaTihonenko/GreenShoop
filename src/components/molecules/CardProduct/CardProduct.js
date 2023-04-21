@@ -1,17 +1,22 @@
+import { APP_EVENTS } from '../../../constants/appEvents';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { Component } from '../../../core/Component';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 import { storageService } from '../../../services/StorageService';
 import './cardProduct.scss';
 
 class CardProduct extends Component {
   static get observedAttributes() {
-    return ['img', 'title', 'description', 'price', 'id'];
+    return ['image', 'title', 'description', 'price', 'id'];
   }
 
   addToCart = (evt) => {
     if (evt.target.closest('.btn')) {
       const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
       storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
+    }
+    if (evt.target.closest('.card')) {
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: `catalog/${this.props.id}` });
     }
   };
 
@@ -24,11 +29,11 @@ class CardProduct extends Component {
   }
 
   render() {
-    const { img, title, description, price } = this.props;
+    const { image, title, description, price } = this.props;
 
     return `
          <div class="card">
-            <img class="image-fit card-img-top" src="${img}" alt="image">
+            <img class="image-fit card-img-top" src="${image}" alt="image">
             <div class="card-body">
                <h5 class="card-title fix-line-of-title">${title}</h5>
                <p class="card-text fix-line-of-description">${description}</p>

@@ -11,7 +11,7 @@ class CategoryForm extends Component {
       data[key] = value;
     });
 
-    eventEmmiter.emit(APP_EVENTS.createProduct, { data });
+    eventEmmiter.emit(APP_EVENTS.createCategory, { data });
     evt.target.reset();
   };
 
@@ -31,7 +31,6 @@ class CategoryForm extends Component {
                name="name" 
                type="text" 
                class="form-control mb-3" 
-               placesholder="Type a category name" 
                required>
             <button type="submit" class="btn bg-success">Сохранить</button>
          </form>

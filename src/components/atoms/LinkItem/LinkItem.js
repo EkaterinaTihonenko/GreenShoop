@@ -1,5 +1,4 @@
 import { Component } from '../../../core/Component';
-
 import './linkItem.scss';
 
 class Link extends Component {
@@ -27,9 +26,10 @@ class Link extends Component {
     const content = this.props.content;
 
     return `
-         <a class="nav-link item-link text-dark ${className}" href="${href}">
+         <a class="nav-link item-link text-light ${className}" href="${href}">
             ${content}
          </a>
+   
    `;
   }
 }

@@ -48,10 +48,9 @@ class ProductForm extends Component {
     this.removeEventListener('submit', this.onSubmit);
     this.removeEventListener('change', this.onChange);
   }
-
   render() {
     return `
-         <form enctype="multipart/form-data">
+         <form>
             <div class="mb-3">
                <label class="form-label w-100">
                   <p>

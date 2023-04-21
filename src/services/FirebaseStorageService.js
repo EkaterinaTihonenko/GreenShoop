@@ -1,4 +1,4 @@
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { cloudService } from './CloudService';
 
 class FirebaseStorageService {
@@ -8,10 +8,10 @@ class FirebaseStorageService {
 
   uploadFile(file, path) {
     const fileRef = ref(this.storage, `${path}/${file.name}`);
-    return uploadBytes(fileRef);
+    return uploadBytes(fileRef, file);
   }
 
-  dowloadURL(ref) {
+  downloadURL(ref) {
     return getDownloadURL(ref);
   }
 }

@@ -3,6 +3,7 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { info, menuItems } from './constants';
 import '../../organisms/Info';
+import '../../molecules/Tabs';
 
 class DeliveryAndPayment extends Component {
   constructor() {

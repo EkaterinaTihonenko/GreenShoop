@@ -1,11 +1,10 @@
 import { Component } from '../../../core/Component';
-
-import '../../organisms/SignUpForm';
-import '../../molecules/Preloader';
 import { authService } from '../../../services/Auth';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { APP_ROUTES } from '../../../constants/appRoutes';
+import '../../organisms/SignUpForm';
+import '../../molecules/Preloader';
 
 class SignUpPage extends Component {
   constructor() {
@@ -67,7 +66,7 @@ class SignUpPage extends Component {
               <div class="col-6">
                  <div class="border p-5 border-success border-2 rounded">
                     <div class="invalid-feedback d-block">${message}</div>
-                    <register-form></register-form>
+                    <sign-up-form></sign-up-form>
                  </div>
               </div>
             </div>

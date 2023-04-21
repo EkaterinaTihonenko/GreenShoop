@@ -2,6 +2,8 @@ import { Component } from '../../../core/Component';
 import { getFormData } from '../../../utils/form';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
+import { APP_ROUTES } from '../../../constants/appRoutes';
+import '../../atoms/LinkItem';
 
 class EntryForm extends Component {
   constructor() {
@@ -11,24 +13,13 @@ class EntryForm extends Component {
     };
   }
 
-  setError = (key, message) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        errors: {
-          ...state.errors,
-          [key]: message,
-        },
-      };
-    });
-  };
-
   onSubmit = (evt) => {
     evt.preventDefault();
     const { email, password } = getFormData(evt.target);
 
     if (!email) {
-      this.setError('email', 'The field is required');
+      this.setError('Почта', 'Поле обязательно для заполнения');
+      return;
     }
 
     eventEmmiter.emit(APP_EVENTS.signIn, {
@@ -61,10 +52,21 @@ class EntryForm extends Component {
         <input name="password" type="password" class="form-control bg-transparent border-success" required>
       </label>
     </div>
-    <button type="submit" class="btn bg-transparent border-2 border border-success">Вход</button>
+    <div class="mt-2 d-flex justify-content-between">
+    <button type="submit" class="btn bg-success text-light">Войти</button>
+    <button type="button"
+      class="btn bg-success text-light d-flex justify-content-center align-items-center">
+      <div class="btn-right-icon"></div>
+      <route-link to="${APP_ROUTES.signUp}">
+      <link-item href="#"
+         content="Регистрация">
+      </link-item>
+      </route-link>
+     </button>
+     </div>
   </form>
     `;
   }
 }
 
-customElements.define('entry-form', EntryForm);
+customElements.define('sign-in-form', EntryForm);

@@ -34,7 +34,7 @@ class CartPage extends Component {
     });
   };
 
-  onDeleteIteem = (evt) => {
+  onDeleteItem = (evt) => {
     if (evt.target.closest('.minus')) {
       const id = evt.target.dataset.id;
       const items = this.state.products;
@@ -79,13 +79,13 @@ class CartPage extends Component {
   componentDidMount() {
     const products = storageService.getItem(APP_STORAGE_KEYS.cartData);
     this.setProducts(products ?? []);
-    this.addEventListener('click', this.onDeleteIteem);
+    this.addEventListener('click', this.onDeleteItem);
     this.addEventListener('click', this.onAddItem);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('click', this.onDeleteIteem);
+    this.removeEventListener('click', this.onDeleteItem);
     this.removeEventListener('click', this.onAddItem);
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
   }
