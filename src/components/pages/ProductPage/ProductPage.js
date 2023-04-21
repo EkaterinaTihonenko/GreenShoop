@@ -1,5 +1,6 @@
 import { PRODUCTS } from '../../../constants/products';
 import { Component } from '../../../core/Component';
+import '../../molecules/CardProduct';
 
 class ProductPage extends Component {
   static get observedAttributes() {

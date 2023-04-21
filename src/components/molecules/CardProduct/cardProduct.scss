@@ -1,4 +1,5 @@
 @import "../../../scss/mixins.scss";
+@import "../../../scss/colors.scss";
 
 .card {
    background: rgb(255, 255, 255);
@@ -11,9 +12,24 @@
    border-radius: 5px;
    border: none;
 }
+
+.image-fit {
+   height: 200px;
+   width: 200px;
+}
+
+.card-name {
+   text-decoration: underline;
+   cursor: pointer;
+   &:hover {
+      text-decoration: none;
+      color: $border-color;
+   }
+}
+
 .fix-line-of-description {
-   @include sliceByLine;
-   min-height: 72px;
+   @include sliceByLine(3);
+   min-height: 55px;
 }
 
 .fix-line-of-title {

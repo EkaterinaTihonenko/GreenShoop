@@ -48,12 +48,12 @@ class CategoryItems extends Component {
     const { activeItem } = this.state;
 
     return `
-         <ul class="navbar-nav">
+         <ul class="navbar-nav" style="width: 20rem;">
             ${items
               .map((item) => {
                 const isActive = activeItem?.id === item.id;
                 return `
-                     <li class="nav-item">
+                     <li class="nav-item d-flex justify-content-between align-items-center">
                         <a class="nav-link item-link text-body ${isActive ? 'active' : ''}" 
                            href="#" 
                            data-id="${item.id}">

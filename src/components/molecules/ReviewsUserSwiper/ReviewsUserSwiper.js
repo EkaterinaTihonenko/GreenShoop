@@ -7,10 +7,6 @@ import 'swiper/css/effect-fade';
 import './reviewsUserSwiper.scss';
 
 class ReviewsUserSwiper extends Component {
-  constructor() {
-    super();
-  }
-
   initSwiper() {
     Swiper.use([EffectFade, Autoplay]);
 

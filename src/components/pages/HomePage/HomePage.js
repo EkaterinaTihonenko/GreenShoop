@@ -18,7 +18,7 @@ class HomePage extends Component {
     super();
     this.state = {
       products: [],
-      limit: 12,
+      limit: 8,
       currentPage: 1,
     };
   }

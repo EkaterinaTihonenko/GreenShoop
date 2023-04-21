@@ -1,10 +1,11 @@
 import { Component } from '../../../core/Component';
+import './errorPage.scss';
 
 class ErrorPage extends Component {
   render() {
     return `
-         <div class="container">
-            <h1 class="text-center m-5">ErrorPage<h1>
+         <div class="container content text-center d-flex align-items-center">
+            <h1 class=" content__title-error m-auto">Error Page<h1>
          </div>
         `;
   }

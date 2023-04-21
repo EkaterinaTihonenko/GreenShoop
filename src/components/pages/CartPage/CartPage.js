@@ -3,6 +3,7 @@ import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { storageService } from '../../../services/StorageService';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
+import './cartPage.scss';
 
 class CartPage extends Component {
   constructor() {
@@ -92,51 +93,48 @@ class CartPage extends Component {
 
   render() {
     return `
-         <div class="container mt-5">
-            <table class="table mt-3">
-               <thead>
-                  <tr>
-                     <th scope="col">№</th>
-                     <th scope="col">Наименование</th>
-                     <th scope="col">Просмотр</th>
-                     <th scope="col">Описание</th>
-                     <th scope="col"></th>
-                     <th scope="col">Количество</th>
-                     <th scope="col"></th>
-                     <th scope="col">Цена за шт.</th>
-                     <th scope="col">Стоимость</th>
-
-                  </tr>
-               </thead>
-               <tbody>
-                ${this.state.products
-                  .map((item, index) => {
-                    const sumPrice = item.price * item.quantity;
-                    return `
-                        <tr>
-                           <td>${index + 1}</td>
-                           <td>${item.title}</td>
-                           <td>
-                              <img class="image-fit" src='${item.image}' alt="image" />
-                           </td>
-                           <td>${item.description}</td>
-                           <td>
-                              <button class='btn btn-success minus' data-id="${item.id}">-</button>
-                           </td>
-                           <td class="text-center">${item.quantity}</td>
-                           <td>
-                              <button class='btn btn-success  plus' data-id="${item.id}">+</button>
-                           </td>
-                           <td class="col-1 ps-3 td-price">${item.price} BYN</td>
-                           <td class="col-1 sum-price">${sumPrice} BYN</td>
-                        </tr>
-                        `;
-                  })
-                  .join(' ')}
-               </tbody>
-            </table>
-            <div class="sum text-end p-4 pe-5 me-2""> Итого:   BYN</div>
-         </div>
+    <div class="container mt-5">
+    <table class="table mt-3 align-items-center">
+       <thead>
+          <tr>
+             <th scope="col">Ваш заказ</th>
+             <th scope="col">Наименование</th>
+             <th scope="col">Описание</th>
+             <th scope="col"></th>
+             <th scope="col">Количество</th>
+             <th scope="col"></th>
+             <th scope="col">Цена за шт.</th>
+             <th scope="col">Стоимость</th>
+          </tr>
+       </thead>
+       <tbody>
+        ${this.state.products
+          .map((item) => {
+            const sumPrice = item.price * item.quantity;
+            return `
+                <tr>
+                   <td class="">
+                        <img class="image-fit" src='${item.image}' alt="image" />
+                   </td>
+                   <td class="col-2">${item.title}</td>
+                   <td colspan="1" class="fix-description pe-4 p-0">${item.description}</td>
+                   <td class="text-end">
+                      <button class='btn btn-success minus' data-id="${item.id}">-</button>
+                   </td>
+                   <td class=" text-center p-0">${item.quantity}</td>
+                   <td class="text-start">
+                      <button class='btn btn-success plus' data-id="${item.id}">+</button>
+                   </td>
+                   <td class="col-1 td-price">${item.price} BYN</td>
+                   <td class="col-1 sum-price">${sumPrice} BYN</td>
+                </tr>
+                `;
+          })
+          .join(' ')}
+       </tbody>
+    </table>
+    <div class="sum text-end p-4 pe-5 me-2""> Итого: ${this.state.sum}  BYN</div>
+ </div>
       `;
   }
 }

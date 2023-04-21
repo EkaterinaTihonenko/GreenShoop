@@ -1,0 +1,5 @@
+@import "../../../scss/mixins.scss";
+
+.fix-description {
+   @include sliceByLine(7);
+}

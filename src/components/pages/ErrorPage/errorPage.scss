@@ -1,0 +1,12 @@
+.content {
+   min-height: 50vh;
+   &__title-error {
+      font-size: 6rem;
+      font-weight: 700;
+      background-image: url(../../../assets//images/bg-span.jpg);
+      background-size: contain;
+      background-attachment: fixed;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+   }
+}

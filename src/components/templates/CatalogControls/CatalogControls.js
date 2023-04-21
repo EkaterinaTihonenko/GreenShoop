@@ -10,8 +10,10 @@ class CatalogControls extends Component {
     const categories = this.props.categories;
 
     return `
-         <div class="collapse navbar-collapse d-flex">
-            <category-items items='${categories}'></category-items>
+         <div class="collapse navbar-collapse d-flex p-3">
+            <category-items 
+               items='${categories}'>
+            </category-items>
          </div>
       `;
   }

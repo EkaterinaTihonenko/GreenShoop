@@ -15,7 +15,7 @@ class CardProduct extends Component {
       const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
       storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
     }
-    if (evt.target.closest('.card')) {
+    if (evt.target.closest('.card-name')) {
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: `catalog/${this.props.id}` });
     }
   };
@@ -32,19 +32,19 @@ class CardProduct extends Component {
     const { image, title, description, price } = this.props;
 
     return `
-         <div class="card">
-            <img class="image-fit card-img-top" src="${image}" alt="image">
-            <div class="card-body">
-               <h5 class="card-title fix-line-of-title">${title}</h5>
-               <p class="card-text fix-line-of-description">${description}</p>
-               <div class='d-flex justify-content-between align-items-center border-top pt-2'>
-                  <strong class="card-title pricing-card-title mb-0">
-                     ${price} BYN
-                  </strong>
-                  <button class="btn btn-success">Купить</button>
-               </div>
-            </div>
-         </div>
+    <div class="card">
+    <img class="image-fit card-img-top" src="${image}" alt="image">
+    <div class="card-body">
+      <h5 class="card-title card-name fix-line-of-title">${title}</h5>
+      <p class="card-text fix-line-of-description">${description}</p>
+      <div class='d-flex justify-content-between align-items-center border-top pt-2'>
+        <strong class="card-title pricing-card-title mb-0">
+          ${price} BYN
+        </strong>
+        <button class="btn bg-success text-light">Купить</button>
+      </div>
+    </div>
+  </div>
       `;
   }
 }
