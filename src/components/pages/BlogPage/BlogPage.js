@@ -1,33 +1,85 @@
+import { APP_EVENTS } from '../../../constants/appEvents';
+import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 import { Component } from '../../../core/Component';
+import { eventEmmiter } from '../../../core/EventEmmiter';
+import { databaseService } from '../../../services/DatabaseService';
+import '../../templates/BlogTemplate';
+import './blogPage.scss';
 
 class BlogPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      posts: [],
+      limit: 4,
+      currentPage: 1,
+    };
+  }
+
+  static get observedAttributes() {
+    return ['posts'];
+  }
+
+  sliceData(currentPage = 1) {
+    const { limit } = this.state;
+    const start = (currentPage - 1) * limit;
+    const end = currentPage * limit;
+    return this.state.posts.slice(start, end);
+  }
+
+  onChangePaginationPage = (evt) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        currentPage: Number(evt.detail.page),
+      };
+    });
+    window.scrollTo(0, { behavior: 'smooth' });
+  };
+
+  setBlogPosts(posts) {
+    this.setState((state) => {
+      return {
+        ...state,
+        posts,
+      };
+    });
+  }
+
+  getBlogPosts = async () => {
+    try {
+      const posts = await databaseService.getCollection(FIRESTORE_KEYS.posts);
+      this.setBlogPosts(posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  componentDidMount() {
+    this.sliceData();
+    this.getBlogPosts();
+    eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+  }
+
+  componentWillUnmount() {
+    eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+  }
+
   render() {
     return `
          <div class="container">
-            <h1 class="text-uppercase fw-bold text-decoration-underline text-success pt-5">Наш блог<h1>
-            <div class="">
-            <div class="d-flex mt-5">
-            <div>
-               <img src="../../../assets/images/blog1.jpg" class="card-img-top" alt="img" style="width: 30rem;">
-               </div>
-               <div class="ms-5">
-                 <h3>Бонсай — уход в домашних условиях своими руками</h3>
-                 <p class="fs-6">Вокруг искусства выращивания бонсая ходит множество мифов: что это очень сложно и недостижимо. Большая часть этих мифов полная неправда.</p>
-                 <p class="fs-6"> Бонсай – это целое искусство и определенная техника выращивания миниатюрных деревьев, а так как за основу берутся простые деревья ухаживать на ними не так сложно. Им, как и всем остальным нужен правильный свет, полив и т.д.</p>
-                 <p class="fs-6">Однако, бонсай нельзя назвать просто деревом – это произведение искусства, живая скульптура. Люди, посвящающие себя этому делу, часто отмечают, что находят в данном занятие успокоение. Так же данные деревья благоприятно влияют на атмосферу в доме.</p>
-                 <a href="#" class="btn btn-success">Подробнее</a>
-               </div>
+            <h3 class="text-uppercase fw-bold text-decoration-underline text-success pt-5">Наш блог</h3>
+            <div class="mt-5">
+               <blog-template
+                 posts='${JSON.stringify(this.sliceData(this.state.currentPage))}'>
+               </blog-template>
             </div>
-            <div class="d-flex mt-5">
-               <img src="../../../assets/images/blog2.jpg" class="card-img-top" alt="img" style="width: 30rem;">
-               <div class="ms-5">
-                 <h3>Фикус Микрокарпа (Гинсенг) — миниатюрное дерево бонсай. Уход в домашних условиях</h3>
-                 <p class="fs-6">Фикус микрокарпа – необычное домашнее дерево, встречающееся в дикой природе только в Юго-Восточной части Азии, Филиппинах, Индонезии. Именно оттуда оно попало к нам. В диких условиях такой дерево вырастет до 25 метров, одна современными садоводами благодаря специально технике дерево приобрело карликовый размер и вид бонсая. И в домашних условиях высота не превышает 1.5 метра.</p>
-                 <p class="fs-6"> Так же добились профессионалы и необычной формы их корней. Дерево выращивается длительное время под секретными технологиями, а после пересаживается, оголяя верх корней и уже после поступает в продажу.</p>
-                 <p class="fs-6">Растение цветет и дает плоды, однако очень-очень редко. Многие владельцы фикуса так ни разу и не увидели его цветков. А плоды не употребляются в пищу из-за крайне неприятного вкуса.</p>
-                 <a href="#" class="btn btn-success">Подробнее</a>
-               </div>
-            </div>
+            <div class='mt-5'>
+               <it-pagination 
+                  total="${this.state.posts.length}" 
+                  limit="${this.state.limit}"
+                  current="${this.state.currentPage}">
+               </it-pagination>
             </div>
          </div>
       `;

@@ -11,9 +11,7 @@ class CatalogControls extends Component {
 
     return `
          <div class="collapse navbar-collapse d-flex p-3">
-            <category-items 
-               items='${categories}'>
-            </category-items>
+            <category-items items='${categories}'></category-items>
          </div>
       `;
   }

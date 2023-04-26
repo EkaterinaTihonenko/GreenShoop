@@ -47,6 +47,27 @@ class AdminPage extends Component {
     databaseService.createDocument(FIRESTORE_KEYS.categories, detail.data);
   };
 
+  createBlog = ({ detail }) => {
+    this.setIsLoading(true);
+    const { data } = detail;
+    firebaseStorageService
+      .uploadFile(data.preview, 'posts')
+      .then((snapshot) => {
+        firebaseStorageService.downloadURL(snapshot.ref).then((url) => {
+          databaseService.createDocument('posts', {
+            ...data,
+            preview: url,
+          });
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        this.setIsLoading(false);
+      });
+  };
+
   createProduct = ({ detail }) => {
     this.setIsLoading(true);
     const { data } = detail;
@@ -72,12 +93,14 @@ class AdminPage extends Component {
     eventEmmiter.on(APP_EVENTS.changeTab, this.onChangeTab);
     eventEmmiter.on(APP_EVENTS.createCategory, this.createCategory);
     eventEmmiter.on(APP_EVENTS.createProduct, this.createProduct);
+    eventEmmiter.on(APP_EVENTS.createBlog, this.createBlog);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changeTab, this.onChangeTab);
     eventEmmiter.off(APP_EVENTS.createCategory, this.createCategory);
     eventEmmiter.off(APP_EVENTS.createProduct, this.createProduct);
+    eventEmmiter.off(APP_EVENTS.createBlog, this.createBlog);
   }
 
   render() {

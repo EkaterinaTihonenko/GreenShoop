@@ -3,7 +3,7 @@ import '../../molecules/CardProduct';
 
 class CardList extends Component {
   static get observedAttributes() {
-    return ['products'];
+    return ['products', 'class', 'id'];
   }
 
   render() {
@@ -14,14 +14,16 @@ class CardList extends Component {
              ${products
                .map((item) => {
                  return `
-                 <div class="col-sm-3 mb-3 card-col">
+                 <div class="col-sm-3 mb-3 m-2 card-col">
                      <card-product
                          image='${item.preview}'
                          title='${item.title}'
+                         category='${item.category}'
                          price='${item.price}'
                          description='${item.description}'
                          id='${item.id}'
-                     ></card-product>
+                         content=''>
+                     </card-product>
                  </div>
                  `;
                })

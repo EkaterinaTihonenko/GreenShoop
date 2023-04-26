@@ -1,5 +1,5 @@
 {
-  "name": "IT-Academy-SHOP",
+  "name": "GreenShoop",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -39,7 +39,7 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "dotenv-webpack": "^8.0.1",
-    "firebase": "^9.18.0",
+    "firebase": "^9.20.0",
     "reset.css": "^2.0.2"
   }
 }

@@ -12,4 +12,5 @@ export const APP_EVENTS = {
   signIn: 'signIn',
   signOut: 'signOut',
   authorizeUser: 'authorizeUser',
+  productId: 'productId',
 };

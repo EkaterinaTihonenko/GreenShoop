@@ -2,8 +2,6 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 
-import './categoryItems.scss';
-
 class CategoryItems extends Component {
   constructor() {
     super();
@@ -48,12 +46,12 @@ class CategoryItems extends Component {
     const { activeItem } = this.state;
 
     return `
-         <ul class="navbar-nav" style="width: 20rem;">
+         <ul class="navbar-nav">
             ${items
               .map((item) => {
                 const isActive = activeItem?.id === item.id;
                 return `
-                     <li class="nav-item d-flex justify-content-between align-items-center">
+                     <li class="nav-item">
                         <a class="nav-link item-link text-body ${isActive ? 'active' : ''}" 
                            href="#" 
                            data-id="${item.id}">

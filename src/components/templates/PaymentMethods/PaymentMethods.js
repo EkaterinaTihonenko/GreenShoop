@@ -32,7 +32,7 @@ class PaymentMethods extends Component {
 
   render() {
     return `
-         <div class="link-right p-4">
+         <div class="link-right p-3">
             <items-icon 
                items='${JSON.stringify(this.state.paymen)}'
                class="socialNetwork d-flex">

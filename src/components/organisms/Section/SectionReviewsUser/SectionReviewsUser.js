@@ -1,6 +1,5 @@
 import { Component } from '../../../../core/Component';
 import '../../../molecules/ReviewsUserSwiper';
-import './sectionReviewsUser.scss';
 
 class sectionReviewsUser extends Component {
   constructor() {

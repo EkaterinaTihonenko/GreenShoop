@@ -7,10 +7,14 @@ import 'swiper/css/effect-fade';
 import './reviewsUserSwiper.scss';
 
 class ReviewsUserSwiper extends Component {
+  constructor() {
+    super();
+  }
+
   initSwiper() {
     Swiper.use([EffectFade, Autoplay]);
 
-    const swiper = new Swiper(`.${this.props.swiperclass}`, {
+    new Swiper(`.${this.props.swiperclass}`, {
       modules: [Navigation, Pagination],
       loop: true,
       effect: 'fade',

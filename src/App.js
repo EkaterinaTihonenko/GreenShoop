@@ -9,6 +9,7 @@ import './components/pages/HomePage';
 import './components/pages/ContactsPage';
 import './components/pages/ErrorPage';
 import './components/pages/ProductPage';
+import './components/pages/ArticleBlogPage';
 import './components/pages/DeliveryAndPaymentPage';
 import './components/organisms/Footer';
 import './components/pages/AdminPage';
@@ -85,15 +86,15 @@ class App extends Component {
                component="${routes.home.component}">
             </app-route>
             <app-route 
-            path="${routes.cart.href}" 
-            title="Корзина" 
-            component="${routes.cart.component}">
-           </app-route>
-           <app-route 
-           path="${routes.blog.href}" 
-           title="Блог" 
-           component="${routes.blog.component}">
-           </app-route>
+               path="${routes.cart.href}" 
+               title="Корзина" 
+               component="${routes.cart.component}">
+            </app-route>
+            <app-route 
+               path="${routes.blog.href}" 
+               title="Блог" 
+               component="${routes.blog.component}">
+            </app-route>
             <app-route 
                path="${routes.contacts.href}" 
                title="Контакты" 
@@ -106,8 +107,14 @@ class App extends Component {
             </app-route>
             <app-route 
                path="${routes.product.href}" 
-               title="Продукты" 
+               title="Товар" 
                component="${routes.product.component}">
+            </app-route>
+            <app-route 
+               path="${routes.article.href}" 
+               title="Статья" 
+               component="${routes.article.component}">
+            </app-route>
             <app-route
                path="${routes.admin.href}" 
                title="Админ" 
@@ -136,7 +143,7 @@ class App extends Component {
             <app-outlet></app-outlet>
         </app-router>
         </main>
-        <green-shop-footer></green-shop-footer>
+        <green-footer></green-shop-footer>
       </div>
       </it-preloader>
     `;

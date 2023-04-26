@@ -1,10 +1,8 @@
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
-import { CATEGORIES } from '../../../constants/categories';
 import { databaseService } from '../../../services/DatabaseService';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
-
 import '../../molecules/Pagination';
 import '../../organisms/Section';
 import '../../organisms/CardList';
@@ -18,9 +16,15 @@ class HomePage extends Component {
     super();
     this.state = {
       products: [],
+      posts: [],
+      categories: [],
       limit: 8,
       currentPage: 1,
     };
+  }
+
+  static get observedAttributes() {
+    return ['products', 'posts'];
   }
 
   sliceData(currentPage = 1) {
@@ -40,15 +44,16 @@ class HomePage extends Component {
     window.scrollTo(0, { behavior: 'smooth' });
   };
 
-  onFilterProductsByCategory = (evt) => {
+  onFilterByCategory = (evt) => {
     const { selectedCategory } = evt.detail;
     this.setState((state) => {
       return {
         ...state,
-        products: this.state.products.filter((item) => item.category.id === selectedCategory.id),
+        products: this.state.products.filter((item) => item.categories.id === selectedCategory.id),
         currentPage: 1,
       };
     });
+    window.scrollTo(0, { behavior: 'smooth' });
   };
 
   onSearch = (evt) => {
@@ -63,7 +68,17 @@ class HomePage extends Component {
       };
     });
   };
-
+  /*
+  isCategory = (evt) => {
+    const { selectedCategory } = evt.detail;
+    this.setState((state) => {
+      return {
+        ...state,
+        categories: selectedCategory.category,
+      };
+    });
+  };
+*/
   setProducts(products) {
     this.setState((state) => {
       return {
@@ -82,18 +97,39 @@ class HomePage extends Component {
     }
   };
 
+  setBlogPosts(posts) {
+    this.setState((state) => {
+      return {
+        ...state,
+        posts,
+      };
+    });
+  }
+
+  getBlogPosts = async () => {
+    try {
+      const posts = await databaseService.getCollection(FIRESTORE_KEYS.posts);
+      this.setBlogPosts(posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   componentDidMount() {
     this.getProducts();
     this.sliceData();
+    this.getBlogPosts();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+    //eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterByCategory);
     eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
+    //eventEmmiter.on(APP_EVENTS.setCategoryProducts, this.isCategory);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+    //eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterByCategory);
     eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
+    //eventEmmiter.off(APP_EVENTS.setCategoryProducts, this.isCategory);
   }
 
   render() {
@@ -106,7 +142,7 @@ class HomePage extends Component {
                <div class="row">
                   <div class='col-sm-3 border-end catalog-controls'>
                      <catalog-controls 
-                        categories='${JSON.stringify(CATEGORIES)}'>
+                        categories='${JSON.stringify(this.state.categories)}'>
                      </catalog-controls>
                      <div class="aside p-2">
                         <div class="container d-flex flex-column justify-content-center align-items-center">
@@ -135,7 +171,9 @@ class HomePage extends Component {
                </div>
             </div>
          </main>
-        <section-blog></section-blog>
+        <section-blog
+           posts='${JSON.stringify(this.state.posts.slice(0, 3))}'>
+        </section-blog>
         <reviews-user></reviews-user>
         <section-reviews-user></section-reviews-user>
     `;

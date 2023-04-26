@@ -6,6 +6,7 @@ import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { ADMIN } from '../../../constants/userRoles';
+import '../../atoms/TextSpan';
 import '../../../core/Router/Link';
 import '../../molecules/MenuItems';
 import '../../../core/Router/Link';
@@ -96,7 +97,6 @@ class Navigation extends Component {
 
   getItems() {
     const user = JSON.parse(this.props.user);
-    console.log(user);
     if (user) {
       if (user.email === ADMIN) {
         return appPages.filter((menuItem) => {
@@ -119,6 +119,7 @@ class Navigation extends Component {
       });
     }
   }
+
   render() {
     return `
          <nav class="navbar navbar-expand-lg header__navigation d-flex justify-content-around">
@@ -132,9 +133,9 @@ class Navigation extends Component {
                   <route-link to="${APP_ROUTES.cart}">
                      <a class="nav-link position-relative" href="#">
                         <img src="./assets/images/icons/cart.svg" alt="cart" width="24" height="24">
-                        <span class="position-absolute text-light translate-middle badge rounded-pill cart-counter bg-success">
-                           ${this.state.productsCount}
-                        </span>
+                        <text-span class="position-absolute text-light translate-middle badge rounded-pill cart-counter bg-success">
+                        ${this.state.productsCount}
+                        </text-span>
                      </a>
                   </route-link>
                </div>

@@ -28,7 +28,7 @@
 }
 
 .fix-line-of-description {
-   @include sliceByLine(3);
+   @include sliceByLine(2);
    min-height: 55px;
 }
 

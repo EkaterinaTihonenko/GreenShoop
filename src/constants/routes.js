@@ -25,6 +25,10 @@ export const routes = {
     href: APP_ROUTES.product,
     component: 'product-page',
   },
+  article: {
+    href: APP_ROUTES.article,
+    component: 'article-blog-page',
+  },
   admin: {
     href: APP_ROUTES.admin,
     component: 'admin-page',

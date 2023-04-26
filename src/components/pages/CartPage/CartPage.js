@@ -35,10 +35,16 @@ class CartPage extends Component {
     });
   };
 
-  onDeleteItem = (evt) => {
+  sum(products) {
+    return products.reduce((acc, item) => {
+      return (acc += item.quantity ? item.price * item.quantity : item.price);
+    }, 0);
+  }
+
+  onCountItem = (evt) => {
+    const id = evt.target.dataset.id;
+    const items = this.state.products;
     if (evt.target.closest('.minus')) {
-      const id = evt.target.dataset.id;
-      const items = this.state.products;
       const filteredItems = items
         .map((item) => {
           if (item.id === id) {
@@ -52,12 +58,7 @@ class CartPage extends Component {
         .filter((item) => Boolean(item.quantity));
       storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
     }
-  };
-
-  onAddItem = (evt) => {
     if (evt.target.closest('.plus')) {
-      const id = evt.target.dataset.id;
-      const items = this.state.products;
       const filteredItems = items
         .map((item) => {
           if (item.id === id) {
@@ -80,14 +81,12 @@ class CartPage extends Component {
   componentDidMount() {
     const products = storageService.getItem(APP_STORAGE_KEYS.cartData);
     this.setProducts(products ?? []);
-    this.addEventListener('click', this.onDeleteItem);
-    this.addEventListener('click', this.onAddItem);
+    this.addEventListener('click', this.onCountItem);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('click', this.onDeleteItem);
-    this.removeEventListener('click', this.onAddItem);
+    this.removeEventListener('click', this.onCountItem);
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
   }
 
@@ -101,7 +100,7 @@ class CartPage extends Component {
              <th scope="col">Наименование</th>
              <th scope="col">Описание</th>
              <th scope="col"></th>
-             <th scope="col">Количество</th>
+             <th scope="col" class="text-nowrap">Кол-во</th>
              <th scope="col"></th>
              <th scope="col">Цена за шт.</th>
              <th scope="col">Стоимость</th>
@@ -113,27 +112,43 @@ class CartPage extends Component {
             const sumPrice = item.price * item.quantity;
             return `
                 <tr>
-                   <td class="">
+                   <td>
                         <img class="image-fit" src='${item.image}' alt="image" />
                    </td>
-                   <td class="col-2">${item.title}</td>
-                   <td colspan="1" class="fix-description pe-4 p-0">${item.description}</td>
-                   <td class="text-end">
+                   <td class="col-1 pe-4 fw-bold fs-6 text-success">${item.title}</td>
+                   <td colspan="1" class="align-top pe-4 p-1 pt-5">
+                      <span class="fix-description">${item.description}</span>
+                   </td>
+                   <td class="text-end pe-0">
                       <button class='btn btn-success minus' data-id="${item.id}">-</button>
                    </td>
-                   <td class=" text-center p-0">${item.quantity}</td>
-                   <td class="text-start">
+                   <td class="text-center p-0">${item.quantity}</td>
+                   <td class="text-start ps-0">
                       <button class='btn btn-success plus' data-id="${item.id}">+</button>
                    </td>
-                   <td class="col-1 td-price">${item.price} BYN</td>
-                   <td class="col-1 sum-price">${sumPrice} BYN</td>
+                   <td class="col-1 ps-3">${new Intl.NumberFormat('ru-Ru', {
+                     style: 'currency',
+                     currency: 'BYN',
+                   }).format(item.price)}</td>
+                   <td class="col-1">${new Intl.NumberFormat('ru-Ru', {
+                     style: 'currency',
+                     currency: 'BYN',
+                   }).format(sumPrice)}</td>
                 </tr>
                 `;
           })
           .join(' ')}
        </tbody>
     </table>
-    <div class="sum text-end p-4 pe-5 me-2""> Итого: ${this.state.sum}  BYN</div>
+    <tfooter class="d-flex justify-content-end p-4 pe-5 me-2 fw-bold fs-6">
+           <tr>
+             <td>Итого:</td>
+             <td colspan="5">${new Intl.NumberFormat('ru-Ru', {
+               style: 'currency',
+               currency: 'BYN',
+             }).format(this.sum(this.state.products))}</td>
+           </tr>
+        </tfooter>
  </div>
       `;
   }

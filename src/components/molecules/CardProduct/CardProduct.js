@@ -7,7 +7,7 @@ import './cardProduct.scss';
 
 class CardProduct extends Component {
   static get observedAttributes() {
-    return ['image', 'title', 'description', 'price', 'id'];
+    return ['image', 'title', 'description', 'category', 'price', 'id', 'content'];
   }
 
   addToCart = (evt) => {
@@ -16,7 +16,8 @@ class CardProduct extends Component {
       storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
     }
     if (evt.target.closest('.card-name')) {
-      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: `catalog/${this.props.id}` });
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: `product/${this.props.id}` });
+      window.scrollTo(0, { behavior: 'smooth' });
     }
   };
 
@@ -29,22 +30,27 @@ class CardProduct extends Component {
   }
 
   render() {
-    const { image, title, description, price } = this.props;
+    const { image, title, description, category, price, id } = this.props;
+    const classBlog = this.props.content ? this.props.content : '';
 
     return `
-    <div class="card">
-    <img class="image-fit card-img-top" src="${image}" alt="image">
-    <div class="card-body">
-      <h5 class="card-title card-name fix-line-of-title">${title}</h5>
-      <p class="card-text fix-line-of-description">${description}</p>
-      <div class='d-flex justify-content-between align-items-center border-top pt-2'>
-        <strong class="card-title pricing-card-title mb-0">
-          ${price} BYN
-        </strong>
-        <button class="btn bg-success text-light">Купить</button>
-      </div>
-    </div>
-  </div>
+         <div class="card" id="${id}">
+           <img class="image-fit card-img-top" src="${image}" alt="image">
+           <div class="card-body ${classBlog}">
+             <h5 class="card-title card-name fix-line-of-title">${title}</h5>
+             <p class="card-text">${category}</p>
+             <p class="card-text fix-line-of-description">${description}</p>
+             <div class='d-flex justify-content-between align-items-center border-top pt-2'>
+               <strong class="pricing-card-title mb-0">
+               ${new Intl.NumberFormat('ru-Ru', {
+                 style: 'currency',
+                 currency: 'BYN',
+               }).format(price)}
+               </strong>
+               <button class="btn bg-success text-light">Купить</button>
+             </div>
+           </div>
+         </div>
       `;
   }
 }

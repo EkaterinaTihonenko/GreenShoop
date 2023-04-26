@@ -1,6 +1,7 @@
 import { Component } from '../../../core/Component';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import '../../../core/Router/Link';
+import '../../atoms/TextSpan';
 import './logoLink.scss';
 
 class LogoLink extends Component {
@@ -12,9 +13,9 @@ class LogoLink extends Component {
             <div class="logo__icon p-1">
                <img src="./assets/images/icons/logo.svg" alt="logo">
             </div>
-               <span class="logo__text text-success">
+               <text-span class="logo__text text-success">
                   greenshop
-               </span>
+               </text-span>
          </a>
       </route-link>
       `;

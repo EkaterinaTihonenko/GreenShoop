@@ -28,11 +28,11 @@ class CategoryForm extends Component {
          <form>
             <label class="form-label">Создать категорию</label>
             <input 
-               name="name" 
+               name="category" 
                type="text" 
                class="form-control mb-3" 
                required>
-            <button type="submit" class="btn bg-success">Сохранить</button>
+            <button type="submit" class="btn btn-success">Сохранить</button>
          </form>
       `;
   }

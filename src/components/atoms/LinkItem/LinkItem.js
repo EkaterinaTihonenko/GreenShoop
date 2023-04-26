@@ -1,7 +1,7 @@
 import { Component } from '../../../core/Component';
 import './linkItem.scss';
 
-class Link extends Component {
+class LinkItem extends Component {
   static get observedAttributes() {
     return ['class', 'href', 'content'];
   }
@@ -34,4 +34,4 @@ class Link extends Component {
   }
 }
 
-customElements.define('link-item', Link);
+customElements.define('link-item', LinkItem);

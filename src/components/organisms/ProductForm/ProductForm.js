@@ -48,9 +48,10 @@ class ProductForm extends Component {
     this.removeEventListener('submit', this.onSubmit);
     this.removeEventListener('change', this.onChange);
   }
+
   render() {
     return `
-         <form>
+         <form enctype="multipart/form-data">
             <div class="mb-3">
                <label class="form-label w-100">
                   <p>
@@ -58,6 +59,14 @@ class ProductForm extends Component {
                   <p>
                      <input name="title" type="text" class="form-control" required>
                </label>
+            </div>
+            <div class="mb-3">
+            <label class="form-label w-100">
+               <p>
+                  Категория
+               <p>
+                  <input name="category" type="text" class="form-control" required>
+            </label>
             </div>
             <div class="mb-3">
                <label class="form-label w-100">
@@ -80,13 +89,49 @@ class ProductForm extends Component {
             <div class="mb-3">
                <label class="form-label w-100">
                   <p>
-                     Описание товара
+                     Краткое описание
                   </p>
                   <textarea class="form-control" name="description" rows="3" required>
                   </textarea>
                </label>
             </div>
-            <button class="btn btn-primary" type="submit">
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Освещение и местоположение
+                  </p>
+                  <textarea class="form-control" name="lightingLocation" rows="3" required>
+                  </textarea>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Температурный режим
+                  </p>
+                  <textarea class="form-control" name="temperature" rows="3" required>
+                  </textarea>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Влажность и полив
+                  </p>
+                  <textarea class="form-control" name="humidityWatering" rows="3" required>
+                  </textarea>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Удобрения
+                  </p>
+                  <textarea class="form-control" name="fertilizers" rows="3" required>
+                  </textarea>
+               </label>
+            </div>
+            <button class="btn btn-success" type="submit">
                Сохранить
             </button>
          </form>
