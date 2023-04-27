@@ -9,7 +9,6 @@ import { ADMIN } from '../../../constants/userRoles';
 import '../../atoms/TextSpan';
 import '../../../core/Router/Link';
 import '../../molecules/MenuItems';
-import '../../../core/Router/Link';
 import '../../molecules/LogoLink';
 import '../../molecules/SearchForm';
 import '../../molecules/BtnGroup';
