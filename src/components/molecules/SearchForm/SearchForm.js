@@ -5,6 +5,10 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import './searchForm.scss';
 
 class SearchForm extends Component {
+  constructor() {
+    super();
+  }
+
   onSearch = (evt) => {
     evt.preventDefault();
     const data = {};
@@ -30,7 +34,7 @@ class SearchForm extends Component {
     return `
          <form class="d-flex form" role="search">
             <input name='search' class="form-control form__input me-2" type="search" placeholder="Поиск..." aria-label="Search">
-            <button class="bg-success text-light form__btn" type="submit">Поиск</button>
+            <button class="btn btn-success form__btn d-flex justify-content-center align-items-center" type="submit">Поиск</button>
          </form>
       `;
   }

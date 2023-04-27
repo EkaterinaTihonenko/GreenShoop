@@ -5,6 +5,7 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import '../../organisms/SignUpForm';
 import '../../molecules/Preloader';
+import { storageService } from '../../../services/StorageService';
 
 class SignUpPage extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class SignUpPage extends Component {
     this.setIsLoading(true);
     try {
       const user = await authService.signUp(data.email, data.password);
+      storageService.setItem('user', user);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.catalog });
     } catch (error) {

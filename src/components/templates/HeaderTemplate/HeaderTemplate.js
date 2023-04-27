@@ -1,10 +1,13 @@
 import { Component } from '../../../core/Component';
 import '../../atoms/TextSpan';
-import '../../atoms/Text';
 
 import './headerTemplate.scss';
 
 class HeaderTemplate extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return `
          <div class="container header-content d-flex justify-content-between align-items-center">
@@ -20,7 +23,7 @@ class HeaderTemplate extends Component {
                      Planet
                   </text-span>
                </h1>
-               <green-text class="text">
+               <p class="text">
                   Мы являемся интернет-магазином,
                   <br>
                   предлагающим широкий ассортимент растений.
@@ -28,7 +31,7 @@ class HeaderTemplate extends Component {
                   Используйте наши растения для создания уникальных дизайнов интерьера.
                   <br>
                   Закажите свои любимые растения!
-               </green-text>
+               </p>
             </div>
             <div class="header-content-img">
                <img class="img-right" src="../../assets/images/potted-plant5.png" alt="img potted plant">

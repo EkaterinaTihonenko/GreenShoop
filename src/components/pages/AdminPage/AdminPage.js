@@ -106,7 +106,7 @@ class AdminPage extends Component {
   render() {
     return `
       <it-preloader is-loading="${this.state.isLoading}">
-        <div class="container">
+        <div class="container admin-page">
           <div class="mt-5">
             <it-tabs 
               menu-items='${JSON.stringify(menuItems)}' 

@@ -2,6 +2,10 @@ import { Component } from '../../../core/Component';
 import './contacts.scss';
 
 class Contacts extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['class', 'contacts'];
   }
@@ -9,22 +13,22 @@ class Contacts extends Component {
   render() {
     return `
          <div class="items 
-         ${this.props.class}__item footer-col d-flex align-items-center">
-         ${JSON.parse(this.props.contacts)
-           .map((contact) => {
-             return `
-             <div class="d-flex align-items-center items__content me-5">
-               <div class="${this.props.class}__icon icon-address p-2 me-1">
-                  <img class="icon ${this.props.class}__img" src="../../../assets/images/${contact.src}" alt="img">
-               </div>
-               <a class="${this.props.class}__link text-decoration-none text-success fw-bold"
-                  href="${contact.href}">
-                  ${contact.text}
-               </a>
-            </div>
-           `;
-           })
-           .join(' ')}
+            ${this.props.class}__item footer-col d-flex align-items-center">
+            ${JSON.parse(this.props.contacts)
+              .map((contact) => {
+                return `
+                  <div class="d-flex align-items-center items__content me-5">
+                     <div class="${this.props.class}__icon icon-address p-2 me-1">
+                        <img class="icon ${this.props.class}__img" src="../../../assets/images/${contact.src}" alt="img">
+                     </div>
+                     <a class="${this.props.class}__link text-decoration-none text-success fw-bold"
+                        href="${contact.href}">
+                        ${contact.text}
+                     </a>
+                  </div>
+               `;
+              })
+              .join(' ')}
          </div>
       `;
   }

@@ -1,4 +1,5 @@
 import { APP_EVENTS } from '../../../constants/appEvents';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
@@ -12,8 +13,13 @@ class CardProduct extends Component {
 
   addToCart = (evt) => {
     if (evt.target.closest('.btn')) {
-      const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
+      if (storageService.getItem('user')) {
+        const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+        storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
+      } else {
+        eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
+        window.scrollTo(0, { behavior: 'smooth' });
+      }
     }
     if (evt.target.closest('.card-name')) {
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: `product/${this.props.id}` });
@@ -34,21 +40,21 @@ class CardProduct extends Component {
     const classBlog = this.props.content ? this.props.content : '';
 
     return `
-         <div class="card" id="${id}">
+         <div class="card card-item" id="${id}">
            <img class="image-fit card-img-top" src="${image}" alt="image">
            <div class="card-body ${classBlog}">
-             <h5 class="card-title card-name fix-line-of-title">${title}</h5>
-             <p class="card-text">${category}</p>
-             <p class="card-text fix-line-of-description">${description}</p>
-             <div class='d-flex justify-content-between align-items-center border-top pt-2'>
-               <strong class="pricing-card-title mb-0">
-               ${new Intl.NumberFormat('ru-Ru', {
-                 style: 'currency',
-                 currency: 'BYN',
-               }).format(price)}
-               </strong>
-               <button class="btn bg-success text-light">Купить</button>
-             </div>
+              <h5 class="card-title card-name fix-line-of-title">${title}</h5>
+              <p class="card-text">${category}</p>
+              <p class="card-text fix-line-of-description">${description}</p>
+              <div class='d-flex justify-content-between align-items-center border-top pt-2'>
+                 <strong class="pricing-card-title mb-0">
+                    ${new Intl.NumberFormat('ru-Ru', {
+                      style: 'currency',
+                      currency: 'BYN',
+                    }).format(price)}
+                 </strong>
+                 <button class="btn btn-success">Купить</button>
+              </div>
            </div>
          </div>
       `;

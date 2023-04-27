@@ -24,7 +24,7 @@ class HomePage extends Component {
   }
 
   static get observedAttributes() {
-    return ['products', 'posts'];
+    return ['products', 'posts', 'categories'];
   }
 
   sliceData(currentPage = 1) {
@@ -49,7 +49,7 @@ class HomePage extends Component {
     this.setState((state) => {
       return {
         ...state,
-        products: this.state.products.filter((item) => item.categories.id === selectedCategory.id),
+        products: this.state.products.filter((item) => item.category.id === selectedCategory.id),
         currentPage: 1,
       };
     });
@@ -68,17 +68,7 @@ class HomePage extends Component {
       };
     });
   };
-  /*
-  isCategory = (evt) => {
-    const { selectedCategory } = evt.detail;
-    this.setState((state) => {
-      return {
-        ...state,
-        categories: selectedCategory.category,
-      };
-    });
-  };
-*/
+
   setProducts(products) {
     this.setState((state) => {
       return {
@@ -115,21 +105,38 @@ class HomePage extends Component {
     }
   };
 
+  getCategory = async () => {
+    try {
+      const category = await databaseService.getCollection(FIRESTORE_KEYS.categories);
+      this.setCategory(category);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  setCategory(categories) {
+    this.setState((state) => {
+      return {
+        ...state,
+        categories,
+      };
+    });
+  }
+
   componentDidMount() {
     this.getProducts();
-    this.sliceData();
     this.getBlogPosts();
+    this.getCategory();
+    this.sliceData();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    //eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterByCategory);
+    eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterByCategory);
     eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
-    //eventEmmiter.on(APP_EVENTS.setCategoryProducts, this.isCategory);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    //eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterByCategory);
+    eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterByCategory);
     eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
-    //eventEmmiter.off(APP_EVENTS.setCategoryProducts, this.isCategory);
   }
 
   render() {
@@ -142,7 +149,8 @@ class HomePage extends Component {
                <div class="row">
                   <div class='col-sm-3 border-end catalog-controls'>
                      <catalog-controls 
-                        categories='${JSON.stringify(this.state.categories)}'>
+                        categories='${JSON.stringify(this.state.categories)}'
+                        isactive='${this.state.categories}'>
                      </catalog-controls>
                      <div class="aside p-2">
                         <div class="container d-flex flex-column justify-content-center align-items-center">

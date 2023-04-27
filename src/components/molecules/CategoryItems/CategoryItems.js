@@ -6,28 +6,20 @@ class CategoryItems extends Component {
   constructor() {
     super();
     this.state = {
-      activeItem: null,
+      categories: {},
     };
   }
 
   static get observedAttributes() {
-    return ['items'];
+    return ['catigories', 'isactive', 'id'];
   }
-
-  setActiveCategory = (activeItem) => {
-    this.setState(() => {
-      return {
-        activeItem,
-      };
-    });
-  };
 
   setCategory = (evt) => {
     evt.preventDefault();
     if (evt.target.closest('.nav-link')) {
       const id = evt.target.dataset.id;
-      const items = JSON.parse(this.props.items);
-      const selectedCategory = items.find((item) => item.id === Number(id));
+      const categories = JSON.parse(this.props.categories);
+      const selectedCategory = categories.find((category) => category.id === Number(id));
       this.setActiveCategory(selectedCategory);
       eventEmmiter.emit(APP_EVENTS.setCategory, { selectedCategory });
     }
@@ -42,20 +34,20 @@ class CategoryItems extends Component {
   }
 
   render() {
-    const items = JSON.parse(this.props.items);
-    const { activeItem } = this.state;
+    const { isactive } = this.props;
+    const categories = JSON.parse(this.props.categories);
 
     return `
          <ul class="navbar-nav">
-            ${items
-              .map((item) => {
-                const isActive = activeItem?.id === item.id;
+            ${categories
+              .map((category) => {
+                const active = isactive?.id === category.id;
                 return `
                      <li class="nav-item">
-                        <a class="nav-link item-link text-body ${isActive ? 'active' : ''}" 
+                        <a class="nav-link item-link text-body ${active ? 'active' : ''}" 
                            href="#" 
-                           data-id="${item.id}">
-                           ${item.name}
+                           id='${this.state.id}'>
+                           ${this.state.category}
                         </a>
                      </li>
                   `;

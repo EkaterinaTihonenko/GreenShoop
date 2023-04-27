@@ -106,7 +106,7 @@ class Navigation extends Component {
         });
       } else {
         return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.admin, APP_ROUTES.signOut].every(
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut].every(
             (item) => item !== menuItem.href,
           );
         });

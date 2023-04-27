@@ -3,6 +3,10 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 
 class CategoryForm extends Component {
+  constructor() {
+    super();
+  }
+
   onSubmit = (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);

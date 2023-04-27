@@ -3,6 +3,10 @@ import '../../atoms/LinkItem';
 import '../../../core/Router/Link';
 
 class MenuItems extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['items', 'active-item'];
   }

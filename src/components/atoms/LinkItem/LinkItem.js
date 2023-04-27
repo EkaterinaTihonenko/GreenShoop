@@ -2,6 +2,10 @@ import { Component } from '../../../core/Component';
 import './linkItem.scss';
 
 class LinkItem extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['class', 'href', 'content'];
   }

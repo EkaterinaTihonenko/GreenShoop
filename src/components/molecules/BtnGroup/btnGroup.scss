@@ -2,12 +2,11 @@
    width: 100px;
    height: 35px;
    border-radius: 6px;
-   border: none;
    text-transform: capitalize;
    &::before {
+      content: "";
       background-image: url("../../../assets/images/icons/bg-btn.svg");
       background-repeat: no-repeat;
-      content: "";
       position: relative;
       right: 2px;
       float: left;

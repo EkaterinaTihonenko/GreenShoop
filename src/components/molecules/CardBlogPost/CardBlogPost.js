@@ -4,6 +4,10 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import './cardBlogPost.scss';
 
 class CardBlogPost extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['image', 'title', 'description', 'id', 'class', 'content'];
   }
@@ -29,14 +33,14 @@ class CardBlogPost extends Component {
     const classBlog = this.props.content ? this.props.content : '';
 
     return `
-         <div class="section-card m-2 ${className}" id="${id}">
+         <div class="border-0 bg-transparent section-card m-2 ${className}" id="${id}">
             <img class="image" src="${image}" alt="img">
-            <div class="card-blog-text ${classBlog}">
-               <h4 class="text-title">
+            <div class="card-body pt-2 ps-0 ${classBlog}">
+               <h4 class="card-title">
                  ${title}
                </h4>
                <p class="text">${description}</p>
-               <button type="button" class="btn btn-blog bg-success text-white">Подробнее</button>
+               <button type="button" class="btn btn-success btn-blog text-white">Подробнее</button>
             </div>
          </div>
       `;

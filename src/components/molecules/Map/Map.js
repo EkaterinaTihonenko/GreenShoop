@@ -1,6 +1,10 @@
 import { Component } from '../../../core/Component';
 
 class ContactsPage extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return `
       <iframe

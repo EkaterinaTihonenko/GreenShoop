@@ -4,6 +4,10 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import { readerFile } from '../../../utils/readFile';
 
 class BlogForm extends Component {
+  constructor() {
+    super();
+  }
+
   onSubmit = (evt) => {
     evt.preventDefault();
     const preview = this.querySelector('.preview-image');
@@ -51,55 +55,65 @@ class BlogForm extends Component {
 
   render() {
     return `
-    <form enctype="multipart/form-data">
-    <div class="mb-3">
-       <label class="form-label w-100">
-          <p>
-             Заголовок
-          <p>
-             <input name="title" type="text" class="form-control" required>
-       </label>
-    </div>
-    <div class="mb-3">
-       <label class="form-label w-100">
-          <p>
-             Загрузить файл
-          </p>
-          <input class="form-control preview-input" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"
-             required>
-          <div class="preview-image"></div>
-       </label>
-    </div>
-    <div class="mb-3">
-       <label class="form-label w-100">
-          <p>
-            Краткое описание блога
-          </p>
-          <textarea class="form-control" name="description" rows="3" required>
-          </textarea>
-       </label>
-    </div>
-    <div class="mb-3">
-       <label class="form-label w-100">
-          <p>
-             Заголовок 2
-          <p>
-             <input name="titleTwo" type="text" class="form-control">
-       </label>
-    </div>
-    <div class="mb-3">
-       <label class="form-label w-100">
-          <p>
-            Описание
-          </p>
-          <textarea class="form-control" name="text" rows="3">
-          </textarea>
-       </label>
-    </div>
-    <button class="btn btn-success" type="submit">
-       Сохранить
-    </button>
- </form>
+         <form enctype="multipart/form-data">
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Заголовок
+                  <p>
+                  <input name="title" type="text" class="form-control" required>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Загрузить файл
+                  </p>
+                  <input class="form-control preview-input" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"
+                     required>
+                  <div class="preview-image"></div>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Краткое описание блога
+                  </p>
+                  <textarea class="form-control" name="description" rows="3" required>
+                  </textarea>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Заголовок 2
+                  <p>
+                  <input name="titleTwo" type="text" class="form-control">
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Загрузить файл
+                  </p>
+                  <input class="form-control preview-input" name="previewTwo" type="file" accept="image/png, image/jpeg, image/jpg"
+                     required>
+                  <div class="preview-image"></div>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Описание
+                  </p>
+                  <textarea class="form-control" name="text" rows="3">
+                  </textarea>
+               </label>
+            </div>
+            <button class="btn btn-success" type="submit">
+               Сохранить
+            </button>
+         </form>
       `;
   }
 }

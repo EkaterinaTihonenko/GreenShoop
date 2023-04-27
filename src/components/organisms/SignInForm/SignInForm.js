@@ -16,12 +16,10 @@ class EntryForm extends Component {
   onSubmit = (evt) => {
     evt.preventDefault();
     const { email, password } = getFormData(evt.target);
-
     if (!email) {
       this.setError('Почта', 'Поле обязательно для заполнения');
       return;
     }
-
     eventEmmiter.emit(APP_EVENTS.signIn, {
       data: {
         email,
@@ -53,16 +51,16 @@ class EntryForm extends Component {
       </label>
     </div>
     <div class="mt-2 d-flex justify-content-between">
-    <button type="submit" class="btn bg-success text-light">Войти</button>
-    <button type="button"
-      class="btn bg-success text-light d-flex justify-content-center align-items-center">
-      <div class="btn-right-icon"></div>
-      <route-link to="${APP_ROUTES.signUp}">
-      <link-item href="#"
-         content="Регистрация">
-      </link-item>
-      </route-link>
-     </button>
+    <button type="submit" class="btn bg-success btn-submit text-light">Войти</button>
+      <button type="button"
+            class="btn bg-success text-light d-flex justify-content-center align-items-center">
+         <div class="btn-right-icon"></div>
+           <route-link to="${APP_ROUTES.signUp}">
+              <link-item href="#"
+                 content="Регистрация">
+               </link-item>
+            </route-link>
+      </button>
      </div>
   </form>
     `;

@@ -2,6 +2,10 @@ import { Component } from '../../../core/Component';
 import '../../molecules/CardBlogPost';
 
 class BlogTemplate extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['posts', 'class', 'id'];
   }

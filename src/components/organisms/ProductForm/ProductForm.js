@@ -4,6 +4,10 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import { readerFile } from '../../../utils/readFile';
 
 class ProductForm extends Component {
+  constructor() {
+    super();
+  }
+
   onSubmit = (evt) => {
     evt.preventDefault();
     const preview = this.querySelector('.preview-image');
@@ -61,12 +65,12 @@ class ProductForm extends Component {
                </label>
             </div>
             <div class="mb-3">
-            <label class="form-label w-100">
-               <p>
-                  Категория
-               <p>
+               <label class="form-label w-100">
+                  <p>
+                     Категория
+                  <p>
                   <input name="category" type="text" class="form-control" required>
-            </label>
+               </label>
             </div>
             <div class="mb-3">
                <label class="form-label w-100">

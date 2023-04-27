@@ -20,6 +20,7 @@ import './components/molecules/Preloader';
 import { authService } from './services/Auth';
 import { APP_EVENTS } from './constants/appEvents';
 import { eventEmmiter } from './core/EventEmmiter';
+import { storageService } from './services/StorageService';
 
 class App extends Component {
   constructor() {
@@ -53,6 +54,7 @@ class App extends Component {
     try {
       const user = await authService.authorizeUser();
       this.setUser(user);
+      storageService.setItem('user', user);
     } catch (error) {
       console.error(error);
     } finally {

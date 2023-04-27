@@ -78,7 +78,7 @@ class Preloader extends Component {
          }
       </style>
       
-         <div>
+         <div class="wrap-preloader">
           ${
             JSON.parse(this.props['is-loading'])
               ? `

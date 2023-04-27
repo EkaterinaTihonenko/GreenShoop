@@ -4,6 +4,10 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import './pagination.scss';
 
 class Pagination extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['total', 'limit', 'current'];
   }
@@ -58,7 +62,6 @@ class Pagination extends Component {
                   `;
               })
               .join(' ')}
-
             <li class="page-item ms-2 ${isLast ? 'disabled' : ''}">
                <a class="page-link next-link" href="#">&gt;</a>
             </li>

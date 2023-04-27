@@ -6,6 +6,7 @@ import { authService } from '../../../services/Auth';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { APP_ROUTES } from '../../../constants/appRoutes';
+import { storageService } from '../../../services/StorageService';
 
 class SignInPage extends Component {
   constructor() {
@@ -39,8 +40,9 @@ class SignInPage extends Component {
     this.setIsLoading(true);
     try {
       const user = await authService.signIn(data.email, data.password);
+      storageService.setItem('user', user);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
-      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.catalog });
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.home });
     } catch (error) {
       this.setError(error.message);
     } finally {

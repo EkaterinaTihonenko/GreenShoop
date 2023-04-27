@@ -3,6 +3,10 @@ import '../../../molecules/CardBlogPost';
 import './sectionBlog.scss';
 
 class SectionBlog extends Component {
+  constructor() {
+    super();
+  }
+
   static get observedAttributes() {
     return ['posts', 'class', 'id'];
   }

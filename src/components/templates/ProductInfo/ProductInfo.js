@@ -1,6 +1,5 @@
 import { Component } from '../../../core/Component';
 import './productInfo.scss';
-import '../../molecules/Contacts';
 import '../../molecules/ItemsInfo';
 
 class ProductInfo extends Component {
@@ -14,11 +13,14 @@ class ProductInfo extends Component {
           text: {
             office: '',
             courier: '- Доставка курьером по РБ - бесплатно;',
+            courierTo: '',
             postOffice: '- Доставка до отделения Европочты - бесплатно;',
             address: '- Самовывоз - бесплатно по адресу г.Гомель, ул.Орловская 70. оф. 409.',
             onlineBanking: '',
             legalEntities: '',
             ePos: '',
+            document: '',
+            application: '',
           },
         },
         {
@@ -27,11 +29,14 @@ class ProductInfo extends Component {
           text: {
             office: '- В офисе компании: наличные; карточкой.',
             courier: '- Курьеру Белпочты, Европочты - наличные, карточкой.',
+            courierTo: '',
             postOffice: '- В отделении Европочты, Белпочты - наличные, карточкой.',
             address: '',
             onlineBanking: '- Оплата через интернет-банк (произвольный платеж).',
             legalEntities: '- Безналичная оплата для юридических лиц.',
             ePos: '- Оплата через Е-POS.',
+            document: '',
+            application: '',
           },
         },
       ],
@@ -40,11 +45,10 @@ class ProductInfo extends Component {
 
   render() {
     return `
-         <div class="col-span__items d-flex">
             <items-info
-               info='${JSON.stringify(this.state.info)}'>
+               info='${JSON.stringify(this.state.info)}'
+               class="footer-col d-flex align-items-start justify-content-between">
             </items-info>
-         </div>
                      
       `;
   }
