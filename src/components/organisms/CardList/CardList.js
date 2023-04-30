@@ -12,17 +12,21 @@ class CardList extends Component {
 
   render() {
     const products = JSON.parse(this.props.products);
+    const nullProducts = Number(products.length) !== 0;
+    const className = this.props.class ? this.props.class : '';
 
     return `
          <div class="row">
-             ${products
-               .map((item) => {
-                 return `
-                 <div class="col-sm-3 mb-3 card-col">
+         ${
+           nullProducts
+             ? `${products
+                 .map((item) => {
+                   return `
+                 <div class=" card-col ${className}">
                      <card-product
                          image='${item.preview}'
                          title='${item.title}'
-                         category='${item.category}'
+                         category='${item.catigory}'
                          price='${item.price}'
                          description='${item.description}'
                          id='${item.id}'
@@ -30,8 +34,10 @@ class CardList extends Component {
                      </card-product>
                  </div>
                  `;
-               })
-               .join(' ')}
+                 })
+                 .join(' ')}`
+             : 'Товар не найден!'
+         }
          </div>
          `;
   }

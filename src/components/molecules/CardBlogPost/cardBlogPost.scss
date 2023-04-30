@@ -1,4 +1,16 @@
+@import "../../../scss/mixins.scss";
+
 .image {
    height: 300px;
    width: 450px;
+}
+
+.fix-description {
+   @include sliceByLine;
+   min-height: 72px;
+}
+
+.fix-title {
+   @include sliceByLine(4);
+   min-height: 55px;
 }

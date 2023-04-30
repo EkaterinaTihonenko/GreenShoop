@@ -6,20 +6,28 @@ class CategoryItems extends Component {
   constructor() {
     super();
     this.state = {
-      categories: {},
+      activeItem: null,
     };
   }
 
   static get observedAttributes() {
-    return ['catigories', 'isactive', 'id'];
+    return ['items'];
   }
+
+  setActiveCategory = (activeItem) => {
+    this.setState(() => {
+      return {
+        activeItem,
+      };
+    });
+  };
 
   setCategory = (evt) => {
     evt.preventDefault();
     if (evt.target.closest('.nav-link')) {
       const id = evt.target.dataset.id;
-      const categories = JSON.parse(this.props.categories);
-      const selectedCategory = categories.find((category) => category.id === Number(id));
+      const items = JSON.parse(this.props.items);
+      const selectedCategory = items.find((item) => item.id === id);
       this.setActiveCategory(selectedCategory);
       eventEmmiter.emit(APP_EVENTS.setCategory, { selectedCategory });
     }
@@ -34,27 +42,24 @@ class CategoryItems extends Component {
   }
 
   render() {
-    const { isactive } = this.props;
-    const categories = JSON.parse(this.props.categories);
-
+    const items = JSON.parse(this.props.items);
+    const { activeItem } = this.state;
     return `
-         <ul class="navbar-nav">
-            ${categories
-              .map((category) => {
-                const active = isactive?.id === category.id;
+        <ul class="navbar-nav d-flex flex-column">
+            ${items
+              .map((item) => {
+                const isActive = activeItem?.id === item.id;
                 return `
-                     <li class="nav-item">
-                        <a class="nav-link item-link text-body ${active ? 'active' : ''}" 
-                           href="#" 
-                           id='${this.state.id}'>
-                           ${this.state.category}
-                        </a>
-                     </li>
-                  `;
+                <li class="nav-item d-flex justify-content-between">
+                    <a class="nav-link ${isActive ? 'active' : ''}" href="#" data-id="${item.id}">${
+                  item.name
+                }</a>
+                </li>
+                `;
               })
               .join(' ')}
-         </ul>
-      `;
+        </ul>
+    `;
   }
 }
 

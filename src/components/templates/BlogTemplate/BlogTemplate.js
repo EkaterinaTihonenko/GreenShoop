@@ -24,7 +24,7 @@ class BlogTemplate extends Component {
                    title='${item.title}'
                    description='${item.description}'
                    class="d-flex mt-3 ${this.props.class}"
-                   content="ms-5 mt-5">
+                   content="ms-5 mt-1">
                  </card-blog-post>
                  `;
               })

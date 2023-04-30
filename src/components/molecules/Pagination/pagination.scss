@@ -13,7 +13,7 @@
 
 .page-link.active,
 .active > .page-link {
-   color: #fff;
+   color: $main-color;
    background-color: $bg-pagination;
    border-color: transparent;
 }

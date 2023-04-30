@@ -1,4 +1,6 @@
 import { Component } from '../../../core/Component';
+import '../../organisms/Navigation';
+import '../../molecules/MenuItems';
 import '../../molecules/CategoryItems';
 
 class CatalogControls extends Component {
@@ -7,17 +9,23 @@ class CatalogControls extends Component {
   }
 
   static get observedAttributes() {
-    return ['categories', 'isactive', 'id'];
+    return ['categories'];
   }
 
   render() {
+    const categories = this.props.categories;
     return `
-         <div class="collapse navbar-collapse d-flex p-3">
-            <category-items 
-               category='${this.props.categories}'
-               '${this.props.isactive}'>
-            </category-items>
-         </div>
+      <header>
+        <nav class="mt-3">
+          <div class="pe-4 ps-4">
+            <div class="">
+               <category-items 
+                 items='${categories}'>
+               </category-items>
+            </div>
+          </div>
+        </nav>
+      </header>
       `;
   }
 }

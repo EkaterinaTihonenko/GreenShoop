@@ -1,7 +1,6 @@
 import { Component } from './core/Component';
 import { routes } from './constants/routes';
 import './core/Router/Router';
-
 import './components/organisms/Navigation';
 import './components/pages/BlogPage';
 import './components/pages/CartPage';

@@ -1,6 +1,9 @@
+import { APP_EVENTS } from '../../../constants/appEvents';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 import { Component } from '../../../core/Component';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 import { databaseService } from '../../../services/DatabaseService';
 import { storageService } from '../../../services/StorageService';
 import '../../molecules/Contacts';
@@ -10,7 +13,7 @@ class ProductPage extends Component {
   constructor() {
     super();
     this.state = {
-      products: {},
+      products: [],
       contacts: [
         {
           href: '',
@@ -45,9 +48,12 @@ class ProductPage extends Component {
   }
 
   addToCart = (evt) => {
-    if (evt.target.closest('.btn-to-cart')) {
-      const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
+    if (evt.target.closest('.btn-to')) {
+      const Items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+      storageService.setItem(APP_STORAGE_KEYS.cartData, [...Items, this.props.id]);
+    } else {
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
+      window.scrollTo(0, { behavior: 'smooth' });
     }
   };
 
@@ -77,12 +83,8 @@ class ProductPage extends Component {
                              currency: 'BYN',
                            }).format(this.state.products.price)}/шт</p>
                         </div>
-                        <div class="price d-flex align-items-center pt-2">
-                           <h5 class="fs-5 pe-2 m-0">Категория:</h5>
-                           <p class="text fw-normal fs-5 m-0">${this.state.products.category}</p>
-                        </div>
                         <div class="mt-4 d-flex">
-                           <button class="btn btn-to-cart bg-success text-light">В корзину</button>
+                           <button class="btn btn-to bg-success text-light">В корзину</button>
                         </div>
                         <div class="col-span mt-4">
                            <product-info></product-info>

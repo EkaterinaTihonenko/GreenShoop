@@ -9,10 +9,21 @@
 html {
    @include text($color: #373f38);
    height: 100%;
+   overflow: scroll;
+   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+   width: 0px;
+   background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+   background: transparent;
+}
 body {
    background-color: $main-color;
+   background-repeat: no-repeat;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    @include normalizer;

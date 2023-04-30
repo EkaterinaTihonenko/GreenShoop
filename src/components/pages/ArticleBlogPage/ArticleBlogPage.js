@@ -41,7 +41,6 @@ class ArticleBlogPage extends Component {
             </div>
             <div class="wrapp mt-5">
             <h2 class="text-center">${this.state.posts.titleTwo || 'Название не найдено'}</h2>
-            <img class="image m-2 me-3 float-end" src="${this.state.posts.previewTwo}" alt="img">
             <p class="mt-5">
              ${this.state.posts.text || 'Описание не найдено'}
             </p>

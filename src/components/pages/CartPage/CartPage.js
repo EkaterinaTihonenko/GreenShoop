@@ -91,6 +91,8 @@ class CartPage extends Component {
   }
 
   render() {
+    const nullProducts = Number(this.state.products.length) !== 0;
+
     return `
     <div class="container mt-5">
     <table class="table mt-3 align-items-center">
@@ -107,6 +109,9 @@ class CartPage extends Component {
           </tr>
        </thead>
        <tbody>
+       ${
+         nullProducts
+           ? `
         ${this.state.products
           .map((item) => {
             const sumPrice = item.price * item.quantity;
@@ -137,7 +142,9 @@ class CartPage extends Component {
                 </tr>
                 `;
           })
-          .join(' ')}
+          .join(' ')}`
+           : 'В корзине пусто! '
+       }
        </tbody>
     </table>
     <tfooter class="d-flex justify-content-end p-4 pe-5 me-2 fw-bold fs-6">

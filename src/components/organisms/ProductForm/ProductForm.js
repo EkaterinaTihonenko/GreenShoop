@@ -2,10 +2,15 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { readerFile } from '../../../utils/readFile';
+import '../../molecules/Preloader';
 
 class ProductForm extends Component {
   constructor() {
     super();
+  }
+
+  static get observedAttributes() {
+    return ['categories'];
   }
 
   onSubmit = (evt) => {
@@ -54,22 +59,30 @@ class ProductForm extends Component {
   }
 
   render() {
+    const categories = JSON.parse(this.props.categories);
+
     return `
          <form enctype="multipart/form-data">
             <div class="mb-3">
                <label class="form-label w-100">
                   <p>
                      Наименование
-                  <p>
-                     <input name="title" type="text" class="form-control" required>
+                  </p>
+                  <input name="title" type="text" class="form-control bg-transparent border border-success shadow rounded" required>
                </label>
             </div>
             <div class="mb-3">
                <label class="form-label w-100">
                   <p>
-                     Категория
-                  <p>
-                  <input name="category" type="text" class="form-control" required>
+                    Категория
+                  </p>
+                  <select class="form-select bg-transparent border border-success shadow" name="category" aria-label="Default select example">
+                  ${categories
+                    .map((item) => {
+                      return `<option class="option" value='${item.id}'>${item.name}</option>`;
+                    })
+                    .join(' ')}
+                  </select>
                </label>
             </div>
             <div class="mb-3">
@@ -77,7 +90,7 @@ class ProductForm extends Component {
                   <p>
                      Загрузить файл
                   </p>
-                  <input class="form-control preview-input" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"
+                  <input class="form-control bg-transparent border border-success preview-input shadow rounded" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"
                      required>
                   <div class="preview-image"></div>
                </label>
@@ -86,8 +99,8 @@ class ProductForm extends Component {
                <label class="form-label w-100">
                   <p>
                      Цена
-                  <p>
-                     <input class="form-control" name="price" type="number" required>
+                  </p>
+                     <input class="form-control bg-transparent border border-success shadow rounded" name="price" type="number" required>
                </label>
             </div>
             <div class="mb-3">
@@ -95,7 +108,7 @@ class ProductForm extends Component {
                   <p>
                      Краткое описание
                   </p>
-                  <textarea class="form-control" name="description" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="description" rows="3" required>
                   </textarea>
                </label>
             </div>
@@ -104,7 +117,7 @@ class ProductForm extends Component {
                   <p>
                      Освещение и местоположение
                   </p>
-                  <textarea class="form-control" name="lightingLocation" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="lightingLocation" rows="3" required>
                   </textarea>
                </label>
             </div>
@@ -113,7 +126,7 @@ class ProductForm extends Component {
                   <p>
                      Температурный режим
                   </p>
-                  <textarea class="form-control" name="temperature" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="temperature" rows="3" required>
                   </textarea>
                </label>
             </div>
@@ -122,7 +135,7 @@ class ProductForm extends Component {
                   <p>
                      Влажность и полив
                   </p>
-                  <textarea class="form-control" name="humidityWatering" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="humidityWatering" rows="3" required>
                   </textarea>
                </label>
             </div>
@@ -131,7 +144,7 @@ class ProductForm extends Component {
                   <p>
                      Удобрения
                   </p>
-                  <textarea class="form-control" name="fertilizers" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="fertilizers" rows="3" required>
                   </textarea>
                </label>
             </div>

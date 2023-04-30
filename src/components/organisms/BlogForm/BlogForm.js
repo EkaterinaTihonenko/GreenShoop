@@ -60,8 +60,8 @@ class BlogForm extends Component {
                <label class="form-label w-100">
                   <p>
                      Заголовок
-                  <p>
-                  <input name="title" type="text" class="form-control" required>
+                  </p>
+                  <input name="title" type="text" class="form-control bg-transparent border border-success shadow rounded" required>
                </label>
             </div>
             <div class="mb-3">
@@ -69,7 +69,7 @@ class BlogForm extends Component {
                   <p>
                      Загрузить файл
                   </p>
-                  <input class="form-control preview-input" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"
+                  <input class="form-control bg-transparent border border-success preview-input shadow rounded" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"
                      required>
                   <div class="preview-image"></div>
                </label>
@@ -79,7 +79,7 @@ class BlogForm extends Component {
                   <p>
                      Краткое описание блога
                   </p>
-                  <textarea class="form-control" name="description" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="description" rows="3" required>
                   </textarea>
                </label>
             </div>
@@ -87,18 +87,8 @@ class BlogForm extends Component {
                <label class="form-label w-100">
                   <p>
                      Заголовок 2
-                  <p>
-                  <input name="titleTwo" type="text" class="form-control">
-               </label>
-            </div>
-            <div class="mb-3">
-               <label class="form-label w-100">
-                  <p>
-                     Загрузить файл
                   </p>
-                  <input class="form-control preview-input" name="previewTwo" type="file" accept="image/png, image/jpeg, image/jpg"
-                     required>
-                  <div class="preview-image"></div>
+                  <input name="titleTwo" type="text" class="form-control bg-transparent border border-success shadow rounded">
                </label>
             </div>
             <div class="mb-3">
@@ -106,7 +96,7 @@ class BlogForm extends Component {
                   <p>
                      Описание
                   </p>
-                  <textarea class="form-control" name="text" rows="3">
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="text" rows="3">
                   </textarea>
                </label>
             </div>

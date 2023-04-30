@@ -41,7 +41,7 @@ class SignUpPage extends Component {
       const user = await authService.signUp(data.email, data.password);
       storageService.setItem('user', user);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
-      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.catalog });
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.home });
     } catch (error) {
       this.setError(error.message);
     } finally {
@@ -61,7 +61,7 @@ class SignUpPage extends Component {
     const message = this.state.errorMessage;
 
     return `
-    <it-preloader is-loading="${this.state.isLoading}">
+      <it-preloader is-loading="${this.state.isLoading}">
         <div class="container mt-5">
             <h1 class="text-center mt-5">Регистрация</h1>
             <div class="row justify-content-center mt-5">
@@ -73,7 +73,7 @@ class SignUpPage extends Component {
               </div>
             </div>
         </div>
-        </it-preloader>
+      </it-preloader>
     `;
   }
 }

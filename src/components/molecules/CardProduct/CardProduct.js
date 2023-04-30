@@ -7,8 +7,11 @@ import { storageService } from '../../../services/StorageService';
 import './cardProduct.scss';
 
 class CardProduct extends Component {
+  constructor() {
+    super();
+  }
   static get observedAttributes() {
-    return ['image', 'title', 'description', 'category', 'price', 'id', 'content'];
+    return ['image', 'title', 'description', 'price', 'id', 'content'];
   }
 
   addToCart = (evt) => {
@@ -21,6 +24,7 @@ class CardProduct extends Component {
         window.scrollTo(0, { behavior: 'smooth' });
       }
     }
+
     if (evt.target.closest('.card-name')) {
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: `product/${this.props.id}` });
       window.scrollTo(0, { behavior: 'smooth' });
@@ -36,15 +40,14 @@ class CardProduct extends Component {
   }
 
   render() {
-    const { image, title, description, category, price, id } = this.props;
+    const { image, title, description, price, id } = this.props;
     const classBlog = this.props.content ? this.props.content : '';
 
     return `
          <div class="card card-item" id="${id}">
-           <img class="image-fit card-img-top" src="${image}" alt="image">
-           <div class="card-body ${classBlog}">
+           <img class="image-fit card-item___img card-img-top" src="${image}" alt="image">
+           <div class="card-body  ${classBlog}">
               <h5 class="card-title card-name fix-line-of-title">${title}</h5>
-              <p class="card-text">${category}</p>
               <p class="card-text fix-line-of-description">${description}</p>
               <div class='d-flex justify-content-between align-items-center border-top pt-2'>
                  <strong class="pricing-card-title mb-0">

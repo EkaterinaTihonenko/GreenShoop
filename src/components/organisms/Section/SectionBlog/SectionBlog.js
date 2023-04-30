@@ -27,7 +27,8 @@ class SectionBlog extends Component {
                title='${item.title}'
                description='${item.description}'
                class="${this.props.class}"
-               content="">
+               content=""
+               style="width: 30rem;">
                </card-blog-post>
                `;
              })

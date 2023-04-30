@@ -14,6 +14,7 @@ import '../../molecules/SearchForm';
 import '../../molecules/BtnGroup';
 import './navigation.scss';
 import { authService } from '../../../services/Auth';
+import '../../molecules/Preloader';
 
 class Navigation extends Component {
   constructor() {
@@ -105,7 +106,7 @@ class Navigation extends Component {
         });
       } else {
         return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut].every(
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut, APP_ROUTES.admin].every(
             (item) => item !== menuItem.href,
           );
         });
@@ -133,7 +134,7 @@ class Navigation extends Component {
                      <a class="nav-link position-relative" href="#">
                         <img src="./assets/images/icons/cart.svg" alt="cart" width="24" height="24">
                         <text-span class="position-absolute text-light translate-middle badge rounded-pill cart-counter bg-success">
-                        ${this.state.productsCount}
+                           ${this.state.productsCount}
                         </text-span>
                      </a>
                   </route-link>

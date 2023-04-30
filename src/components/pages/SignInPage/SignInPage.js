@@ -62,7 +62,7 @@ class SignInPage extends Component {
     const message = this.state.errorMessage;
 
     return `
-    <it-preloader is-loading="${this.state.isLoading}">
+     <it-preloader is-loading="${this.state.isLoading}">
         <div class="container mt-5">
             <h1 class="text-center mt-5">Вход</h1>
             <div class="row justify-content-center mt-5">

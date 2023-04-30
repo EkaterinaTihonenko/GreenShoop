@@ -9,7 +9,9 @@ import '../../organisms/CardList';
 import '../../molecules/ReviewsUserSwiper';
 import '../../templates/CatalogControls';
 import '../../templates/HeaderTemplate';
+import '../../organisms/Section/LatestProducts';
 import './homePage.scss';
+import { convertQuotes } from '../../../utils/convertQuotes';
 
 class HomePage extends Component {
   constructor() {
@@ -20,6 +22,8 @@ class HomePage extends Component {
       categories: [],
       limit: 8,
       currentPage: 1,
+      isLoading: false,
+      filteredProducts: [],
     };
   }
 
@@ -27,11 +31,28 @@ class HomePage extends Component {
     return ['products', 'posts', 'categories'];
   }
 
+  setIsLoading = (isLoading) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        isLoading,
+      };
+    });
+  };
+
   sliceData(currentPage = 1) {
     const { limit } = this.state;
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
-    return this.state.products.slice(start, end);
+    const data = this.state.filteredProducts.length
+      ? this.state.filteredProducts
+      : this.state.products;
+    return data
+      .map((item) => ({
+        ...item,
+        description: convertQuotes(item.description),
+      }))
+      .slice(start, end);
   }
 
   onChangePaginationPage = (evt) => {
@@ -44,12 +65,14 @@ class HomePage extends Component {
     window.scrollTo(0, { behavior: 'smooth' });
   };
 
-  onFilterByCategory = (evt) => {
+  onFilterProductsByCategory = (evt) => {
     const { selectedCategory } = evt.detail;
     this.setState((state) => {
       return {
         ...state,
-        products: this.state.products.filter((item) => item.category.id === selectedCategory.id),
+        filteredProducts: this.state.products.filter(
+          (item) => item.category === selectedCategory.id,
+        ),
         currentPage: 1,
       };
     });
@@ -79,11 +102,14 @@ class HomePage extends Component {
   }
 
   getProducts = async () => {
+    this.setIsLoading(true);
     try {
       const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
       this.setProducts(products);
     } catch (error) {
       console.log(error);
+    } finally {
+      this.setIsLoading(false);
     }
   };
 
@@ -97,24 +123,18 @@ class HomePage extends Component {
   }
 
   getBlogPosts = async () => {
+    this.setIsLoading(true);
     try {
       const posts = await databaseService.getCollection(FIRESTORE_KEYS.posts);
       this.setBlogPosts(posts);
     } catch (error) {
       console.log(error);
+    } finally {
+      this.setIsLoading(false);
     }
   };
 
-  getCategory = async () => {
-    try {
-      const category = await databaseService.getCollection(FIRESTORE_KEYS.categories);
-      this.setCategory(category);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  setCategory(categories) {
+  setCategories(categories) {
     this.setState((state) => {
       return {
         ...state,
@@ -123,19 +143,31 @@ class HomePage extends Component {
     });
   }
 
+  getAllCategories = async () => {
+    this.setIsLoading(true);
+    try {
+      const data = await databaseService.getCollection(FIRESTORE_KEYS.categories);
+      this.setCategories(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  };
+
   componentDidMount() {
     this.getProducts();
     this.getBlogPosts();
-    this.getCategory();
+    this.getAllCategories();
     this.sliceData();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterByCategory);
+    eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterByCategory);
+    eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
   }
 
@@ -149,8 +181,7 @@ class HomePage extends Component {
                <div class="row">
                   <div class='col-sm-3 border-end catalog-controls'>
                      <catalog-controls 
-                        categories='${JSON.stringify(this.state.categories)}'
-                        isactive='${this.state.categories}'>
+                        categories='${JSON.stringify(this.state.categories)}'>
                      </catalog-controls>
                      <div class="aside p-2">
                         <div class="container d-flex flex-column justify-content-center align-items-center">
@@ -166,7 +197,8 @@ class HomePage extends Component {
                   </div>
                   <div class="col-sm-9">
                      <card-list 
-                        products='${JSON.stringify(this.sliceData(this.state.currentPage))}'>
+                        products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
+                        class="col-sm-3 mb-3">
                      </card-list>
                      <div class='mt-5'>
                         <it-pagination 
@@ -179,6 +211,7 @@ class HomePage extends Component {
                </div>
             </div>
          </main>
+        <latest-products></latest-products>
         <section-blog
            posts='${JSON.stringify(this.state.posts.slice(0, 3))}'>
         </section-blog>

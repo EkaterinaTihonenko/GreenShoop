@@ -34,12 +34,12 @@ class CardBlogPost extends Component {
 
     return `
          <div class="border-0 bg-transparent section-card m-2 ${className}" id="${id}">
-            <img class="image" src="${image}" alt="img">
-            <div class="card-body pt-2 ps-0 ${classBlog}">
-               <h4 class="card-title">
+               <img class="image col-4" src="${image}" alt="img">
+            <div class="${classBlog}">
+               <h5 class="card-title p-0 lh-sm fix-title">
                  ${title}
-               </h4>
-               <p class="text">${description}</p>
+               </h5>
+               <p class="text fix-description">${description}</p>
                <button type="button" class="btn btn-success btn-blog text-white">Подробнее</button>
             </div>
          </div>

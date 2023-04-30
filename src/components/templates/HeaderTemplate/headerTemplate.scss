@@ -1,12 +1,12 @@
 @import "../../../scss/colors.scss";
-
-.header-content-text {
-   text-transform: none;
-   font-weight: 400;
-   font-size: 1rem;
-   color: $font-color;
+.header-content {
+   &__text {
+      text-transform: none;
+      font-weight: 400;
+      font-size: 1rem;
+      color: $font-color;
+   }
 }
-
 .span-text {
    font-size: 1rem;
 }

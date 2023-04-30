@@ -2,9 +2,9 @@ import { Component } from '../../../core/Component';
 import '../../molecules/LogoLink';
 import '../../molecules/Contacts';
 import '../../molecules/MenuItems';
-import '../../molecules/CategoryItems';
 import '../../templates/SocialNetwork';
 import '../../templates/PaymentMethods';
+import '../../templates/FooterItem';
 import './footer.scss';
 import { appPages } from '../../../constants/appPages';
 
@@ -44,8 +44,10 @@ class Footer extends Component {
                   </green-shop-contacts>
                </div>
                <div class="d-flex justify-content-between align-items-start">
+                  <footer-item></footer-item>
                   <menu-items 
-                     items='${JSON.stringify(appPages.slice(0, 5))}'>
+                     items='${JSON.stringify(appPages.slice(0, 5))}'
+                     class="col-1">
                   </menu-items>
                   <div class="links-right ps-5">
                      <social-network></social-network>
@@ -61,11 +63,3 @@ class Footer extends Component {
 }
 
 customElements.define('green-footer', Footer);
-/*
-<category-items
-                     items='${JSON.stringify(this.state.categories.slice(0, 6))}'>
-                  </category-items>
-                  <category-items
-                     items='${JSON.stringify(this.state.categories.slice(7, 12))}'>
-                  </category-items>
-*/
