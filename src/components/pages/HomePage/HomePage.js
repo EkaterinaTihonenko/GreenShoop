@@ -76,7 +76,6 @@ class HomePage extends Component {
         currentPage: 1,
       };
     });
-    window.scrollTo(0, { behavior: 'smooth' });
   };
 
   onSearch = (evt) => {

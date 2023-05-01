@@ -1,5 +1,6 @@
 @import "../../../scss/colors.scss";
 .header-content {
+   height: 60vh;
    &__text {
       text-transform: none;
       font-weight: 400;
@@ -7,6 +8,7 @@
       color: $font-color;
    }
 }
+
 .span-text {
    font-size: 1rem;
 }
@@ -16,9 +18,11 @@
    font-weight: 900;
    line-height: 4rem;
    text-transform: uppercase;
+   text-shadow: 1px 1px 1px $font-color, -1px 1px 1px $hover-color;
 }
 
 .span-green {
+   text-shadow: none;
    font-size: 5.2rem;
    background-image: url(../../../assets//images/bg-span.jpg);
    background-size: contain;
@@ -39,5 +43,4 @@
 
 .img-right {
    height: 100%;
-   //text-success
 }

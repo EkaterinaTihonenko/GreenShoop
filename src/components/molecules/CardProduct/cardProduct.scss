@@ -13,6 +13,9 @@
    border: none;
    transform: perspective(2000px) rotatey(0deg) rotatex(0deg);
    transition: transform 0.2s ease;
+   &:hover {
+      background: $hover-color;
+   }
    &___img {
       margin: 0 auto;
    }

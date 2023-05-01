@@ -61,19 +61,21 @@ class Navigation extends Component {
   };
 
   countProducts = (data) => {
-    return data
-      .filter((item, index, arr) => {
-        return arr.findIndex((indexItem) => indexItem.id === item.id) === index;
-      })
-      .map((item) => {
-        return {
-          ...item,
-          quantity: item.quantity
-            ? item.quantity
-            : data.filter((filteredItem) => filteredItem.id === item.id).length,
-        };
-      })
-      .reduce((acc, item) => acc + item.quantity, 0);
+    if (Array.isArray(data)) {
+      return data
+        .filter((item, index, arr) => {
+          return arr.findIndex((indexItem) => indexItem.id === item.id) === index;
+        })
+        .map((item) => {
+          return {
+            ...item,
+            quantity: item.quantity
+              ? item.quantity
+              : data.filter((filteredItem) => filteredItem.id === item.id).length,
+          };
+        })
+        .reduce((acc, item) => acc + item.quantity, 0);
+    }
   };
 
   onStorage = (evt) => {
