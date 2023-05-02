@@ -24,10 +24,9 @@ class HomePage extends Component {
       limit: 8,
       currentPage: 1,
       isLoading: false,
-      filteredProducts: [],
-      priceSortReduction: [],
-      priceSortIncrease: [],
-      sortData: [],
+      //priceSortReduction: [],
+      //priceSortIncrease: [],
+      //sortData: [],
     };
   }
 
@@ -48,9 +47,7 @@ class HomePage extends Component {
     const { limit } = this.state;
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
-    const data = this.state.filteredProducts.length
-      ? this.state.filteredProducts
-      : this.state.products;
+    const data = this.state.products;
     return data
       .map((item) => ({
         ...item,
@@ -69,25 +66,25 @@ class HomePage extends Component {
     window.scrollTo({ top: 450, behavior: 'smooth' });
   };
 
-  onFilterProductsByCategory = (evt) => {
+  onFilterProductsByCategory = async (evt) => {
     const { selectedCategory } = evt.detail;
+    const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
     this.setState((state) => {
       return {
         ...state,
-        filteredProducts: this.state.products.filter(
-          (item) => item.category === selectedCategory.id,
-        ),
+        products: products.filter((item) => item.category === selectedCategory.id),
         currentPage: 1,
       };
     });
   };
 
-  onSearch = (evt) => {
+  onSearch = async (evt) => {
     const { data } = evt.detail;
+    const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
     this.setState((state) => {
       return {
         ...state,
-        products: this.state.products.filter((item) => {
+        products: products.filter((item) => {
           return item.title.toLowerCase().includes(data.search.toLowerCase());
         }),
         currentPage: 1,
