@@ -14,7 +14,7 @@ class ReviewsUserSwiper extends Component {
   initSwiper() {
     Swiper.use([EffectFade, Autoplay]);
 
-    new Swiper(`.${this.props.swiperclass}`, {
+    const swiper = new Swiper(`.${this.props.swiperclass}`, {
       modules: [Navigation, Pagination],
       loop: true,
       effect: 'fade',

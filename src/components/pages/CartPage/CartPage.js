@@ -132,7 +132,7 @@ class CartPage extends Component {
 
     return `
       <div class="container mt-5">
-         <table class="table mt-3 align-items-center">
+         <table class="table mt-3 align-items-center cart-page">
             <thead>
                <tr>
                   <th scope="col">Ваш заказ</th>

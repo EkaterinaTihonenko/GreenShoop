@@ -10,6 +10,7 @@ import '../../molecules/ReviewsUserSwiper';
 import '../../templates/CatalogControls';
 import '../../templates/HeaderTemplate';
 import '../../organisms/Section/LatestProducts';
+import '../../templates/SaleAside';
 import './homePage.scss';
 import { convertQuotes } from '../../../utils/convertQuotes';
 
@@ -24,6 +25,9 @@ class HomePage extends Component {
       currentPage: 1,
       isLoading: false,
       filteredProducts: [],
+      priceSortReduction: [],
+      priceSortIncrease: [],
+      sortData: [],
     };
   }
 
@@ -62,7 +66,7 @@ class HomePage extends Component {
         currentPage: Number(evt.detail.page),
       };
     });
-    window.scrollTo(0, { behavior: 'smooth' });
+    window.scrollTo({ top: 450, behavior: 'smooth' });
   };
 
   onFilterProductsByCategory = (evt) => {
@@ -111,7 +115,112 @@ class HomePage extends Component {
       this.setIsLoading(false);
     }
   };
+  /*
+  priceReduction = async () => {
+    this.setIsLoading(true);
+    try {
+      const priceReductionData = await databaseService.getCollection(FIRESTORE_KEYS.products);
+      this.sortReduction(priceReductionData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  };
 
+  sortReduction = (priceReductionData) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        priceSortReduction: priceReductionData.sort(
+          (item, priceReductionData) => Number(priceReductionData.price) - Number(item.price),
+        ),
+      };
+    });
+  };
+
+  priceIncrease = async () => {
+    this.setIsLoading(true);
+    try {
+      const priceIncreaseData = await databaseService.getCollection(FIRESTORE_KEYS.products);
+      this.sortIncrease(priceIncreaseData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  };
+  sortIncrease = (priceIncreaseData) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        priceSortIncrease: priceIncreaseData.sort(
+          (item, priceIncreaseData) => Number(item.price) - Number(priceIncreaseData.price),
+        ),
+      };
+    });
+  };
+
+  sortNewProducts = async () => {
+    this.setIsLoading(true);
+    try {
+      const productsData = await databaseService.getCollection(FIRESTORE_KEYS.products);
+      this.sortProducts(productsData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  };
+  */
+  sortProducts = (productsData) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        sortData: productsData.sort(
+          (item, productsData) => new Date(productsData.date) - new Date(item.date),
+        ),
+      };
+    });
+  };
+  /*
+  onClick = (evt) => {
+    if (evt.target.closest('.price-reduction')) {
+      const { priceReduction } = evt.detail;
+      this.setState((state) => {
+        return {
+          ...state,
+          priceSortReduction: this.state.products.filter(
+            (item) => item.price === priceReduction.price,
+          ),
+          currentPage: 1,
+        };
+      });
+    }
+    if (evt.target.closest('.price-increase')) {
+      const { priceIncrease } = evt.detail;
+      this.setState((state) => {
+        return {
+          ...state,
+          priceSortIncrease: this.state.products.filter(
+            (item) => item.price === priceIncrease.price,
+          ),
+          currentPage: 1,
+        };
+      });
+    }
+    if (evt.target.closest('.new-products')) {
+      const { newProducts } = evt.detail;
+      this.setState((state) => {
+        return {
+          ...state,
+          sortData: this.state.products.filter((item) => item.price === newProducts.price),
+          currentPage: 1,
+        };
+      });
+    }
+  };
+*/
   setBlogPosts(posts) {
     this.setState((state) => {
       return {
@@ -159,15 +268,20 @@ class HomePage extends Component {
     this.getBlogPosts();
     this.getAllCategories();
     this.sliceData();
+    //this.priceReduction();
+    //this.priceIncrease();
+    //this.sortNewProducts();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
+    //this.addEventListener('click', this.onClick);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
+    //this.removeEventListener('click', this.onClick);
   }
 
   render() {
@@ -182,19 +296,16 @@ class HomePage extends Component {
                      <catalog-controls 
                         categories='${JSON.stringify(this.state.categories)}'>
                      </catalog-controls>
-                     <div class="aside p-2">
-                        <div class="container d-flex flex-column justify-content-center align-items-center">
-                           <img class="img-sale" src="/assets/images/SuperSale.png" alt="sale">
-                           <p class="content-text text-danger fw-bold"">
-                              СКИДКА ДО 75%
-                           </p>
-                           <a href=" #">
-                              <img class="content-img" src="../../assets/images/potted-plant02.png" alt="img">
-                           </a>
-                        </div>
-                     </div>
+                     <sale-aside></sale-aside>
                   </div>
                   <div class="col-sm-9">
+                     <div class="d-flex justify-content-end mb-1">
+                        <select class="form-select bg-transparent border border-success shadow" name="category" aria-label="Default select example" style="width: 18rem;">
+                           <option class="option price-reduction" value='1'>По убыванию цены</option>
+                           <option class="option price-increase" value='2'>По возрастанию цены</option>
+                           <option class="option new-products" value='3'>По новинкам</option>
+                        </select>
+                     </div>
                      <card-list 
                         products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
                         class="col-sm-3 mb-3">

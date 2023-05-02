@@ -88,6 +88,14 @@ class ProductForm extends Component {
             <div class="mb-3">
                <label class="form-label w-100">
                   <p>
+                     Дата поступления
+                  </p>
+                  <input name="date" type="date" class="form-control bg-transparent border border-success shadow rounded" required>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
                      Загрузить файл
                   </p>
                   <input class="form-control bg-transparent border border-success preview-input shadow rounded" name="preview" type="file" accept="image/png, image/jpeg, image/jpg"

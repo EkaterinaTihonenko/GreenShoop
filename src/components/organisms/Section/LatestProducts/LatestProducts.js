@@ -7,7 +7,7 @@ class LatestProducts extends Component {
   constructor() {
     super();
     this.state = {
-      products: [],
+      sortData: [],
       isLoading: false,
     };
   }
@@ -25,20 +25,11 @@ class LatestProducts extends Component {
     });
   };
 
-  setProducts(products) {
-    this.setState((state) => {
-      return {
-        ...state,
-        products,
-      };
-    });
-  }
-
   getProducts = async () => {
     this.setIsLoading(true);
     try {
-      const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
-      this.setProducts(products);
+      const productsData = await databaseService.getCollection(FIRESTORE_KEYS.products);
+      this.onSort(productsData);
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,15 +37,19 @@ class LatestProducts extends Component {
     }
   };
 
-  sliceProduct() {
-    const start = this.state.length - this.state.quantity;
-    const end = this.state.length;
-    return this.state.products.slice(start, end);
-  }
+  onSort = (productsData) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        sortData: productsData.sort(
+          (item, productsData) => new Date(productsData.date) - new Date(item.date),
+        ),
+      };
+    });
+  };
 
   componentDidMount() {
     this.getProducts();
-    this.sliceProduct();
   }
 
   render() {
@@ -62,10 +57,8 @@ class LatestProducts extends Component {
         <div class="mt-5 mb-5">
             <h3 class="text-center pt-5">Последние поступления</h3>
             <card-list 
-                products='${JSON.stringify(
-                  this.sliceProduct(this.state.products).slice(0, 6).reverse(),
-                )}'
-                class="col-2">
+               products='${JSON.stringify(this.state.sortData.slice(0, 6))}'
+               class="col-2">
             </card-list>
         </div>
          `;

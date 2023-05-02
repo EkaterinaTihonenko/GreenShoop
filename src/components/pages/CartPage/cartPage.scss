@@ -3,3 +3,7 @@
 .fix-description {
    @include sliceByLine(7);
 }
+
+.cart-page {
+   min-height: 45vh;
+}

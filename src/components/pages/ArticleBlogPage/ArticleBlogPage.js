@@ -33,16 +33,24 @@ class ArticleBlogPage extends Component {
     return `
       <div class="container">
             <div class="wrapp mt-5">
-               <h2>${this.state.posts.title || 'Название не найдено'}</h2>
-               <img class="image m-2 me-3 float-start" src="${this.state.posts.preview}" alt="img">
+               <h2>${
+                 this.state.posts.title || '<h3 class="text-success">Название не найдено</h3>'
+               }</h2>
+               <img class="image m-2 me-3 float-start" src="${this.state.posts.preview}
+                alt="img">
                <p class="mt-5">
-                ${this.state.posts.description || 'Описание не найдено'}
+                ${
+                  this.state.posts.description ||
+                  '<h3 class="text-success">Описание не найдено</h3>'
+                }
                </p>
             </div>
             <div class="wrapp mt-5">
-            <h2 class="text-center">${this.state.posts.titleTwo || 'Название не найдено'}</h2>
+            <h2 class="text-center">${
+              this.state.posts.titleTwo || '<h3 class="text-success">Название не найдено</h3>'
+            }</h2>
             <p class="mt-5">
-             ${this.state.posts.text || 'Описание не найдено'}
+             ${this.state.posts.text || '<h3 class="text-success">Описание не найдено</h3>'}
             </p>
          </div>
       </div>

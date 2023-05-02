@@ -47,127 +47,23 @@ class ProductPage extends Component {
     });
   }
 
-  addToData = (evt) => {
+  addToCart = (evt) => {
     if (evt.target.closest('.btn-to')) {
-      if (storageService.getItem('user')) {
-        const item = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-        storageService.setItem(APP_STORAGE_KEYS.cartData, [...item, this.props.id]);
-      } else {
-        eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
-        window.scrollTo(0, { behavior: 'smooth' });
-      }
+      const Items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+      storageService.setItem(APP_STORAGE_KEYS.cartData, [...Items, this.props.id]);
+    } else {
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
+      window.scrollTo(0, { behavior: 'smooth' });
     }
-  };
-
-  setProducts = (products) => {
-    if (Array.isArray(products)) {
-      const mapProducts = products
-        .filter((item, index, arr) => {
-          return arr.findIndex((findItem) => findItem.id === item.id) === index;
-        })
-        .map((item) => {
-          return {
-            ...item,
-            quantity: item.quantity
-              ? item.quantity
-              : products.filter((filterItem) => filterItem.id === item.id).length,
-          };
-        });
-
-      this.setState((state) => {
-        return {
-          ...state,
-          products: mapProducts,
-        };
-      });
-    }
-  };
-
-  onCountItem = (evt) => {
-    const id = evt.target.dataset.id;
-    const items = this.state.products;
-    if (evt.target.closest('.minus')) {
-      const filteredItems = items
-        .map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              quantity: item.quantity - 1,
-            };
-          }
-          return item;
-        })
-        .filter((item) => Boolean(item.quantity));
-      storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
-    }
-    if (evt.target.closest('.plus')) {
-      const filteredItems = items
-        .map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              quantity: item.quantity - 1,
-            };
-          }
-          return item;
-        })
-        .filter((item) => Boolean(item.quantity));
-      storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
-    }
-  };
-
-  onDeleteProducts = (evt) => {
-    const id = evt.target.dataset.id;
-    const items = this.state.products;
-    if (evt.target.closest('.delete')) {
-      const filteredItems = items
-        .map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              quantity: null,
-            };
-          }
-          return item;
-        })
-        .filter((item) => Boolean(item.quantity));
-      storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
-    }
-    if (evt.target.closest('.delete-items')) {
-      const filteredItems = items
-        .map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              products: null,
-            };
-          }
-          return item;
-        })
-        .filter((item) => Boolean(item.products));
-      storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
-    }
-  };
-
-  onStorage = (evt) => {
-    this.setProducts(evt.detail.data);
   };
 
   componentDidMount() {
     this.getProduct();
-    this.addEventListener('click', this.addToData);
-    const products = storageService.getItem(APP_STORAGE_KEYS.cartData);
-    this.setProducts(products ?? []);
-    this.addEventListener('click', this.onCountItem);
-    this.addEventListener('click', this.onDeleteProducts);
-    eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
+    this.addEventListener('click', this.addToCart);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('click', this.addToData);
-    this.removeEventListener('click', this.onCountItem);
-    this.removeEventListener('click', this.onDeleteProducts);
-    eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
+    this.removeEventListener('click', this.addToCart);
   }
 
   render() {
@@ -188,19 +84,7 @@ class ProductPage extends Component {
                            }).format(this.state.products.price)}/шт</p>
                         </div>
                         <div class="mt-4 d-flex">
-                           <div class="me-5">
-                              <button class='btn btn-success minus' data-id="${
-                                this.state.products.id
-                              }">-</button>
-                              <span class="text-center p-0">${this.state.products.quantity}</span>
-                              <button class='btn btn-success plus' data-id="${
-                                this.state.products.id
-                              }">+</button>
-                           </div>
                            <button class="btn btn-to bg-success text-light">В корзину</button>
-                           <button class='btn btn-success delete ms-3' data-id="${
-                             this.state.products.id
-                           }">Удалить</button>
                         </div>
                         <div class="col-span mt-4">
                            <product-info></product-info>

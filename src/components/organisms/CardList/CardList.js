@@ -28,6 +28,7 @@ class CardList extends Component {
                          title='${item.title}'
                          category='${item.catigory}'
                          price='${item.price}'
+                         date='${item.date}'
                          description='${item.description}'
                          id='${item.id}'
                          content=''>
@@ -36,7 +37,7 @@ class CardList extends Component {
                  `;
                  })
                  .join(' ')}`
-             : 'Товар не найден!'
+             : '<h3 class="text-success">Товары не найдены!</h3>'
          }
          </div>
          `;
