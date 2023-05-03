@@ -24,9 +24,7 @@ class HomePage extends Component {
       limit: 8,
       currentPage: 1,
       isLoading: false,
-      //priceSortReduction: [],
-      //priceSortIncrease: [],
-      //sortData: [],
+      sortData: [],
     };
   }
 
@@ -112,51 +110,6 @@ class HomePage extends Component {
       this.setIsLoading(false);
     }
   };
-  /*
-  priceReduction = async () => {
-    this.setIsLoading(true);
-    try {
-      const priceReductionData = await databaseService.getCollection(FIRESTORE_KEYS.products);
-      this.sortReduction(priceReductionData);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.setIsLoading(false);
-    }
-  };
-
-  sortReduction = (priceReductionData) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        priceSortReduction: priceReductionData.sort(
-          (item, priceReductionData) => Number(priceReductionData.price) - Number(item.price),
-        ),
-      };
-    });
-  };
-
-  priceIncrease = async () => {
-    this.setIsLoading(true);
-    try {
-      const priceIncreaseData = await databaseService.getCollection(FIRESTORE_KEYS.products);
-      this.sortIncrease(priceIncreaseData);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.setIsLoading(false);
-    }
-  };
-  sortIncrease = (priceIncreaseData) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        priceSortIncrease: priceIncreaseData.sort(
-          (item, priceIncreaseData) => Number(item.price) - Number(priceIncreaseData.price),
-        ),
-      };
-    });
-  };
 
   sortNewProducts = async () => {
     this.setIsLoading(true);
@@ -169,7 +122,7 @@ class HomePage extends Component {
       this.setIsLoading(false);
     }
   };
-  */
+
   sortProducts = (productsData) => {
     this.setState((state) => {
       return {
@@ -180,44 +133,7 @@ class HomePage extends Component {
       };
     });
   };
-  /*
-  onClick = (evt) => {
-    if (evt.target.closest('.price-reduction')) {
-      const { priceReduction } = evt.detail;
-      this.setState((state) => {
-        return {
-          ...state,
-          priceSortReduction: this.state.products.filter(
-            (item) => item.price === priceReduction.price,
-          ),
-          currentPage: 1,
-        };
-      });
-    }
-    if (evt.target.closest('.price-increase')) {
-      const { priceIncrease } = evt.detail;
-      this.setState((state) => {
-        return {
-          ...state,
-          priceSortIncrease: this.state.products.filter(
-            (item) => item.price === priceIncrease.price,
-          ),
-          currentPage: 1,
-        };
-      });
-    }
-    if (evt.target.closest('.new-products')) {
-      const { newProducts } = evt.detail;
-      this.setState((state) => {
-        return {
-          ...state,
-          sortData: this.state.products.filter((item) => item.price === newProducts.price),
-          currentPage: 1,
-        };
-      });
-    }
-  };
-*/
+
   setBlogPosts(posts) {
     this.setState((state) => {
       return {
@@ -260,25 +176,46 @@ class HomePage extends Component {
     }
   };
 
+  sortByPrice = (sortOrder) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        products: this.state.products.slice().sort((a, b) => {
+          switch (sortOrder) {
+            case '1':
+              return b.price - a.price;
+            case '2':
+              return a.price - b.price;
+            case '3':
+              return new Date(b.date) - new Date(a.date);
+          }
+        }),
+      };
+    });
+  };
+
+  onChangeSortFilter = (evt) => {
+    if (evt.target.closest('.form-sort')) {
+      this.sortByPrice(evt.target.value);
+    }
+  };
+
   componentDidMount() {
     this.getProducts();
     this.getBlogPosts();
     this.getAllCategories();
     this.sliceData();
-    //this.priceReduction();
-    //this.priceIncrease();
-    //this.sortNewProducts();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
-    //this.addEventListener('click', this.onClick);
+    this.addEventListener('change', this.onChangeSortFilter);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
-    //this.removeEventListener('click', this.onClick);
+    this.removeEventListener('change', this.onChangeSortFilter);
   }
 
   render() {
@@ -297,11 +234,14 @@ class HomePage extends Component {
                   </div>
                   <div class="col-sm-9">
                      <div class="d-flex justify-content-end mb-1">
-                        <select class="form-select bg-transparent border border-success shadow" name="category" aria-label="Default select example" style="width: 18rem;">
-                           <option class="option price-reduction" value='1'>По убыванию цены</option>
-                           <option class="option price-increase" value='2'>По возрастанию цены</option>
-                           <option class="option new-products" value='3'>По новинкам</option>
-                        </select>
+                        <form class="form-sort">
+                           <select class="form-select bg-transparent border border-success shadow" name="category" aria-label="Default select example" style="width: 18rem;">
+                              <option selected>Открыть меню выбора</option>
+                              <option class="option price-reduction" value='1'>По убыванию цены</option>
+                              <option class="option price-increase" value='2'>По возрастанию цены</option>
+                              <option class="option new-products" value='3'>По новинкам</option>
+                           </select>
+                        </form>
                      </div>
                      <card-list 
                         products='${JSON.stringify(this.sliceData(this.state.currentPage))}'

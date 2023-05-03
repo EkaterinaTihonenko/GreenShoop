@@ -49,8 +49,8 @@ class ProductPage extends Component {
 
   addToCart = (evt) => {
     if (evt.target.closest('.btn-to')) {
-      const Items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [...Items, this.props.id]);
+      const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+      storageService.setItem(APP_STORAGE_KEYS.cartData, [...items, this.state.products]);
     } else {
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
       window.scrollTo(0, { behavior: 'smooth' });

@@ -90,7 +90,7 @@ class ProductForm extends Component {
                   <p>
                      Дата поступления
                   </p>
-                  <input name="date" type="date" class="form-control bg-transparent border border-success shadow rounded" required>
+                  <input name="date" type="datetime-local" class="form-control bg-transparent border border-success shadow rounded" required>
                </label>
             </div>
             <div class="mb-3">

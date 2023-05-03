@@ -134,7 +134,7 @@ class Navigation extends Component {
                <div class="nav-item btns">
                   <route-link to="${APP_ROUTES.cart}">
                      <a class="nav-link position-relative" href="#">
-                        <img src="./assets/images/icons/cart.svg" alt="cart" width="24" height="24">
+                        <img src="../../../assets/images/icons/cart.svg" alt="cart" width="24" height="24">
                         <text-span class="position-absolute text-light translate-middle badge rounded-pill cart-counter bg-success">
                            ${this.state.productsCount}
                         </text-span>
