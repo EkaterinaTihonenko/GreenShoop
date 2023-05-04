@@ -83,6 +83,29 @@ class Navigation extends Component {
     this.setProductsCount(count);
   };
 
+  getItems() {
+    const user = JSON.parse(this.props.user);
+    if (user) {
+      if (user.email === ADMIN) {
+        return appPages.slice(0, 6).filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
+        });
+      } else {
+        return appPages.slice(0, 6).filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.admin].every(
+            (item) => item !== menuItem.href,
+          );
+        });
+      }
+    } else {
+      return appPages.slice(0, 6).filter((menuItem) => {
+        return [APP_ROUTES.signUp, APP_ROUTES.signOut, APP_ROUTES.admin].every(
+          (item) => item !== menuItem.href,
+        );
+      });
+    }
+  }
+
   componentDidMount() {
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
     const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
@@ -97,37 +120,12 @@ class Navigation extends Component {
     eventEmmiter.off(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
   }
 
-  getItems() {
-    const user = JSON.parse(this.props.user);
-    if (user) {
-      if (user.email === ADMIN) {
-        return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut].every(
-            (item) => item !== menuItem.href,
-          );
-        });
-      } else {
-        return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut, APP_ROUTES.admin].every(
-            (item) => item !== menuItem.href,
-          );
-        });
-      }
-    } else {
-      return appPages.filter((menuItem) => {
-        return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.signOut, APP_ROUTES.admin].every(
-          (item) => item !== menuItem.href,
-        );
-      });
-    }
-  }
-
   render() {
     return `
          <nav class="navbar navbar-expand-lg header__navigation d-flex justify-content-around">
             <logo-link></logo-link>
             <menu-items
-               items='${JSON.stringify(this.getItems().slice(0, 6))}'>
+               items='${JSON.stringify(this.getItems())}'>
             </menu-items>
             <div class="d-flex justify-content-center align-items-center">
                <search-form></search-form>

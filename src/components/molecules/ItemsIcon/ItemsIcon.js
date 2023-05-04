@@ -18,7 +18,8 @@ class ItemsIcon extends Component {
                   <nav class="nav ${this.props.class}">
                      <a href="${item.href}" 
                         class="${this.props.class}__link me-2 p-2 rounded  d-flex justify-content-center align-items-center">
-                        <img class="icon ${this.props.class}__img" src="../../../assets/images/icons/${item.src}" alt="img">
+                        <img class="icon ${this.props.class}__img" 
+                             src="../../../assets/images/icons/${item.src}" alt="img">
                      </a>
                   </nav>
                `,

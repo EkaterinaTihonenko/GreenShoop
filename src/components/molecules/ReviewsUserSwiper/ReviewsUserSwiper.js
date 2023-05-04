@@ -23,7 +23,6 @@ class ReviewsUserSwiper extends Component {
         delay: 4000,
         disableOnInteraction: false,
       },
-
       fadeEffect: {
         crossFade: true,
       },
@@ -39,10 +38,6 @@ class ReviewsUserSwiper extends Component {
   }
 
   componentDidMount() {
-    this.initSwiper();
-  }
-
-  componentWillUnmount() {
     this.initSwiper();
   }
 

@@ -28,6 +28,7 @@ class ProductForm extends Component {
       evt.target.reset();
       preview.innerHTML = '';
     }
+    window.scrollTo(0, { behavior: 'smooth' });
   };
 
   onChange = (evt) => {
@@ -125,7 +126,7 @@ class ProductForm extends Component {
                   <p>
                      Освещение и местоположение
                   </p>
-                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="lightingLocation" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="location" rows="3" required>
                   </textarea>
                </label>
             </div>
@@ -143,7 +144,7 @@ class ProductForm extends Component {
                   <p>
                      Влажность и полив
                   </p>
-                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="humidityWatering" rows="3" required>
+                  <textarea class="form-control bg-transparent border border-success shadow rounded" name="watering" rows="3" required>
                   </textarea>
                </label>
             </div>

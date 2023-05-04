@@ -17,8 +17,11 @@ class ItemsInfo extends Component {
                 return `
             <div class="col">
                <div class="d-flex align-items-start">
-                  <img class="icon me-2" src="../../../assets/images/${item.src}" alt="icon">
-                  <p class="text fs-6">${item.title}</p>
+                  <img class="icon me-2" 
+                       src="../../../assets/images/${item.src}" alt="icon">
+                  <p class="text fs-6">
+                     ${item.title}
+                  </p>
                </div>
                <ul class="fs-6 fw-normal">
                   <li>${item.text.postOffice}</li>

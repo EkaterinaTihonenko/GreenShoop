@@ -33,16 +33,16 @@ class ContactsPage extends Component {
 
   render() {
     return `
-            <div class="container">
-               <div class="col pt-5">
-                  <contacts-template
-                     items='${JSON.stringify(this.state.contacts)}'
-                     class="contacts">
-                  </contacts-template>
-               </div>
-               <green-map><green-map>
+         <div class="container">
+            <div class="col pt-5">
+               <contacts-template
+                  items='${JSON.stringify(this.state.contacts)}'
+                  class="contacts">
+               </contacts-template>
             </div>
-        `;
+            <green-map><green-map>
+         </div>
+      `;
   }
 }
 

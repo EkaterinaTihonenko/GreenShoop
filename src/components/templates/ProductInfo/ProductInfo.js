@@ -45,10 +45,10 @@ class ProductInfo extends Component {
 
   render() {
     return `
-            <items-info
-               info='${JSON.stringify(this.state.info)}'
-               class="footer-col d-flex align-items-start justify-content-between">
-            </items-info>
+         <items-info
+            info='${JSON.stringify(this.state.info)}'
+            class="footer-col d-flex align-items-start justify-content-between">
+         </items-info>
                      
       `;
   }

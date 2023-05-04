@@ -5,6 +5,7 @@ import '../../molecules/Preloader';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { storageService } from '../../../services/StorageService';
+import './sigOutPage.scss';
 
 class SignOutPage extends Component {
   constructor() {
@@ -27,7 +28,9 @@ class SignOutPage extends Component {
   render() {
     return `
             <it-preloader is-loading="${JSON.stringify(true)}">
-                <h1>You are signed out...</h1>
+               <h1 class=" content__title m-auto">
+                  Вы вышли...
+               </h1>
             </it-preloader>
         `;
   }

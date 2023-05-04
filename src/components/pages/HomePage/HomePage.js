@@ -11,6 +11,7 @@ import '../../templates/CatalogControls';
 import '../../templates/HeaderTemplate';
 import '../../organisms/Section/LatestProducts';
 import '../../templates/SaleAside';
+import '../../organisms/sortByPriceForm';
 import './homePage.scss';
 import { convertQuotes } from '../../../utils/convertQuotes';
 
@@ -23,7 +24,6 @@ class HomePage extends Component {
       categories: [],
       limit: 8,
       currentPage: 1,
-      isLoading: false,
       sortData: [],
     };
   }
@@ -31,15 +31,6 @@ class HomePage extends Component {
   static get observedAttributes() {
     return ['products', 'posts', 'categories'];
   }
-
-  setIsLoading = (isLoading) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        isLoading,
-      };
-    });
-  };
 
   sliceData(currentPage = 1) {
     const { limit } = this.state;
@@ -83,7 +74,7 @@ class HomePage extends Component {
       return {
         ...state,
         products: products.filter((item) => {
-          return item.title.toLowerCase().includes(data.search.toLowerCase());
+          return item.category.toLowerCase().includes(data.search.toLowerCase());
         }),
         currentPage: 1,
       };
@@ -100,38 +91,12 @@ class HomePage extends Component {
   }
 
   getProducts = async () => {
-    this.setIsLoading(true);
     try {
       const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
       this.setProducts(products);
     } catch (error) {
       console.log(error);
-    } finally {
-      this.setIsLoading(false);
     }
-  };
-
-  sortNewProducts = async () => {
-    this.setIsLoading(true);
-    try {
-      const productsData = await databaseService.getCollection(FIRESTORE_KEYS.products);
-      this.sortProducts(productsData);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.setIsLoading(false);
-    }
-  };
-
-  sortProducts = (productsData) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        sortData: productsData.sort(
-          (item, productsData) => new Date(productsData.date) - new Date(item.date),
-        ),
-      };
-    });
   };
 
   setBlogPosts(posts) {
@@ -144,14 +109,11 @@ class HomePage extends Component {
   }
 
   getBlogPosts = async () => {
-    this.setIsLoading(true);
     try {
       const posts = await databaseService.getCollection(FIRESTORE_KEYS.posts);
       this.setBlogPosts(posts);
     } catch (error) {
       console.log(error);
-    } finally {
-      this.setIsLoading(false);
     }
   };
 
@@ -165,14 +127,11 @@ class HomePage extends Component {
   }
 
   getAllCategories = async () => {
-    this.setIsLoading(true);
     try {
       const data = await databaseService.getCollection(FIRESTORE_KEYS.categories);
       this.setCategories(data);
     } catch (error) {
       console.error(error);
-    } finally {
-      this.setIsLoading(false);
     }
   };
 
@@ -233,16 +192,7 @@ class HomePage extends Component {
                      <sale-aside></sale-aside>
                   </div>
                   <div class="col-sm-9">
-                     <div class="d-flex justify-content-end mb-1">
-                        <form class="form-sort">
-                           <select class="form-select bg-transparent border border-success shadow" name="category" aria-label="Default select example" style="width: 18rem;">
-                              <option selected>Открыть меню выбора</option>
-                              <option class="option price-reduction" value='1'>По убыванию цены</option>
-                              <option class="option price-increase" value='2'>По возрастанию цены</option>
-                              <option class="option new-products" value='3'>По новинкам</option>
-                           </select>
-                        </form>
-                     </div>
+                     <sort-by-price></sort-by-price>
                      <card-list 
                         products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
                         class="col-sm-3 mb-3">

@@ -5,10 +5,6 @@
       &__img {
          height: 60px;
          border-radius: 50px;
-         -webkit-border-radius: 50px;
-         -moz-border-radius: 50px;
-         -ms-border-radius: 50px;
-         -o-border-radius: 50px;
       }
       &__title {
          line-height: 1rem;
@@ -27,7 +23,7 @@
    border-radius: 50%;
    background: transparent;
    opacity: 1;
-   transition: all 0.4s;
+   transition: all 0.2s;
 }
 
 .swiper-pagination-bullet-active {
@@ -36,10 +32,6 @@
    border-right-color: transparent;
    transform: rotate(-65deg);
    transition: all 0.4s;
-   -webkit-transform: rotate(-65deg);
-   -moz-transform: rotate(-65deg);
-   -ms-transform: rotate(-65deg);
-   -o-transform: rotate(-65deg);
 }
 
 .swiper-button-next:after,

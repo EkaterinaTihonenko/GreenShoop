@@ -16,7 +16,7 @@
    &:hover {
       background: $hover-color;
    }
-   &___img {
+   .card-item-img {
       margin: 0 auto;
    }
 }
@@ -27,7 +27,6 @@
 }
 
 .card-name {
-   text-decoration: underline;
    cursor: pointer;
    &:hover {
       text-decoration: none;

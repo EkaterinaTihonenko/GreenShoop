@@ -1,12 +1,11 @@
 import { Component } from '../../../core/Component';
-
-import '../../organisms/SignInForm';
-import '../../molecules/Preloader';
 import { authService } from '../../../services/Auth';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { storageService } from '../../../services/StorageService';
+import '../../organisms/SignInForm';
+import '../../molecules/Preloader';
 
 class SignInPage extends Component {
   constructor() {
@@ -62,20 +61,24 @@ class SignInPage extends Component {
     const message = this.state.errorMessage;
 
     return `
-     <it-preloader is-loading="${this.state.isLoading}">
-        <div class="container mt-5">
-            <h1 class="text-center mt-5">Вход</h1>
-            <div class="row justify-content-center mt-5">
-              <div class="col-6">
-                 <div class="border p-5 border-success border-2 rounded">
-                 <div class="invalid-feedback d-block">${message}</div>
-                    <sign-in-form></sign-in-form>
-                 </div>
-              </div>
+         <it-preloader is-loading="${this.state.isLoading}">
+            <div class="container mt-5">
+               <h1 class="text-center mt-5">
+                  Вход
+               </h1>
+               <div class="row justify-content-center mt-5">
+                  <div class="col-6">
+                     <div class="border p-5 border-success border-2 rounded">
+                        <div class="invalid-feedback d-block">
+                           ${message}
+                        </div>
+                        <sign-in-form></sign-in-form>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-        </it-preloader>
-    `;
+         </it-preloader>
+      `;
   }
 }
 

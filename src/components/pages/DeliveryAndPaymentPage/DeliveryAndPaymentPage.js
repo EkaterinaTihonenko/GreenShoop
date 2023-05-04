@@ -46,19 +46,19 @@ class DeliveryAndPayment extends Component {
 
   render() {
     return `
-    <it-preloader is-loading="${this.state.isLoading}">
-    <div class="container">
-    <div class="mt-5">
-       <it-tabs
-         menu-items='${JSON.stringify(menuItems)}' 
-         active-item='${JSON.stringify(this.state.activeTab)}'>
-       </it-tabs>
-       <div class="md-3 border-start border p-3">
-          ${info[this.state.activeTab.id]}
-       </div>
-    </div>
- </div>
- </it-preloader>
+         <it-preloader is-loading="${this.state.isLoading}">
+            <div class="container">
+               <div class="mt-5">
+                  <it-tabs
+                     menu-items='${JSON.stringify(menuItems)}' 
+                     active-item='${JSON.stringify(this.state.activeTab)}'>
+                  </it-tabs>
+                  <div class="md-3 border-start border p-3">
+                     ${info[this.state.activeTab.id]}
+                  </div>
+               </div>
+            </div>
+         </it-preloader>
       `;
   }
 }

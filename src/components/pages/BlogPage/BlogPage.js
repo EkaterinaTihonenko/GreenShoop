@@ -13,12 +13,22 @@ class BlogPage extends Component {
       posts: [],
       limit: 4,
       currentPage: 1,
+      isLoading: false,
     };
   }
 
   static get observedAttributes() {
     return ['posts'];
   }
+
+  setIsLoading = (isLoading) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        isLoading,
+      };
+    });
+  };
 
   sliceData(currentPage = 1) {
     const { limit } = this.state;
@@ -47,11 +57,14 @@ class BlogPage extends Component {
   }
 
   getBlogPosts = async () => {
+    this.setIsLoading(true);
     try {
       const posts = await databaseService.getCollection(FIRESTORE_KEYS.posts);
       this.setBlogPosts(posts);
     } catch (error) {
       console.log(error);
+    } finally {
+      this.setIsLoading(false);
     }
   };
 
@@ -67,21 +80,25 @@ class BlogPage extends Component {
 
   render() {
     return `
-         <div class="container">
-            <h3 class="text-uppercase fw-bold text-decoration-underline text-success pt-5">Наш блог</h3>
-            <div class="mt-5">
-               <blog-template
-                 posts='${JSON.stringify(this.sliceData(this.state.currentPage))}'>
-               </blog-template>
+         <it-preloader is-loading="${this.state.isLoading}">
+            <div class="container">
+               <h3 class="text-uppercase fw-bold text-decoration-underline text-success pt-5">
+                  Наш блог
+               </h3>
+               <div class="mt-5">
+                  <blog-template
+                     posts='${JSON.stringify(this.sliceData(this.state.currentPage))}'>
+                  </blog-template>
+               </div>
+               <div class='mt-5'>
+                  <it-pagination 
+                     total="${this.state.posts.length}" 
+                     limit="${this.state.limit}"
+                     current="${this.state.currentPage}">
+                  </it-pagination>
+               </div>
             </div>
-            <div class='mt-5'>
-               <it-pagination 
-                  total="${this.state.posts.length}" 
-                  limit="${this.state.limit}"
-                  current="${this.state.currentPage}">
-               </it-pagination>
-            </div>
-         </div>
+         </it-priloader>
       `;
   }
 }

@@ -12,16 +12,16 @@ class CardProduct extends Component {
   }
 
   static get observedAttributes() {
-    return ['image', 'title', 'description', 'price', 'id', 'content', 'date'];
+    return ['prewiew', 'title', 'description', 'price', 'id', 'content', 'date'];
   }
 
   addToCart = (evt) => {
-    if (evt.target.closest('.btn')) {
+    if (evt.target.closest('.btn-to')) {
       if (storageService.getItem('user')) {
         const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
         storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
       } else {
-        eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
+        eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signIn });
         window.scrollTo(0, { behavior: 'smooth' });
       }
     }
@@ -40,26 +40,30 @@ class CardProduct extends Component {
   }
 
   render() {
-    const { image, title, description, price, id, date } = this.props;
+    const { preview, title, description, price, id, date } = this.props;
     const classBlog = this.props.content ? this.props.content : '';
+
     return `
          <div class="card card-item" id="${id}" date="${date}">
-           <img class="image-fit card-item___img card-img-top" src="${image}" alt="image">
-           <div class="card-body ${classBlog}">
-              <h5 class="card-title card-name fix-line-of-title">${title}</h5>
-              <p class="card-text fix-line-of-description">${
-                description || '<h3 class="text-success">Описание не найдено</h3>'
-              }</p>
-              <div class='d-flex justify-content-between align-items-center border-top pt-2'>
-                 <strong class="pricing-card-title mb-0">
-                    ${new Intl.NumberFormat('ru-Ru', {
-                      style: 'currency',
-                      currency: 'BYN',
-                    }).format(price)}
-                 </strong>
-                 <button class="btn btn-success">Купить</button>
-              </div>
-           </div>
+            <img class="image-fit card-item-img card-img-top" src="${preview}" alt="image">
+            <div class="card-body ${classBlog}">
+               <h5 class="card-title fs-5 card-name fix-line-of-title">${title}
+               </h5>
+               <p class="card-text fix-line-of-description">${
+                 description || '<h3 class="text-success">Описание не найдено</h3>'
+               }</p>
+               <div class='d-flex justify-content-between align-items-center border-top pt-2'>
+                  <strong class="pricing-card-title mb-0">
+                     ${new Intl.NumberFormat('ru-Ru', {
+                       style: 'currency',
+                       currency: 'BYN',
+                     }).format(price)}
+                  </strong>
+                  <button class="btn btn-to btn-success">
+                     Купить
+                  </button>
+               </div>
+            </div>
          </div>
       `;
   }

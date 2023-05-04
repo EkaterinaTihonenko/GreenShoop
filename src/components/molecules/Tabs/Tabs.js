@@ -44,8 +44,8 @@ class Tabs extends Component {
                 return `
                      <li class="nav-item shadow rounded">
                         <a class="nav-link text-success ${id === activeItem.id ? 'active' : ''}" 
-                           data-id="${id}" 
-                           href="#">${label}
+                           data-id="${id}" href="#">
+                           ${label}
                         </a>
                      </li>
                   `;

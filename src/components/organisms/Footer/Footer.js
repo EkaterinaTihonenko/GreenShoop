@@ -55,7 +55,9 @@ class Footer extends Component {
                   </div>
                </div>
                <hr>
-               <p class="text text-center fst-italic pb-3 text-copy">&copy; 2023 GreenShop. Все права защищены.</p>
+               <p class="text text-center fst-italic pb-3 text-copy">
+                  &copy; 2023 GreenShop. Все права защищены.
+               </p>
             </footer>
          </div>
       `;

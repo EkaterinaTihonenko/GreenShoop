@@ -129,20 +129,20 @@ class AdminPage extends Component {
 
   render() {
     return `
-      <it-preloader is-loading="${this.state.isLoading}">
-        <div class="container admin-page">
-          <div class="pt-5">
-            <it-tabs 
-              menu-items='${JSON.stringify(menuItems)}' 
-              active-item='${JSON.stringify(this.state.activeTab)}'>
-            </it-tabs>
-            <div class="pb-3 border-end border-bottom border-start p-3">
-              ${forms(this.state)[this.state.activeTab.id]}
+         <it-preloader is-loading="${this.state.isLoading}">
+            <div class="container admin-page">
+               <div class="pt-5">
+                  <it-tabs 
+                     menu-items='${JSON.stringify(menuItems)}' 
+                     active-item='${JSON.stringify(this.state.activeTab)}'>
+                  </it-tabs>
+                  <div class="pb-3 border-end border-bottom border-start p-3">
+                     ${forms(this.state)[this.state.activeTab.id]}
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </it-preloader>
-    `;
+         </it-preloader>
+      `;
   }
 }
 

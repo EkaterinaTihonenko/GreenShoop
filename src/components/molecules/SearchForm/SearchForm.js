@@ -34,7 +34,9 @@ class SearchForm extends Component {
     return `
          <form class="d-flex form" role="search">
             <input name='search' class="form-control form__input me-2" type="search" placeholder="Поиск..." aria-label="Search">
-            <button class="btn btn-success form__btn d-flex justify-content-center align-items-center" type="submit">Поиск</button>
+            <button class="btn btn-success form__btn d-flex justify-content-center align-items-center" type="submit">
+               Поиск
+            </button>
          </form>
       `;
   }

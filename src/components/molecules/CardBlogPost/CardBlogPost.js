@@ -33,14 +33,20 @@ class CardBlogPost extends Component {
     const classBlog = this.props.content ? this.props.content : '';
 
     return `
-         <div class="border-0 bg-transparent section-card m-2 ${className}" id="${id}">
-               <img class="image col-4" src="${image}" alt="img">
+         <div class="border-0 bg-transparent m-2 ${className}" id="${id}">
+            <img class="image col-4" src="${image}" alt="${title}" />
             <div class="${classBlog}">
-               <h5 class="card-title p-0 lh-sm fix-title">
-                 ${title}
+               <h5 class="card-title p-0 lh-sm fix-title mt-3">${
+                 title || '<h3 class="text-success">Название не найдено</h3>'
+               }
                </h5>
-               <p class="text fix-description">${description}</p>
-               <button type="button" class="btn btn-success btn-blog text-white">Подробнее</button>
+               <p class="text fix-description">${
+                 description || '<h3 class="text-success">Описание не найдено</h3>'
+               }
+               </p>
+               <button type="button" class="btn btn-success btn-blog text-white">
+                  Подробнее
+               </button>
             </div>
          </div>
       `;

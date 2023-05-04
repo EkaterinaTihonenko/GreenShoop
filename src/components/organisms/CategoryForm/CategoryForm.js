@@ -36,7 +36,9 @@ class CategoryForm extends Component {
                   type="text" 
                   class="form-control mb-3 bg-transparent border border-success shadow mb-5 rounded" 
                   required>
-               <button type="submit" class="btn btn-success">Сохранить</button>
+               <button type="submit" class="btn btn-success">
+                  Сохранить
+               </button>
          </form>
       `;
   }

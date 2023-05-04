@@ -1,5 +1,4 @@
 import { Component } from '../../../core/Component';
-import './linkItem.scss';
 
 class LinkItem extends Component {
   constructor() {

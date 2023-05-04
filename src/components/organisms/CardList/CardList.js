@@ -22,18 +22,18 @@ class CardList extends Component {
              ? `${products
                  .map((item) => {
                    return `
-                 <div class=" card-col ${className}">
+                  <div class=" card-col ${className}">
                      <card-product
-                         image='${item.preview}'
-                         title='${item.title}'
-                         category='${item.catigory}'
-                         price='${item.price}'
-                         date='${item.date}'
-                         description='${item.description}'
-                         id='${item.id}'
-                         content=''>
+                        preview='${item.preview}'
+                        title='${item.title}'
+                        category='${item.catigory}'
+                        price='${item.price}'
+                        date='${item.date}'
+                        description='${item.description}'
+                        id='${item.id}'
+                        content=''>
                      </card-product>
-                 </div>
+                  </div>
                  `;
                  })
                  .join(' ')}`

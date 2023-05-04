@@ -17,23 +17,17 @@ class BtnGroup extends Component {
     const user = JSON.parse(this.props.user);
     if (user) {
       if (user.email === ADMIN) {
-        return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.admin].every(
-            (item) => item !== menuItem.href,
-          );
+        return appPages.slice(7, 9).filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
         });
       } else {
-        return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.admin].every(
-            (item) => item !== menuItem.href,
-          );
+        return appPages.slice(7, 9).filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
         });
       }
     } else {
-      return appPages.filter((menuItem) => {
-        return [APP_ROUTES.signUp, APP_ROUTES.signOut, APP_ROUTES.admin].every(
-          (item) => item !== menuItem.href,
-        );
+      return appPages.slice(7, 9).filter((menuItem) => {
+        return [APP_ROUTES.signUp, APP_ROUTES.signOut].every((item) => item !== menuItem.href);
       });
     }
   }
@@ -41,10 +35,9 @@ class BtnGroup extends Component {
   render() {
     return `
          <button type="button"
-            class="btn-right btn border border-2 border-success bg-transperend text-light d-flex justify-content-center align-items-center">
-            <div class="btn-right-icon"></div>
+            class="btn-right btn border border-2 border-success bg-transperend d-flex justify-content-center align-items-center">
             <menu-items 
-               items='${JSON.stringify(this.getItems().slice(5, 9))}'>
+               items='${JSON.stringify(this.getItems())}'>
             </menu-items>
          </button>
       `;

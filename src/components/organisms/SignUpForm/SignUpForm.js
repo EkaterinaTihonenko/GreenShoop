@@ -50,37 +50,45 @@ class RegisterForm extends Component {
 
   render() {
     return `
-    <form>
-    <div class="mb-3">
-      <label class="form-label w-100">
-        <p>Почта<p>
-        <input name="email" type="email" class="form-control bg-transparent border-success">
-      </label>
-      ${
-        this.state.errors.email
-          ? `
-      <div class="invalid-feedback">
-      ${this.state.errors.email.message}
-      </div>
-      `
-          : ''
-      }
-    </div>
-    <div class="mb-3">
-      <label class="form-label w-100">
-        <p>Пароль<p>
-        <input name="password" type="password" class="form-control bg-transparent border-success" required>
-      </label>
-    </div>
-    <div class="mb-3">
-      <label class="form-label w-100">
-        <p>Подтвердите пароль<p>
-        <input name="confirm-password" type="password" class="form-control bg-transparent border-success" required>
-      </label>
-    </div>
-    <button type="submit" class="btn bg-success text-light">Регистрация</button>
-  </form>
-    `;
+         <form>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Почта
+                  </p>
+                  <input name="email" type="email" class="form-control bg-transparent border-success">
+               </label>
+               ${
+                 this.state.errors.email
+                   ? `
+               <div class="invalid-feedback">
+                  ${this.state.errors.email.message}
+               </div>
+               `
+                   : ''
+               }
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Пароль
+                  </p>
+                  <input name="password" type="password" class="form-control bg-transparent border-success" required>
+               </label>
+            </div>
+            <div class="mb-3">
+               <label class="form-label w-100">
+                  <p>
+                     Подтвердите пароль
+                  </p>
+                  <input name="confirm-password" type="password" class="form-control bg-transparent border-success" required>
+               </label>
+            </div>
+            <button type="submit" class="btn bg-success text-light">
+               Регистрация
+            </button>
+         </form>
+      `;
   }
 }
 

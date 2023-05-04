@@ -23,6 +23,7 @@ class BlogForm extends Component {
       evt.target.reset();
       preview.innerHTML = '';
     }
+    window.scrollTo(0, { behavior: 'smooth' });
   };
 
   onChange = (evt) => {

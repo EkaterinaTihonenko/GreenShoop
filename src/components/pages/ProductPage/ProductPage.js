@@ -1,36 +1,16 @@
-import { APP_EVENTS } from '../../../constants/appEvents';
-import { APP_ROUTES } from '../../../constants/appRoutes';
-import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
-import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
-import { Component } from '../../../core/Component';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { databaseService } from '../../../services/DatabaseService';
-import { storageService } from '../../../services/StorageService';
-import '../../molecules/Contacts';
+import '../../templates/ProductItem';
 import '../../templates/ProductInfo';
+import { Component } from '../../../core/Component';
+import { databaseService } from '../../../services/DatabaseService';
+import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 
 class ProductPage extends Component {
   constructor() {
     super();
     this.state = {
-      products: [],
-      contacts: [
-        {
-          href: '',
-          text: 'Подберем кашпо для растения',
-          src: 'elem-1-.png',
-        },
-        {
-          href: '',
-          text: 'Подберем растения для кашпо',
-          src: 'elem-2-.png',
-        },
-        {
-          href: '',
-          text: 'Посадим растение в кашпо',
-          src: 'elem-3-.png',
-        },
-      ],
+      productsData: [],
+      product: [],
+      isLoading: false,
     };
   }
 
@@ -38,101 +18,59 @@ class ProductPage extends Component {
     return ['id'];
   }
 
-  getProduct() {
-    databaseService.getDocument(FIRESTORE_KEYS.products, this.props.id).then((data) => {
-      this.setState((state) => ({
+  setIsLoading = (isLoading) => {
+    this.setState((state) => {
+      return {
         ...state,
-        products: data,
-      }));
+        isLoading,
+      };
     });
-  }
+  };
 
-  addToCart = (evt) => {
-    if (evt.target.closest('.btn-to')) {
-      const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [...items, this.state.products]);
-    } else {
-      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signUp });
-      window.scrollTo(0, { behavior: 'smooth' });
+  getProducts = async () => {
+    this.setIsLoading(true);
+    try {
+      const productsData = await databaseService.getCollection(FIRESTORE_KEYS.products);
+      this.setProducts(productsData);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setIsLoading(false);
     }
   };
 
-  componentDidMount() {
-    this.getProduct();
-    this.addEventListener('click', this.addToCart);
-  }
+  setProducts = (productsData) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        product: productsData.find((item) => item.id === this.props.id),
+        productsData,
+      };
+    });
+  };
 
-  componentWillUnmount() {
-    this.removeEventListener('click', this.addToCart);
+  componentDidMount() {
+    this.getProducts();
   }
 
   render() {
+    const { preview, title, description, price, id, location, temperature, watering, fertilizers } =
+      this.state.product;
+
     return `
-         <div class="container mt-5">
-            <div class="product-card">
-               <div class="d-flex align-items-sm-center">
-                  <img class="product-card__img" style: width="400px" ; 
-                       src="${this.state.products.preview}" alt="img">
-                  <div class="product-card__content">
-                     <h3 class="fs-2">${this.state.products.title}</h3>
-                     <div class="wrap">
-                        <div class="price d-flex align-items-center">
-                           <h5 class="fs-5 pe-2 m-0">Цена:</h5>
-                           <p class="text fw-normal fs-5 m-0">${new Intl.NumberFormat('ru-Ru', {
-                             style: 'currency',
-                             currency: 'BYN',
-                           }).format(this.state.products.price)}/шт</p>
-                        </div>
-                        <div class="mt-4 d-flex">
-                           <button class="btn btn-to bg-success text-light">В корзину</button>
-                        </div>
-                        <div class="col-span mt-4">
-                           <product-info></product-info>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="description">
-                  <div class="pt-3">
-                     <h3 class="fs-3">Описание:</h3>
-                     <p class="text fw-normal lh-sm fs-6 m-0">
-                        ${this.state.products.description}
-                     </p>
-                  </div>
-                  <div class="info-section d-flex justify-content-center mt-5 mb-5">
-                     <green-shop-contacts contacts='${JSON.stringify(
-                       this.state.contacts,
-                     )}' class="icons">
-                     </green-shop-contacts>
-                  </div>
-                  <h2 class="fs-2 text-center mt-3">Краткое описание выращивания</h2>
-                  <div class="pt-3">
-                     <h4 class="fs-4">Освещение и местоположение:</h4>
-                     <p class="text fw-normal lh-sm fs-6 m-0">
-                        ${this.state.products.lightingLocation}
-                     </p>
-                  </div>
-                  <div class="pt-3">
-                     <h4 class="fs-4">Температурный режим:</h4>
-                     <p class="text fw-normal lh-sm fs-6 m-0">
-                        ${this.state.products.temperature}
-                     </p>
-                  </div>
-                  <div class="pt-3">
-                     <h4 class="fs-4">Влажность и полив:</h4>
-                     <p class="text fw-normal lh-sm fs-6 m-0">
-                        ${this.state.products.humidityWatering}
-                     </p>
-                  </div>
-                  <div class="pt-3">
-                     <h4 class="fs-4">Удобрения:</h4>
-                     <p class="text fw-normal lh-sm fs-6 m-0">
-                        ${this.state.products.fertilizers}
-                     </p>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <it-preloader is-loading="${this.state.isLoading}">
+            <product-item
+               preview='${preview}'
+               title='${title}'
+               price='${price}'
+               description='${description}'
+               id='${id}'
+               location='${location}'
+               temperature='${temperature}'
+               watering='${watering}'
+               fertilizers='${fertilizers}'>
+            </product-item>
+         </it-preloader>
       `;
   }
 }

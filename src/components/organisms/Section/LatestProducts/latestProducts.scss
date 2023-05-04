@@ -1,0 +1,10 @@
+@import "../../../../scss/colors.scss";
+
+.wrapper {
+   background: $block-color;
+   transform: skew(0, -5deg);
+   &__block {
+      transform: skew(0, 5deg);
+      padding-bottom: 5%;
+   }
+}

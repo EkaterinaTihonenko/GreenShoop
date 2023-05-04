@@ -34,7 +34,7 @@ class HeaderTemplate extends Component {
                </p>
             </div>
             <div class="header-content-img">
-               <img class="img-right" src="../../assets/images/potted-plant5.png" alt="img potted plant">
+               <img class="img-right" src="../../assets/images/potted-plant5.png" alt="img potted plant" />
             </div>
          </div>
       `;

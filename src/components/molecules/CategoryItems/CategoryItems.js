@@ -44,22 +44,25 @@ class CategoryItems extends Component {
   render() {
     const items = JSON.parse(this.props.items);
     const { activeItem } = this.state;
+
     return `
-        <ul class="navbar-nav d-flex flex-column">
+         <ul class="navbar-nav d-flex flex-column">
             ${items
               .map((item) => {
                 const isActive = activeItem?.id === item.id;
                 return `
-                <li class="nav-item d-flex justify-content-between">
-                    <a class="nav-link ${isActive ? 'active' : ''}" href="#" data-id="${item.id}">${
-                  item.name
-                }</a>
-                </li>
-                `;
+                     <li class="nav-item d-flex justify-content-between">
+                        <a class="nav-link ${isActive ? 'active' : ''}" 
+                           href="#" 
+                           data-id="${item.id}">
+                           ${item.name}
+                        </a>
+                     </li>
+                  `;
               })
               .join(' ')}
-        </ul>
-    `;
+         </ul>
+      `;
   }
 }
 
