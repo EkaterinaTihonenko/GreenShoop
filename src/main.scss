@@ -30,8 +30,23 @@ body {
    @include text($color: #373f38);
 }
 
+.btn:hover {
+   box-shadow: 1px 1px 5px $shadow-btn;
+   background-image: -o-linear-gradient(45deg, $rgda-gray, $rgda-gray, $rgda-black);
+   background-image: linear-gradient(45deg, $rgda-gray, $rgda-green, $rgda-black);
+   -webkit-transition: 0.5s;
+   -o-transition: 0.5s;
+   transition: 0.5s;
+}
+
 .content {
    min-height: 100%;
-   max-width: 1440px;
+   max-width: 1400px;
    margin: auto;
+   @media (max-width: 1580px) {
+      max-width: 1500px;
+   }
+   @media (max-width: 1024px) {
+      max-width: 1000px;
+   }
 }

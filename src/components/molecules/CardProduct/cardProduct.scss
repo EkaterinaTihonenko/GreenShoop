@@ -2,19 +2,18 @@
 @import "../../../scss/colors.scss";
 
 .card-item {
-   background: rgb(255, 255, 255);
-   background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 1) 50%,
-      rgba(195, 195, 195, 1) 100%
-   );
+   background: $white-color;
+   background: linear-gradient(180deg, $rgda-white 0%, $rgda-white 50%, $rgda-gradient 100%);
    border-radius: 5px;
    border: none;
    transform: perspective(2000px) rotatey(0deg) rotatex(0deg);
    transition: transform 0.2s ease;
    &:hover {
-      background: $hover-color;
+      background-image: -o-linear-gradient(45deg, $rgda-gray, $hover-color, $rgda-black);
+      background-image: linear-gradient(45deg, $rgda-gray, $hover-color, $rgda-black);
+      -webkit-transition: 0.5s;
+      -o-transition: 0.5s;
+      transition: 0.5s;
    }
    .card-item-img {
       margin: 0 auto;

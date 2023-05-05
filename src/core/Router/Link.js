@@ -14,6 +14,7 @@ export class Link extends Component {
 
   onClick = (evt) => {
     evt.preventDefault();
+    window.scrollTo(0, { behavior: 'smooth' });
     eventEmmiter.emit(APP_EVENTS.changeRoute, { target: this.props.to });
   };
 

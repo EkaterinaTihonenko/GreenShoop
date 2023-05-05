@@ -3,8 +3,29 @@
 .wrapper {
    background: $block-color;
    transform: skew(0, -5deg);
+   border-top-left-radius: 100px;
+   border-bottom-right-radius: 100px;
    &__block {
       transform: skew(0, 5deg);
       padding-bottom: 5%;
+   }
+}
+
+.card-puls {
+   animation: animate_grow 2s infinite;
+   &:hover {
+      animation: none;
+   }
+}
+
+@keyframes animate_grow {
+   0% {
+      transform: scale3d(1, 1, 1);
+   }
+   50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+   }
+   100% {
+      transform: scale3d(1, 1, 1);
    }
 }

@@ -52,29 +52,40 @@ class Navigation extends Component {
   };
 
   setProductsCount = (count) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        productsCount: count,
-      };
-    });
+    if (storageService.getItem('user')) {
+      this.setState((state) => {
+        return {
+          ...state,
+          productsCount: count,
+        };
+      });
+    } else {
+      this.setState((state) => {
+        return {
+          ...state,
+          productsCount: 0,
+        };
+      });
+    }
   };
 
   countProducts = (data) => {
-    if (Array.isArray(data)) {
-      return data
-        .filter((item, index, arr) => {
-          return arr.findIndex((indexItem) => indexItem.id === item.id) === index;
-        })
-        .map((item) => {
-          return {
-            ...item,
-            quantity: item.quantity
-              ? item.quantity
-              : data.filter((filteredItem) => filteredItem.id === item.id).length,
-          };
-        })
-        .reduce((acc, item) => acc + item.quantity, 0);
+    if (storageService.getItem('user')) {
+      if (Array.isArray(data)) {
+        return data
+          .filter((item, index, arr) => {
+            return arr.findIndex((indexItem) => indexItem.id === item.id) === index;
+          })
+          .map((item) => {
+            return {
+              ...item,
+              quantity: item.quantity
+                ? item.quantity
+                : data.filter((filteredItem) => filteredItem.id === item.id).length,
+            };
+          })
+          .reduce((acc, item) => acc + item.quantity, 0);
+      }
     }
   };
 

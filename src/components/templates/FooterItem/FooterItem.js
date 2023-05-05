@@ -8,23 +8,23 @@ class FooterItem extends Component {
   render() {
     return `
          <div class="d-flex justify-content-evenly align-items-start">
-            <div class="fs-6 col-4">
+            <div class="col-3">
                <ul class="list-unstyled">
-                  <li class="mb-2">
-                     <p class="m-0">
+                  <li>
+                     <p class="m-0 text-dark">
                        Для заявок:
                      </p>
                      +8801911717490.
                   </li>
                   <li class="mb-2 mt-2">
-                     <p class="m-0">
+                     <p class="m-0 text-dark">
                         Прием звонков:
                      </p>
                      Пн. – Вс. с 09:00 до 21:00.
                      <br>
                      contact@griinshop.com
                   </li>
-                  <li class="mb-2 mt-2">
+                  <li class="mb-2 mt-2 text-dark">
                      ООО «GreenShoop» УНП – 391811175. 
                      <br>
                      Юридический адрес: 215965,
@@ -35,9 +35,9 @@ class FooterItem extends Component {
                   </li>
                </ul>
             </div>
-            <div class="fs-6 col-5">
+            <div class="col-4">
                <ul class="list-unstyled">
-                  <li class="mb-2 mt-2">
+                  <li class="mb-2 text-dark">
                      УНП 190516148, ОАО «Приорбанк» , 
                      <br>
                      БИК PJCBBY2X р/с BY56PJCB30120232661030000933 
@@ -46,7 +46,7 @@ class FooterItem extends Component {
                      <br>
                      совершенных в интернет-магазине)
                   </li>
-                  <li class="mb-2 mt-2">
+                  <li class="mb-2 mt-2 text-dark">
                      Зарегистрирован в торговом реестре<br> 
                      22.08.2022 администрацией 
                      <br>

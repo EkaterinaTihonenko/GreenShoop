@@ -52,7 +52,7 @@ class HomePage extends Component {
         currentPage: Number(evt.detail.page),
       };
     });
-    window.scrollTo({ top: 450, behavior: 'smooth' });
+    window.scrollTo({ top: 530, behavior: 'smooth' });
   };
 
   onFilterProductsByCategory = async (evt) => {
@@ -70,15 +70,17 @@ class HomePage extends Component {
   onSearch = async (evt) => {
     const { data } = evt.detail;
     const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
-    this.setState((state) => {
-      return {
-        ...state,
-        products: products.filter((item) => {
-          return item.category.toLowerCase().includes(data.search.toLowerCase());
-        }),
-        currentPage: 1,
-      };
-    });
+    if (data) {
+      this.setState((state) => {
+        return {
+          ...state,
+          products: products.filter((item) => {
+            return item.title.toLowerCase().includes(data.search.toLowerCase());
+          }),
+          currentPage: 1,
+        };
+      });
+    }
   };
 
   setProducts(products) {

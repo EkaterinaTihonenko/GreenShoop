@@ -1,6 +1,7 @@
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
+import './categoryItems.scss';
 
 class CategoryItems extends Component {
   constructor() {
@@ -24,6 +25,7 @@ class CategoryItems extends Component {
 
   setCategory = (evt) => {
     evt.preventDefault();
+    console.log(evt.detail);
     if (evt.target.closest('.nav-link')) {
       const id = evt.target.dataset.id;
       const items = JSON.parse(this.props.items);
@@ -52,7 +54,7 @@ class CategoryItems extends Component {
                 const isActive = activeItem?.id === item.id;
                 return `
                      <li class="nav-item d-flex justify-content-between">
-                        <a class="nav-link ${isActive ? 'active' : ''}" 
+                        <a class="nav-link ps-3 fw-bolder ${isActive ? 'active' : ''}" 
                            href="#" 
                            data-id="${item.id}">
                            ${item.name}

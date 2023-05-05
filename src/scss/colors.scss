@@ -1,14 +1,28 @@
-$main-color: #e5fcf2;
-$placeholder-color: #cfe4d37e;
-$font-color: #373f38;
-$text-color: #3a3a3a;
-$link-color: #204601;
 $shadow-color: #3a3a3a7a;
 $border-color: #198754;
 $input-color: #373f388e;
-$span-color: #28a302;
 $white-color: #ffffff;
-$bg-pagination: #198754;
-$shadow-bg: #c1ebc979;
 $hover-color: #0000002f;
+
+//hover color btn
+$rgda-gray: rgba(255, 255, 255, 0.144);
+$rgda-green: rgba(4, 172, 32, 0.521);
+$rgda-black: rgba(17, 5, 5, 0.438);
+$shadow-btn: #01721a;
+
+//typography color
+$span-color: #28a302;
+$font-color: #373f38;
+$text-color: #3a3a3a;
+$link-color: #204601;
+
+//bg color
 $block-color: #19875415;
+$bg-pagination: #2d7d58;
+$shadow-bg: #c1ebc979;
+$main-color: #e5fcf2;
+$placeholder-color: #cfe4d37e;
+
+//card color
+$rgda-white: rgba(255, 255, 255, 1);
+$rgda-gradient: rgba(195, 195, 195, 1);

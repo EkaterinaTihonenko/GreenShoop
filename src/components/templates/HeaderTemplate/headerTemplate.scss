@@ -1,11 +1,36 @@
 @import "../../../scss/colors.scss";
 .header-content {
-   height: 60vh;
+   position: relative;
    &__text {
       text-transform: none;
       font-weight: 400;
       font-size: 1rem;
       color: $font-color;
+      position: relative;
+
+      &::before {
+         content: "";
+         position: absolute;
+         height: 500px;
+         width: 800px;
+         background-image: url("../../../assets/images/wrapp-text.png");
+         background-size: cover;
+         background-repeat: no-repeat;
+         top: -180px;
+         left: -200px;
+      }
+   }
+   &::before {
+      content: "";
+      position: absolute;
+      background-color: rgba(25, 135, 84, 0.0823529412);
+      width: 50vw;
+      height: 100vh;
+      top: 7rem;
+      right: -4rem;
+      z-index: -10;
+      border-top-left-radius: 50%;
+      border-bottom-right-radius: 50%;
    }
 }
 

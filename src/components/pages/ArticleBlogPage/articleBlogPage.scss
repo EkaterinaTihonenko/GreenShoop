@@ -1,3 +1,14 @@
 .wrapp {
    min-height: 50vh;
 }
+
+.text-scale {
+   transform: scale(0.98);
+   animation: scale 2s forwards cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+@keyframes scale {
+   100% {
+      transform: scale(1);
+   }
+}

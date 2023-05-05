@@ -3,6 +3,7 @@ import { Component } from '../../../../core/Component';
 import { databaseService } from '../../../../services/DatabaseService';
 import '../../CardList';
 import './latestProducts.scss';
+import '../section.scss';
 
 class LatestProducts extends Component {
   constructor() {
@@ -44,13 +45,15 @@ class LatestProducts extends Component {
     return `
       <div class="wrapper p-3">
         <div class="mt-5 mb-5 wrapper__block">
-            <h3 class="text-center pt-5 text-uppercase">
-               Последние поступления
+            <h3 class="title-section text-center pt-5 text-uppercase">
+               наши новинки
             </h3>
+            <div class="p-5">
             <card-list 
                products='${JSON.stringify(this.state.sortData.slice(0, 6))}'
-               class="col-2">
+               class="col-2 card-puls">
             </card-list>
+            </div>
         </div>
       </div>
          `;

@@ -7,9 +7,5 @@
    font-weight: 600;
    border-bottom: 3px solid $border-color;
    border-radius: 10px;
-   -webkit-border-radius: 10px;
-   -moz-border-radius: 10px;
-   -ms-border-radius: 10px;
-   -o-border-radius: 10px;
    @include box-shadow($shadow-color);
 }

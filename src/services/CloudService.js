@@ -4,11 +4,11 @@ export class CloudService {
   constructor() {
     this._firebaseConfig = {
       apiKey: process.env.API_KEY,
-      authDomain: 'greenshoop-b8d2e.firebaseapp.com',
-      projectId: 'greenshoop-b8d2e',
-      storageBucket: 'greenshoop-b8d2e.appspot.com',
-      messagingSenderId: '357056156210',
-      appId: '1:357056156210:web:a19748ed913484c785622b',
+      authDomain: 'greenshoop-2530d.firebaseapp.com',
+      projectId: 'greenshoop-2530d',
+      storageBucket: 'greenshoop-2530d.appspot.com',
+      messagingSenderId: '632795778560',
+      appId: '1:632795778560:web:4be9bd58fecd94d85892e5',
     };
     this.app = initializeApp(this._firebaseConfig);
   }

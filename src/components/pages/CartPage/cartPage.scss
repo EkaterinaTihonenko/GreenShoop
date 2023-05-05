@@ -7,3 +7,30 @@
 .cart-page {
    min-height: 45vh;
 }
+
+.btn-motion {
+   animation: animate_motion 5s 0s both infinite;
+   &:hover {
+      animation: none;
+   }
+}
+
+@keyframes animate_motion {
+   0%,
+   20% {
+      transform: translate3d(0, 0, 0);
+   }
+   10%,
+   14%,
+   18%,
+   2%,
+   6% {
+      transform: translate3d(-7px, 0, 0);
+   }
+   12%,
+   16%,
+   4%,
+   8% {
+      transform: translate3d(7px, 0, 0);
+   }
+}

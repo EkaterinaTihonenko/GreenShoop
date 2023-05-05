@@ -39,7 +39,7 @@ class ArticleBlogPage extends Component {
                <img class="image m-2 me-3 float-start" 
                   src="${this.state.posts.preview}
                   alt="img" />
-               <p class="mt-5">
+               <p class="mt-5 text-scale">
                 ${
                   this.state.posts.description ||
                   '<h3 class="text-success">Описание не найдено</h3>'
@@ -50,7 +50,7 @@ class ArticleBlogPage extends Component {
                <h2 class="text-center">${
                  this.state.posts.titleTwo || '<h3 class="text-success">Название не найдено</h3>'
                }</h2>
-               <p class="mt-5">
+               <p class="mt-5 text-scale">
                   ${this.state.posts.text || '<h3 class="text-success">Описание не найдено</h3>'}
                </p>
             </div>

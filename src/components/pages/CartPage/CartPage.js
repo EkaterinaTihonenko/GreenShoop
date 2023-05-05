@@ -15,25 +15,33 @@ class CartPage extends Component {
 
   setProducts = (products) => {
     if (Array.isArray(products)) {
-      const mapProducts = products
-        .filter((item, index, arr) => {
-          return arr.findIndex((findItem) => findItem.id === item.id) === index;
-        })
-        .map((item) => {
+      if (storageService.getItem('user')) {
+        const mapProducts = products
+          .filter((item, index, arr) => {
+            return arr.findIndex((findItem) => findItem.id === item.id) === index;
+          })
+          .map((item) => {
+            return {
+              ...item,
+              quantity: item.quantity
+                ? item.quantity
+                : products.filter((filterItem) => filterItem.id === item.id).length,
+            };
+          });
+        this.setState((state) => {
           return {
-            ...item,
-            quantity: item.quantity
-              ? item.quantity
-              : products.filter((filterItem) => filterItem.id === item.id).length,
+            ...state,
+            products: mapProducts,
           };
         });
-
-      this.setState((state) => {
-        return {
-          ...state,
-          products: mapProducts,
-        };
-      });
+      } else {
+        this.setState((state) => {
+          return {
+            ...state,
+            products: null,
+          };
+        });
+      }
     }
   };
 
@@ -210,7 +218,7 @@ class CartPage extends Component {
                      </button>
                   </td>
                   <td>
-                     <button type="button" class='btn btn-success order me-5 ms-2'>
+                     <button type="button" class='btn btn-motion btn-success order me-5 ms-2'>
                         Оформить заказ
                      </button>
                   </td>

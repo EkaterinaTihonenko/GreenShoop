@@ -1,5 +1,8 @@
+import { APP_EVENTS } from '../../../constants/appEvents';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { Component } from '../../../core/Component';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 import { storageService } from '../../../services/StorageService';
 import '../../molecules/Contacts';
 
@@ -7,7 +10,6 @@ class ProductItem extends Component {
   constructor() {
     super();
     this.state = {
-      idProduct: false,
       info: [
         {
           href: '',
@@ -44,19 +46,23 @@ class ProductItem extends Component {
   }
 
   onClick = (evt) => {
-    if (evt.target.closest('.btn-to')) {
-      const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
-      const product = allItems.find((item) => item.id === this.props.id)
-        ? allItems.find((item) => item.id === this.props.id)
-        : false;
-      this.setState((state) => {
-        return {
-          ...state,
-          idProduct: true,
-          quantity: product.quantity ? product.quantity : 1,
-        };
-      });
+    if (storageService.getItem('user')) {
+      if (evt.target.closest('.btn-to')) {
+        const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+        storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, this.props]);
+        const product = allItems.find((item) => item.id === this.props.id)
+          ? allItems.find((item) => item.id === this.props.id)
+          : false;
+        this.setState((state) => {
+          return {
+            ...state,
+            quantity: product.quantity ? product.quantity : 1,
+          };
+        });
+      }
+    } else {
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signIn });
+      window.scrollTo(0, { behavior: 'smooth' });
     }
   };
 

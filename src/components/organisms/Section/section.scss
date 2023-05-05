@@ -1,0 +1,6 @@
+@import "../../../scss/colors.scss";
+
+.title-section {
+   color: $font-color;
+   text-shadow: 1px 1px 1px $font-color, -1px 1px 1px $hover-color;
+}

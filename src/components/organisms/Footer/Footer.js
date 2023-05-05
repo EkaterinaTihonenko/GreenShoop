@@ -6,6 +6,9 @@ import '../../templates/SocialNetwork';
 import '../../templates/PaymentMethods';
 import '../../templates/FooterItem';
 import './footer.scss';
+import '../../../core/Router/Link';
+import '../../atoms/LinkItem';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 import { appPages } from '../../../constants/appPages';
 
 class Footer extends Component {
@@ -45,11 +48,60 @@ class Footer extends Component {
                </div>
                <div class="d-flex justify-content-between align-items-start">
                   <footer-item></footer-item>
-                  <menu-items 
-                     items='${JSON.stringify(appPages.slice(0, 5))}'
-                     class="col-1">
-                  </menu-items>
-                  <div class="links-right ps-5">
+                  <nav class="col-2">
+                     <ul>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.home}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[0].label
+                              }</a>
+                           </route-link>
+                        </li>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.cart}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[1].label
+                              }</a>
+                           </route-link>
+                        </li>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.blog}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[2].label
+                              }</a>
+                           </route-link>
+                        </li>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.deliveryPayment}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[3].label
+                              }</a>
+                           </route-link>
+                        </li>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.contacts}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[4].label
+                              }</a>
+                           </route-link>
+                        </li>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.signIn}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[7].label
+                              }</a>
+                           </route-link>
+                        </li>
+                        <li class="mb-2">
+                           <route-link to="${APP_ROUTES.signUp}">
+                              <a class="text-dark text-decoration-none" href="#">${
+                                appPages[6].label
+                              }</a>
+                           </route-link>
+                        </li>
+                     </ul>
+                  </nav>
+                  <div class="links-right ps-2">
                      <social-network></social-network>
                      <payment-methods></payment-methods>
                   </div>
