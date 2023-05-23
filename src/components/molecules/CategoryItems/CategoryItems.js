@@ -29,6 +29,7 @@ class CategoryItems extends Component {
     if (evt.target.closest('.nav-link')) {
       const id = evt.target.dataset.id;
       const items = JSON.parse(this.props.items);
+      console.log(id);
       const selectedCategory = items.find((item) => item.id === id);
       this.setActiveCategory(selectedCategory);
       eventEmmiter.emit(APP_EVENTS.setCategory, { selectedCategory });
@@ -52,13 +53,15 @@ class CategoryItems extends Component {
             ${items
               .map((item) => {
                 const isActive = activeItem?.id === item.id;
+
                 return `
-                     <li class="nav-item d-flex justify-content-between">
-                        <a class="nav-link ps-3 fw-bolder ${isActive ? 'active' : ''}" 
+                     <li class="nav-item  d-flex justify-content-between align-items-center pb-4">
+                        <a class="nav-link ps-4 p-0 fw-bolder ${isActive ? 'active' : ''}" 
                            href="#" 
                            data-id="${item.id}">
                            ${item.name}
                         </a>
+                        <img src="../../../assets/images/icons/circle.svg" alt="img">
                      </li>
                   `;
               })

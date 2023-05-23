@@ -19,6 +19,7 @@ class SearchForm extends Component {
 
     if (data.search) {
       eventEmmiter.emit(APP_EVENTS.searchProducts, { data });
+      eventEmmiter.emit(APP_EVENTS.searchPosts, { data });
     }
   };
 

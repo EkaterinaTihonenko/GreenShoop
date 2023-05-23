@@ -68,14 +68,32 @@ class BlogPage extends Component {
     }
   };
 
+  onSearch = async (evt) => {
+    const { data } = evt.detail;
+    const posts = await databaseService.getCollection(FIRESTORE_KEYS.posts);
+    if (data) {
+      this.setState((state) => {
+        return {
+          ...state,
+          posts: posts.filter((item) => {
+            return item.title.toLowerCase().includes(data.search.toLowerCase());
+          }),
+          currentPage: 1,
+        };
+      });
+    }
+  };
+
   componentDidMount() {
     this.sliceData();
     this.getBlogPosts();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmmiter.on(APP_EVENTS.searchPosts, this.onSearch);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmmiter.off(APP_EVENTS.searchPosts, this.onSearch);
   }
 
   render() {

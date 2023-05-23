@@ -25,6 +25,49 @@ class HomePage extends Component {
       limit: 8,
       currentPage: 1,
       sortData: [],
+      sotr: true,
+      social: [
+        {
+          href: '#',
+          src: 'categories/cactus.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/succulent.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/blooming.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/orchid.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/ampelnye.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/deciduous.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/bromley.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/bulbous.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/predatory.svg',
+        },
+        {
+          href: '#',
+          src: 'categories/bonsai.svg',
+        },
+      ],
     };
   }
 
@@ -161,6 +204,12 @@ class HomePage extends Component {
     }
   };
 
+  allProductsFilter = (evt) => {
+    if (evt.target.closest('.all-products')) {
+      this.getProducts();
+    }
+  };
+
   componentDidMount() {
     this.getProducts();
     this.getBlogPosts();
@@ -170,6 +219,7 @@ class HomePage extends Component {
     eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
     this.addEventListener('change', this.onChangeSortFilter);
+    this.addEventListener('click', this.allProductsFilter);
   }
 
   componentWillUnmount() {
@@ -177,6 +227,7 @@ class HomePage extends Component {
     eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
     eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
     this.removeEventListener('change', this.onChangeSortFilter);
+    this.removeEventListener('click', this.allProductsFilter);
   }
 
   render() {
@@ -185,7 +236,11 @@ class HomePage extends Component {
            <header-template></header-template>
          </header>
          <main class="mb-5">
-            <div class="container mt-5 pt-2 border-top">
+            <items-icon 
+               items='${JSON.stringify(this.state.social)}'
+               class="d-flex justify-content-center mt-3">
+            </items-icon>
+            <div class="container pt-2 border-top">
                <div class="row">
                   <div class='col-sm-3 border-end catalog-controls'>
                      <catalog-controls 
@@ -194,7 +249,10 @@ class HomePage extends Component {
                      <sale-aside></sale-aside>
                   </div>
                   <div class="col-sm-9">
-                     <sort-by-price></sort-by-price>
+                     <div class="fs-6 d-flex justify-content-between align-items-center">
+                           <button type="button" class="btn btn-outline-success text-dark all-products">Все растения</button>
+                        <sort-by-price></sort-by-price>
+                     </div>
                      <card-list 
                         products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
                         class="col-sm-3 mb-3">
