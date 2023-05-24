@@ -15,6 +15,21 @@
    @include box-shadow($shadow-color);
 }
 
+.navbar-expand-lg .navbar-nav {
+   display: flex;
+   flex-direction: column !important;
+   @media (min-width: 769px) {
+      flex-direction: row !important;
+   }
+}
+
+.navbar-green {
+   display: none !important;
+   @media (min-width: 769px) {
+      display: flex !important;
+   }
+}
+
 .btns {
    margin: 0 1.5rem;
 }

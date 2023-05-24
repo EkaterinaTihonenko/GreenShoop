@@ -12,11 +12,12 @@ import '../../molecules/MenuItems';
 import '../../molecules/LogoLink';
 import '../../molecules/SearchForm';
 import '../../molecules/BtnGroup';
-import './navigation.scss';
+import './mobileNavigation.scss';
 import { authService } from '../../../services/Auth';
 import '../../molecules/Preloader';
+import '../../atoms/Button';
 
-class Navigation extends Component {
+class MobileNavigation extends Component {
   constructor() {
     super();
     this.state = {
@@ -131,11 +132,8 @@ class Navigation extends Component {
 
   render() {
     return `
-         <nav class="navbar navbar-green navbar-expand-lg header__navigation d-flex justify-content-around">
+         <nav class="navbar navbar-mobile navbar-expand-lg header__navigation d-flex justify-content-around align-items-center">
             <logo-link></logo-link>
-            <menu-items
-               items='${JSON.stringify(this.getItems())}'>
-            </menu-items>
             <div class="d-flex justify-content-center align-items-center">
                <search-form></search-form>
                <div class="nav-item btns">
@@ -148,11 +146,20 @@ class Navigation extends Component {
                      </a>
                   </route-link>
                </div>
-               <btn-group user='${JSON.stringify(this.state.user)}'></btn-group>
             </div>
+            <div class="mobile-menu">
+               <green-button class="mobile-button"></green-button>
+               <div class="mobile-menu__mobile-items">
+                  <btn-group class="mobile-menu__btn-mobile" user='${JSON.stringify(
+                    this.state.user,
+                  )}'></btn-group>
+                  <menu-items
+                     items='${JSON.stringify(this.getItems())}'>
+                  </menu-items>
+               </div>
          </nav>
       `;
   }
 }
 
-customElements.define('green-navigation', Navigation);
+customElements.define('mobile-navigation', MobileNavigation);
