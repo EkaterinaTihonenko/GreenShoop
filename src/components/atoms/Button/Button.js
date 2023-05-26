@@ -26,7 +26,7 @@ class Button extends Component {
 
   render() {
     return `
-         <img class="icon" src="../../../assets/images/icons/menu-vertical.svg" alt="Button" />
+         <img class="icon-button" src="../../../assets/images/icons/menu-vertical.svg" alt="Button" />
    `;
   }
 }
