@@ -1,5 +1,6 @@
 import { Component } from '../../../core/Component';
 import '../../molecules/CardProduct';
+import './cardList.scss';
 
 class CardList extends Component {
   constructor() {
@@ -16,13 +17,13 @@ class CardList extends Component {
     const className = this.props.class ? this.props.class : '';
 
     return `
-         <div class="row">
+         <div class="row cards-pr">
          ${
            nullProducts
              ? `${products
                  .map((item) => {
                    return `
-                  <div class=" card-col ${className}">
+                  <div class="${className}">
                      <card-product
                         preview='${item.preview}'
                         title='${item.title}'

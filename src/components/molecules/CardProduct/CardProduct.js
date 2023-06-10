@@ -45,7 +45,7 @@ class CardProduct extends Component {
 
     return `
          <div class="card card-item" id="${id}" date="${date}">
-            <img class="image-fit card-item-img card-img-top" src="${preview}" alt="image">
+               <img class="image-fit card-item-img card-img-top" src="${preview}" alt="image">
             <div class="card-body ${classBlog}">
                <h5 class="card-title fs-5 card-name fix-line-of-title">${title}
                </h5>

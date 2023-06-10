@@ -1,5 +1,6 @@
 import { Component } from '../../../core/Component';
 import '../../molecules/ItemsIcon';
+import './paymentMetods.scss';
 
 class PaymentMethods extends Component {
   constructor() {
@@ -35,7 +36,7 @@ class PaymentMethods extends Component {
          <div class="link-right p-3">
             <items-icon 
                items='${JSON.stringify(this.state.paymen)}'
-               class="socialNetwork d-flex">
+               class="d-flex payment-method">
             </items-icon>
          </div>
       `;

@@ -1,5 +1,6 @@
 import { Component } from '../../../core/Component';
 import '../../molecules/CardBlogPost';
+import './saleAside.scss';
 
 class SaleAside extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class SaleAside extends Component {
                   СКИДКА ДО 75%
                </p>
                <a href="#">
-                  <img class="content-img" 
+                  <img class="img-sale" 
                        src="../../assets/images/potted-plant02.png" alt="img" />
                </a>
             </div>

@@ -18,7 +18,7 @@ class CatalogControls extends Component {
     return `
          <header>
             <nav class="mt-3">
-               <div class="pe-4 ps-4">
+               <div class="pe-lg-4 ps-lg-4 pe-mb-2 ps-mb-2">
                   <div class="category-items">
                      <category-items 
                         items='${categories}'>

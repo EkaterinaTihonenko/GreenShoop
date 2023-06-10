@@ -13,8 +13,16 @@
 
 .card-puls {
    animation: animate_grow 2s infinite;
+   margin: 20px auto;
    &:hover {
       animation: none;
+   }
+}
+
+card-list > .row {
+   @media (max-width: 1024px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
    }
 }
 

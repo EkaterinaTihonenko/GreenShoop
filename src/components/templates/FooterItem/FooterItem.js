@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+import './footerItem.scss';
 
 class FooterItem extends Component {
   constructor() {
@@ -7,8 +8,7 @@ class FooterItem extends Component {
 
   render() {
     return `
-         <div class="d-flex justify-content-evenly align-items-start">
-            <div class="col-3">
+         <div class="item-footer">
                <ul class="list-unstyled">
                   <li>
                      <p class="m-0 text-dark">
@@ -34,8 +34,6 @@ class FooterItem extends Component {
                      г. Гомель, ул. Орловская 70. оф. 409.
                   </li>
                </ul>
-            </div>
-            <div class="col-4">
                <ul class="list-unstyled">
                   <li class="mb-2 text-dark">
                      УНП 190516148, ОАО «Приорбанк» , 
@@ -55,7 +53,6 @@ class FooterItem extends Component {
                      Рег. номер: 424328
                   </li>
                </ul>
-            </div>
          </div>
       `;
   }

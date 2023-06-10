@@ -46,10 +46,9 @@ class Footer extends Component {
 				         class="contacts">
                   </green-shop-contacts>
                </div>
-               <div class="d-flex justify-content-between align-items-start">
+               <div class="footer-content">
                   <footer-item></footer-item>
-                  <nav class="col-2">
-                     <ul>
+                     <ul class="p-0 ul-items">
                         <li class="mb-2">
                            <route-link to="${APP_ROUTES.home}">
                               <a class="text-dark text-decoration-none" href="#">${
@@ -100,8 +99,7 @@ class Footer extends Component {
                            </route-link>
                         </li>
                      </ul>
-                  </nav>
-                  <div class="links-right ps-2">
+                  <div class="links-rights ps-2">
                      <social-network></social-network>
                      <payment-methods></payment-methods>
                   </div>

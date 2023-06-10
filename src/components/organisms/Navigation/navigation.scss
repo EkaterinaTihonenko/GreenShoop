@@ -6,6 +6,7 @@
    top: 0;
    z-index: 5;
    padding: 1%;
+   margin: 0 1%;
    background-color: $main-color;
    border-bottom-left-radius: 20px;
    border-bottom-right-radius: 20px;
@@ -13,6 +14,10 @@
    border-top: transparent;
    border-bottom: 3px solid $border-color;
    @include box-shadow($shadow-color);
+   display: block;
+   @media (max-width: 768px) {
+      display: none;
+   }
 }
 
 .navbar-expand-lg .navbar-nav {

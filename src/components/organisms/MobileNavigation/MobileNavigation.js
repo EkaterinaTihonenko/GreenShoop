@@ -1,21 +1,14 @@
-import { appPages } from '../../../constants/appPages';
 import { Component } from '../../../core/Component';
+import { appPages } from '../../../constants/appPages';
+import '../../molecules/LogoLink';
+import './mobileNavigation.scss';
+import { APP_ROUTES } from '../../../constants/appRoutes';
+import { authService } from '../../../services/Auth';
+import { storageService } from '../../../services/StorageService';
+import { ADMIN } from '../../../constants/userRoles';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
-import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
-import { APP_ROUTES } from '../../../constants/appRoutes';
-import { ADMIN } from '../../../constants/userRoles';
-import '../../atoms/TextSpan';
-import '../../../core/Router/Link';
-import '../../molecules/MenuItems';
-import '../../molecules/LogoLink';
-import '../../molecules/SearchForm';
-import '../../molecules/BtnGroup';
-import './mobileNavigation.scss';
-import { authService } from '../../../services/Auth';
-import '../../molecules/Preloader';
-import '../../atoms/Button';
 
 class MobileNavigation extends Component {
   constructor() {
@@ -132,32 +125,37 @@ class MobileNavigation extends Component {
 
   render() {
     return `
-         <nav class="navbar navbar-mobile navbar-expand-lg header__navigation d-flex justify-content-around align-items-center">
+      <div class="mob-nav">
+         <div class="mob-nav__items">
             <logo-link></logo-link>
-            <div class="d-flex justify-content-center align-items-center">
-               <search-form></search-form>
-               <div class="nav-item btns">
-                  <route-link to="${APP_ROUTES.cart}">
-                     <a class="nav-link position-relative" href="#">
-                        <img src="../../../assets/images/icons/cart.svg" alt="cart" width="24" height="24">
-                        <text-span class="position-absolute text-light translate-middle badge rounded-pill cart-counter bg-success">
-                           ${this.state.productsCount}
-                        </text-span>
-                     </a>
-                  </route-link>
-               </div>
-            </div>
-            <div class="mobile-menu">
-               <green-button class="mobile-button"></green-button>
-               <div class="mobile-menu__mobile-items">
-                  <btn-group class="mobile-menu__btn-mobile" user='${JSON.stringify(
-                    this.state.user,
-                  )}'></btn-group>
-                  <menu-items
-                     items='${JSON.stringify(this.getItems())}'>
-                  </menu-items>
-               </div>
-         </nav>
+         </div>
+         <div class="d-flex justify-content-center align-items-center">
+         <search-form></search-form>
+         <div class="nav-item btns">
+            <route-link to="${APP_ROUTES.cart}">
+               <a class="nav-link position-relative" href="#">
+                  <img src="../../../assets/images/icons/cart.svg" alt="cart" width="24" height="24">
+                  <text-span class="position-absolute text-light translate-middle badge rounded-pill cart-counter bg-success">
+                     ${this.state.productsCount}
+                  </text-span>
+               </a>
+            </route-link>
+         </div>
+         <btn-group user='${JSON.stringify(this.state.user)}'></btn-group>
+         <div class="hamburger-menu">
+         <input id="menu__toggle" type="checkbox" />
+         <label class="menu__btn" for="menu__toggle">
+            <span></span>
+         </label>
+         <ul class="menu__box">
+            <menu-items
+               items='${JSON.stringify(appPages.slice(0, 6))}'
+               class="menu-items">
+            </menu-items>
+         </ul>
+      </div>
+      </div>
+         </div>
       `;
   }
 }

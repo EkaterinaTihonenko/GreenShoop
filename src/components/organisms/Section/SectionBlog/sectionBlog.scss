@@ -1,0 +1,26 @@
+.section-blog {
+   @media (max-width: 768px) {
+      margin: 0 1%;
+   }
+}
+
+.blogs {
+   @media (max-width: 1024px) {
+      flex-direction: column;
+   }
+}
+
+.card-blog {
+   @media (max-width: 1024px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 90vw;
+      margin-bottom: 1%;
+   }
+}
+
+.body-blog {
+   @media (max-width: 1024px) {
+      margin-left: 5%;
+   }
+}

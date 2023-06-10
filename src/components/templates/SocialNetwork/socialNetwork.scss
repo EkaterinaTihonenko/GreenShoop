@@ -4,11 +4,18 @@
 .link-right {
    @include box-shadow($shadow-color);
    color: $font-color;
-   width: 31vw;
    border-radius: 10px;
    border-bottom: 2px solid $border-color;
    background-color: $shadow-bg;
    margin-bottom: 1rem;
+   @media (max-width: 768px) {
+      padding: 1rem !important;
+   }
+}
+
+.social-network {
+   display: grid !important;
+   grid-template-columns: repeat(5, 55px);
 }
 
 .social-network__link {

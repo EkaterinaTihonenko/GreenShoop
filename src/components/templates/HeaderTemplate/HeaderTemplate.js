@@ -10,7 +10,7 @@ class HeaderTemplate extends Component {
 
   render() {
     return `
-         <div class="container header-content d-flex justify-content-between align-items-center">
+         <div class="container header-content">
             <div class="header-content__text">
                <text-span class="span-text">
                   Добро пожаловать в Green Shop

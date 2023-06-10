@@ -9,3 +9,51 @@
    border-radius: 10px;
    @include box-shadow($shadow-color);
 }
+
+.link-rights {
+   @media (max-width: 425px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: auto;
+   }
+}
+
+.footer-content {
+   display: grid !important;
+   grid-template-columns: 40% 15% 45%;
+   @media (max-width: 1024px) {
+   }
+   @media (max-width: 768px) {
+   }
+   @media (max-width: 425px) {
+      grid-template-columns: 80%;
+      justify-content: center;
+   }
+}
+
+.ul-items {
+   margin-left: 20%;
+   @media (max-width: 1024px) {
+      margin-left: 5%;
+   }
+   @media (max-width: 768px) {
+   }
+   @media (max-width: 425px) {
+      text-align: center;
+      margin: 0;
+   }
+}
+
+.contacts > .items {
+   @media (max-width: 1024px) {
+      display: grid !important;
+      grid-template-columns: 1fr;
+      gap: 1%;
+   }
+}
+
+.footer__contacts {
+   .logo__text {
+      display: block;
+   }
+}

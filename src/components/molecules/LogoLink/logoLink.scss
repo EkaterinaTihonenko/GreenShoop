@@ -8,6 +8,9 @@
       text-transform: uppercase;
       font-weight: $fontWeightBlack;
       color: $span-color;
+      @media (max-width: 1024px) {
+         display: none;
+      }
       &::first-letter {
          font-size: 1.3rem;
          font-weight: $fontWeightBold;

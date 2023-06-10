@@ -235,10 +235,10 @@ class HomePage extends Component {
          <header class="header">
            <header-template></header-template>
          </header>
-         <main class="mb-5">
+         <main class="main mb-5">
             <items-icon 
                items='${JSON.stringify(this.state.social)}'
-               class="d-flex justify-content-center mt-3">
+               class="items-icon d-flex justify-content-center mt-3">
             </items-icon>
             <div class="container pt-2 border-top">
                <div class="row">
@@ -248,14 +248,14 @@ class HomePage extends Component {
                      </catalog-controls>
                      <sale-aside></sale-aside>
                   </div>
-                  <div class="col-sm-9">
+                  <div class="fix col-sm-9 col-lg-8">
                      <div class="fs-6 d-flex justify-content-between align-items-center">
                            <button type="button" class="btn btn-outline-success text-dark all-products">Все растения</button>
                         <sort-by-price></sort-by-price>
                      </div>
                      <card-list 
                         products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
-                        class="col-sm-3 mb-3">
+                        class="mb-3 p-2">
                      </card-list>
                      <div class='mt-5'>
                         <it-pagination 

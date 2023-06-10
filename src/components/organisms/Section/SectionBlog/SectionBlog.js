@@ -1,5 +1,6 @@
 import { Component } from '../../../../core/Component';
 import '../../../molecules/CardBlogPost';
+import './sectionBlog.scss';
 import '../section.scss';
 
 class SectionBlog extends Component {
@@ -8,7 +9,7 @@ class SectionBlog extends Component {
   }
 
   static get observedAttributes() {
-    return ['posts', 'class', 'id'];
+    return ['posts', 'id'];
   }
 
   render() {
@@ -19,7 +20,7 @@ class SectionBlog extends Component {
             <h3 class="title-section text-center text-uppercase">
                Наши записи в блоге
             </h3>
-            <div class="d-flex justify-content-around">
+            <div class="blogs d-flex justify-content-evenly mt-5">
              ${posts
                .map((item) => {
                  return `
@@ -28,8 +29,7 @@ class SectionBlog extends Component {
                      image='${item.preview}'
                      title='${item.title}'
                      description='${item.description}'
-                     class="${this.props.class}"
-                     content=""
+                     class="card-blog"
                      style="width: 30rem;">
                   </card-blog-post>
                `;

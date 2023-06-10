@@ -33,9 +33,11 @@ class CardBlogPost extends Component {
     const classBlog = this.props.content ? this.props.content : '';
 
     return `
-         <div class="border-0 bg-transparent m-2 ${className}" id="${id}">
-            <img class="image col-4" src="${image}" alt="${title}" />
-            <div class="${classBlog}">
+         <div class="border-0 bg-transparent ${className}" id="${id}">
+            <div class="im-wrapp">
+               <img class="image col-4" src="${image}" alt="${title}" />
+            </div>
+            <div class="body-blog ${classBlog}">
                <h5 class="card-title p-0 lh-sm fix-title mt-3">${
                  title || '<h3 class="text-success">Название не найдено</h3>'
                }
