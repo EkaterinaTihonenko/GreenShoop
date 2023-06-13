@@ -15,6 +15,12 @@
    }
 }
 
+.image-cart {
+   width: 170px !important;
+   @media (max-width: 768px) {
+   }
+}
+
 @keyframes animate_motion {
    0%,
    20% {

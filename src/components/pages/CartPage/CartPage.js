@@ -164,7 +164,7 @@ class CartPage extends Component {
                       return `
                      <tr>
                         <td>
-                           <img class="image-fit" src='${item.preview}' alt="image" />
+                           <img class="image-cart image-fit" src='${item.preview}' alt="image" />
                         </td>
                         <td class="col-1 pe-4 fw-bold fs-6 text-success">
                            ${item.title}
