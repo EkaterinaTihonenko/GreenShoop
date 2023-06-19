@@ -137,7 +137,7 @@ class Navigation extends Component {
                items='${JSON.stringify(this.getItems())}'>
             </menu-items>
             <div class="d-flex justify-content-center align-items-center">
-               <search-form></search-form>
+                  <search-form></search-form>
                <div class="nav-item btns">
                   <route-link to="${APP_ROUTES.cart}">
                      <a class="nav-link position-relative" href="#">

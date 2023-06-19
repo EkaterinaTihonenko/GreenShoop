@@ -27,6 +27,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 8%;
+      @media (max-width: 425px) {
+         padding: 0;
+      }
       &__mobile-btn {
          margin-right: 6%;
          border: none;
@@ -126,4 +129,19 @@
 }
 .menu__item:hover {
    background-color: #cfd8dc;
+}
+
+.btn-group-items {
+   @media (max-width: 425px) {
+      display: none;
+   }
+}
+
+.grp .btn-right {
+   margin: auto;
+   border: none !important;
+   display: none !important;
+   @media (max-width: 425px) {
+      display: flex !important;
+   }
 }

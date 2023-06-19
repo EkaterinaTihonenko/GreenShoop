@@ -16,17 +16,15 @@ class CatalogControls extends Component {
     const categories = this.props.categories;
 
     return `
-         <header>
-            <nav class="mt-3">
-               <div class="pe-lg-4 ps-lg-4 pe-mb-2 ps-mb-2">
-                  <div class="category-items">
-                     <category-items 
-                        items='${categories}'>
-                     </category-items>
-                  </div>
-               </div>
-            </nav>
-         </header>
+      <nav class="navigation-catalog-controls mt-3">
+         <div class="pe-lg-4 ps-lg-4 pe-mb-2 ps-mb-2">
+            <div class="category-items">
+               <category-items 
+                  items='${categories}'>
+               </category-items>
+            </div>
+         </div>
+      </nav>
       `;
   }
 }

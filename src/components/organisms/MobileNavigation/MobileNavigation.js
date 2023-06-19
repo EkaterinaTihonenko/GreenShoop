@@ -2,6 +2,7 @@ import { Component } from '../../../core/Component';
 import { appPages } from '../../../constants/appPages';
 import '../../molecules/LogoLink';
 import './mobileNavigation.scss';
+import '../../molecules/MobileSearchForm';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { authService } from '../../../services/Auth';
 import { storageService } from '../../../services/StorageService';
@@ -130,7 +131,7 @@ class MobileNavigation extends Component {
             <logo-link></logo-link>
          </div>
          <div class="d-flex justify-content-center align-items-center">
-         <search-form></search-form>
+         <mobile-search-form></mobile-search-form>
          <div class="nav-item btns">
             <route-link to="${APP_ROUTES.cart}">
                <a class="nav-link position-relative" href="#">
@@ -141,13 +142,18 @@ class MobileNavigation extends Component {
                </a>
             </route-link>
          </div>
-         <btn-group user='${JSON.stringify(this.state.user)}'></btn-group>
+         <div class="btn-group-items"> 
+            <btn-group user='${JSON.stringify(this.state.user)}'></btn-group>
+         </div>
          <div class="hamburger-menu">
          <input id="menu__toggle" type="checkbox" />
          <label class="menu__btn" for="menu__toggle">
             <span></span>
          </label>
          <ul class="menu__box">
+            <div class="grp">
+               <btn-group user='${JSON.stringify(this.state.user)}'></btn-group>
+            </div>
             <menu-items
                items='${JSON.stringify(appPages.slice(0, 6))}'
                class="menu-items">

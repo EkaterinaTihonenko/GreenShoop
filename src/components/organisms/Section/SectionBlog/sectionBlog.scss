@@ -17,6 +17,11 @@
       width: 90vw;
       margin-bottom: 1%;
    }
+   @media (max-width: 425px) {
+      grid-template-columns: 1fr;
+      gap: 5px;
+      width: 100% !important;
+   }
 }
 
 .body-blog {

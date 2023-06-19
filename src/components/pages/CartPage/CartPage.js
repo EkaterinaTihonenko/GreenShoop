@@ -144,8 +144,8 @@ class CartPage extends Component {
                <thead>
                   <tr>
                      <th scope="col">Ваш заказ</th>
-                     <th scope="col">Наименование</th>
-                     <th scope="col">Описание</th>
+                     <th scope="col" class="dns">Наименование</th>
+                     <th scope="col" class="dn">Описание</th>
                      <th scope="col"></th>
                      <th scope="col" class="text-nowrap">Кол-во</th>
                      <th scope="col"></th>
@@ -164,32 +164,34 @@ class CartPage extends Component {
                       return `
                      <tr>
                         <td>
-                           <img class="image-cart image-fit" src='${item.preview}' alt="image" />
+                           <img class="image-cart image-fit fix-dns" src='${
+                             item.preview
+                           }' alt="image" />
                         </td>
-                        <td class="col-1 pe-4 fw-bold fs-6 text-success">
+                        <td class="col-1 pe-4 fw-bold fs-6 text-success fix-dns-title">
                            ${item.title}
                         </td>
-                        <td colspan="1" class="align-top pe-4 p-1 pt-5">
+                        <td colspan="1" class="align-top pe-4 p-1 pt-5 dn">
                            <span class="fix-description">${item.description}</span>
                         </td>
-                        <td class="text-end pe-0">
-                           <button class='btn btn-success minus' data-id="${item.id}">
-                              -
-                           </button>
-                        </td>
-                        <td class="text-center p-0">
-                           ${item.quantity}
-                        </td>
-                        <td class="text-start ps-0">
-                           <button class='btn btn-success plus' data-id="${item.id}">
-                              +
-                           </button>
-                        </td>
-                        <td class="text-start ps-0">
-                           <button class='btn btn-success delete' data-id="${item.id}">
-                              Удалить
-                           </button>
-                        </td>
+                           <td class="text-end pe-0">
+                              <button class='btn btn-success minus' data-id="${item.id}">
+                                 -
+                              </button>
+                           </td>
+                           <td class="text-center p-md-0 p-sm-1">
+                              ${item.quantity}
+                           </td>
+                           <td class="text-start ps-0">
+                              <button class='btn btn-success plus' data-id="${item.id}">
+                                 +
+                              </button>
+                           </td>
+                           <td class="text-start ps-0">
+                              <button class='btn btn-success delete' data-id="${item.id}">
+                                 Удалить
+                              </button>
+                           </td>
                         <td class="col-1 ps-3">
                           ${new Intl.NumberFormat('ru-Ru', {
                             style: 'currency',

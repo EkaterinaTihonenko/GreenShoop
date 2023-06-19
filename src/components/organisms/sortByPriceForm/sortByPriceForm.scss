@@ -1,0 +1,6 @@
+.form-select {
+   width: 18rem;
+   @media (max-width: 425px) {
+      width: auto;
+   }
+}

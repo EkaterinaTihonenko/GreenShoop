@@ -67,7 +67,7 @@ class SignInPage extends Component {
                   Вход
                </h1>
                <div class="row justify-content-center mt-5">
-                  <div class="col-6">
+                  <div class="col-lg-6 col-md-8 col-sm-9 col-xxl-5">
                      <div class="border p-5 border-success border-2 rounded">
                         <div class="invalid-feedback d-block">
                            ${message}

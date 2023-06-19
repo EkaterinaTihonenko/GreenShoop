@@ -16,6 +16,10 @@
    @media (max-width: 1024px) {
       grid-template-columns: 1fr 1fr 1fr;
    }
+   @media (max-width: 425px) {
+      grid-template-columns: 1fr 1fr;
+      margin: auto;
+   }
 }
 
 .main {
@@ -26,5 +30,18 @@
       @media (max-width: 768px) {
          display: none !important;
       }
+   }
+}
+
+.navigation-catalog-controls {
+   @media (max-width: 425px) {
+      display: none;
+   }
+}
+
+.mobile-catalog {
+   display: none;
+   @media (max-width: 425px) {
+      display: block;
    }
 }
