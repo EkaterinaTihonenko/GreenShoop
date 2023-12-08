@@ -47,8 +47,8 @@ class CardProduct extends Component {
          <div class="card card-item" id="${id}" date="${date}">
                <img class="image-fit card-item-img card-img-top" src="${preview}" alt="image">
             <div class="card-body ${classBlog}">
-               <h5 class="card-title fs-5 card-name fix-line-of-title">${title}
-               </h5>
+               <h3 class="card-title fs-5 card-name fix-line-of-title">${title}
+               </h3>
                <p class="card-text fix-line-of-description">${
                  description || '<h3 class="text-success">Описание не найдено</h3>'
                }</p>

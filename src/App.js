@@ -16,7 +16,6 @@ import './components/pages/SignUpPage';
 import './components/pages/SignInPage';
 import './components/pages/SignOutPage';
 import './components/molecules/Preloader';
-import './components/organisms/MobileNavigation';
 import { authService } from './services/Auth';
 import { APP_EVENTS } from './constants/appEvents';
 import { eventEmmiter } from './core/EventEmmiter';
@@ -80,7 +79,6 @@ class App extends Component {
     <it-preloader is-loading="${this.state.isLoading}">
       <div class="main-layout content">
       <green-navigation user='${JSON.stringify(this.state.user)}'></green-navigation>
-      <mobile-navigation user='${JSON.stringify(this.state.user)}'></mobile-navigation>
         <main>
         <app-router>
             <app-route 

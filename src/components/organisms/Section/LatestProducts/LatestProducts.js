@@ -45,9 +45,9 @@ class LatestProducts extends Component {
     return `
       <div class="wrapper">
         <div class="mt-5 mb-5 wrapper__block">
-            <h3 class="title-section text-center pt-5 text-uppercase">
+            <h2 class="title-section text-center pt-5 text-uppercase">
                наши новинки
-            </h3>
+            </h2>
             <div class="p-5 cards">
             <card-list 
                products='${JSON.stringify(this.state.sortData.slice(0, 6))}'

@@ -4,7 +4,6 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { databaseService } from '../../../services/DatabaseService';
 import '../../templates/BlogTemplate';
-import './blogPage.scss';
 
 class BlogPage extends Component {
   constructor() {

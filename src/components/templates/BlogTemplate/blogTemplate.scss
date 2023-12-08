@@ -1,13 +1,4 @@
 .container > card-blog-post > .it {
    display: grid !important;
    grid-template-columns: repeat(2, 1fr) !important;
-   @media (max-width: 425px) {
-      grid-template-columns: 1fr !important;
-   }
-}
-
-.body-blog {
-   @media (max-width: 425px) {
-      margin: 0 !important;
-   }
 }

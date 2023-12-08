@@ -11,35 +11,11 @@
    }
 }
 
-.cards {
-   @media (max-width: 425px) {
-      padding: 1rem !important;
-   }
-}
-
 .card-puls {
    animation: animate_grow 2s infinite;
    margin: 20px auto;
    &:hover {
       animation: none;
-   }
-   @media (max-width: 425px) {
-      animation: none;
-      -webkit-animation: none;
-      padding: 0;
-      margin: 0;
-   }
-}
-
-card-list > .row {
-   @media (max-width: 1024px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-   }
-   @media (max-width: 425px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px;
    }
 }
 

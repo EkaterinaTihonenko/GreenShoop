@@ -1,6 +1,5 @@
 import { Component } from '../../../core/Component';
 import '../../molecules/CardProduct';
-import './cardList.scss';
 
 class CardList extends Component {
   constructor() {

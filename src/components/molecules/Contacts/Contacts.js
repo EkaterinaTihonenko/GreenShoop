@@ -1,5 +1,4 @@
 import { Component } from '../../../core/Component';
-import './contacts.scss';
 
 class Contacts extends Component {
   constructor() {
@@ -12,7 +11,7 @@ class Contacts extends Component {
 
   render() {
     return `
-         <div class="items 
+         <address class="items  m-0
             ${this.props.class}__item footer-col d-flex align-items-center">
             ${JSON.parse(this.props.contacts)
               .map((contact) => {
@@ -30,7 +29,7 @@ class Contacts extends Component {
                   `;
               })
               .join(' ')}
-         </div>
+         </address>
       `;
   }
 }

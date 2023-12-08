@@ -48,7 +48,7 @@ class sectionReviewsUser extends Component {
   render() {
     return `
          <section class="container">
-            <h4 class="title-section mt-5">Ваши отзывы:</h4>
+            <h2 class="title-section mt-5">Ваши отзывы:</h2>
 			      <reviews-user-swiper
 				      slides='${JSON.stringify(this.state.slides)}'
 				      swiperclass="reviewsUserSwiper">

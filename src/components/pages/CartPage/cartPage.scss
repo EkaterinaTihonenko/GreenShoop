@@ -17,8 +17,6 @@
 
 .image-cart {
    width: 170px !important;
-   @media (max-width: 768px) {
-   }
 }
 
 @keyframes animate_motion {
@@ -38,32 +36,5 @@
    4%,
    8% {
       transform: translate3d(7px, 0, 0);
-   }
-}
-
-.dn {
-   @media (max-width: 768px) {
-      display: none !important;
-   }
-}
-
-.dns {
-   @media (max-width: 425px) {
-      display: none !important;
-   }
-}
-
-.fix-dns {
-   @media (max-width: 425px) {
-      position: relative;
-      height: 120px !important;
-      width: 120px !important;
-   }
-}
-
-.fix-dns-title {
-   @media (max-width: 425px) {
-      position: absolute;
-      left: 10px;
    }
 }

@@ -15,14 +15,16 @@ class HeaderTemplate extends Component {
                <text-span class="span-text">
                   Добро пожаловать в Green Shop
                </text-span>
-               <h1 class="title">
+               <div>
+               <q class="title">
                   Let&lsquo;s Make a
                   <br>
                   Better
                   <text-span class="span-green">
                      Planet
                   </text-span>
-               </h1>
+               </q>
+               </div>
                <p class="text">
                   Мы являемся интернет-магазином,
                   <br>

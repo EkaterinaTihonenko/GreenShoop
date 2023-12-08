@@ -13,7 +13,6 @@ import '../../organisms/Section/LatestProducts';
 import '../../templates/SaleAside';
 import '../../organisms/sortByPriceForm';
 import './homePage.scss';
-import '../../organisms/MobileCategoryItems';
 import { convertQuotes } from '../../../utils/convertQuotes';
 
 class HomePage extends Component {
@@ -243,17 +242,12 @@ class HomePage extends Component {
             </items-icon>
             <div class="container pt-2 border-top">
                <div class="row">
-                  <div class='navigation-catalog-controls col-sm-3 border-end catalog-controls'>
+                  <aside class='navigation-catalog-controls col-sm-3 border-end catalog-controls'>
                      <catalog-controls 
                         categories='${JSON.stringify(this.state.categories)}'>
                      </catalog-controls>
                      <sale-aside></sale-aside>
-                  </div>
-                  <div class="mobile-catalog">
-                     <mobile-category-items
-                        categories='${JSON.stringify(this.state.categories)}'>
-                     </mobile-category-items>
-                  </div>
+                  </aside>
                   <div class="fix col-sm-9 col-lg-8">
                      <div class="fs-6 d-flex justify-content-between align-items-center">
                            <button type="button" class="btn btn-outline-success text-dark all-products">Все растения</button>

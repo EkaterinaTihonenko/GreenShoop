@@ -38,10 +38,10 @@ class CardBlogPost extends Component {
                <img class="image col-4" src="${image}" alt="${title}" />
             </div>
             <div class="body-blog ${classBlog}">
-               <h5 class="card-title p-0 lh-sm fix-title mt-3">${
+               <h3 class="card-title fs-4 p-0 lh-sm fix-title mt-3">${
                  title || '<h3 class="text-success">Название не найдено</h3>'
                }
-               </h5>
+               </h3>
                <p class="text fix-description">${
                  description || '<h3 class="text-success">Описание не найдено</h3>'
                }

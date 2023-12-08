@@ -8,9 +8,6 @@
    border-bottom: 2px solid $border-color;
    background-color: $shadow-bg;
    margin-bottom: 1rem;
-   @media (max-width: 768px) {
-      padding: 1rem !important;
-   }
 }
 
 .social-network {

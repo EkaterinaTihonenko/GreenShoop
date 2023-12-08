@@ -1,7 +1,5 @@
 import { Component } from '../../../core/Component';
 
-import './contactsTemplate.scss';
-
 class ContactsTemplate extends Component {
   constructor() {
     super();

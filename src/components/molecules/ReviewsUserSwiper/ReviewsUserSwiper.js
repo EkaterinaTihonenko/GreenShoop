@@ -53,7 +53,7 @@ class ReviewsUserSwiper extends Component {
                  .map(
                    (slide) => `		
                      <div class="swiper-slide ${this.props.swiperclass}-slide">
-                        <div class="container m-5 slide-container">
+                        <article class="container m-5 slide-container">
                            <div class="${this.props.swiperclass}-slide__content d-flex justify-content-start" style="width: 90%;">
                               <div class="slide ${this.props.swiperclass}-slide__content-user d-flex">
                                  <div class="slide__user me-2 text-center">
@@ -67,7 +67,7 @@ class ReviewsUserSwiper extends Component {
                                  </p>
                               </div>
                            </div>
-                        </div>
+                        </article>
                      </div>`,
                  )
                  .join('')}

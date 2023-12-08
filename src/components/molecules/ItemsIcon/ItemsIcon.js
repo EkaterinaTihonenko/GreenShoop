@@ -1,5 +1,4 @@
 import { Component } from '../../../core/Component';
-import './itemsIcon.scss';
 
 class ItemsIcon extends Component {
   constructor() {

@@ -1,6 +1,5 @@
 import { Component } from '../../../../core/Component';
 import '../../../molecules/CardBlogPost';
-import './sectionBlog.scss';
 import '../section.scss';
 
 class SectionBlog extends Component {
@@ -17,9 +16,9 @@ class SectionBlog extends Component {
 
     return `
          <section class="section-blog mt-5">
-            <h3 class="title-section text-center text-uppercase">
+            <h2 class="title-section text-center text-uppercase">
                Наши записи в блоге
-            </h3>
+            </h2>
             <div class="blogs d-flex justify-content-evenly mt-5">
              ${posts
                .map((item) => {

@@ -43,10 +43,4 @@ body {
    min-height: 100%;
    max-width: 1400px;
    margin: auto;
-   @media (max-width: 1580px) {
-      max-width: 1500px;
-   }
-   @media (max-width: 1024px) {
-      max-width: 1000px;
-   }
 }
