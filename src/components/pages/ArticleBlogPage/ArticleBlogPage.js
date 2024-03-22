@@ -37,7 +37,7 @@ class ArticleBlogPage extends Component {
                  this.state.posts.title || '<h3 class="text-success">Название не найдено</h3>'
                }</h2>
                <img class="image m-2 me-3 float-start" 
-                  src="${this.state.posts.preview}
+                  src=${this.state.posts.preview}
                   alt="img" />
                <p class="mt-5 text-scale">
                 ${
